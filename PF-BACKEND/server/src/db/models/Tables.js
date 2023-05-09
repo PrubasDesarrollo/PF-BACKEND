@@ -1,21 +1,7 @@
 const mongoose = require("mongoose");
 
-const TablesScheme = new mongoose.Schema(
+const tablesScheme = new mongoose.Schema(
   {
-    diners: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Users",
-      autopopulate: true,
-    },
-
-    orders: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Posts",
-        autopopulate: true,
-      },
-    ],
-
     capacity: {
       type: Number,
     },
@@ -25,6 +11,4 @@ const TablesScheme = new mongoose.Schema(
   }
 );
 
-CursosScheme.plugin(require("mongoose-autopopulate"));
-
-module.exports = mongoose.model("Tables", TablesScheme);
+module.exports = mongoose.model("tables", tablesScheme);
