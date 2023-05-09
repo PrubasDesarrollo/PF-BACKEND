@@ -18,16 +18,12 @@ const restaurantsScheme = new mongoose.Schema({
     },
     menu: {
         type: Array,
-        default: []
     },
 
-    tables: [{
+    table: [{
         type: mongoose.Types.ObjectId,
-        ref: 'tables'
+        ref: 'tables',
     }]
-    // menu:[{type: mongoose.Schema.Types.ObjectId, ref:'Posts', autopopulate: true}],
-
-    // tables:[{type: mongoose.Schema.Types.ObjectId, ref:'Tables', autopopulate: true}]
 },
 {
     versionKey: false,
