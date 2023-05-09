@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
-const mongoosePaginate = require('mongoose-paginate-v2')
 
-
-const UsersScheme = new mongoose.Schema(
+const usersScheme = new mongoose.Schema(
     {
         name:{
             type: String
@@ -16,11 +14,11 @@ const UsersScheme = new mongoose.Schema(
         rating:{
             type: Number
         },
-        posts:[{
-            type: mongoose.Schema.Types.ObjectId, ref:'Posts', autopopulate: true
-        }],
+        posts:{
+            type:[ mongoose.Schema.Types.ObjectId], ref:'posts'
+        },
         table:{
-            type: mongoose.Schema.Types.ObjectId, ref:'Tables', autopopulate: true
+            type: mongoose.Schema.Types.ObjectId, ref:'tables'
         }
     },
     {
@@ -28,7 +26,4 @@ const UsersScheme = new mongoose.Schema(
     }
 )
 
-CursosScheme.plugin(mongoosePaginate) 
-CursosScheme.plugin( require('mongoose-autopopulate') ) 
-
-module.exports = mongoose.model('Users',UsersScheme)
+module.exports = mongoose.model('users',usersScheme)

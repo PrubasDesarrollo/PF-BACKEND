@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const mongoosePaginate = require('mongoose-paginate-v2')
 
 const restaurantsScheme = new mongoose.Schema({
     name:{
@@ -17,12 +16,24 @@ const restaurantsScheme = new mongoose.Schema({
     rating:{
         type: Number
     },
-    menu:[{type: mongoose.Schema.Types.ObjectId, ref:'Posts', autopopulate: true}],
+    menu: {
+        type: Array,
+        default: []
+    },
 
-    tables:[{type: mongoose.Schema.Types.ObjectId, ref:'Tables', autopopulate: true}]
-});
+    tables: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'tables'
+    }]
+    // menu:[{type: mongoose.Schema.Types.ObjectId, ref:'Posts', autopopulate: true}],
 
-restaurantsScheme.plugin(mongoosePaginate) 
-restaurantsScheme.plugin(require('mongoose-autopopulate'))
+    // tables:[{type: mongoose.Schema.Types.ObjectId, ref:'Tables', autopopulate: true}]
+},
+{
+    versionKey: false,
+    timestamps: true,
+    // strictPopulate: false
+}
+);
 
-module.exports = mongoose.model('Restaurants', restaurantsScheme);//comentario para que me deje ahcer una nueva pr
+module.exports = mongoose.model('restaurants', restaurantsScheme);//comentario para que me deje ahcer una nueva pr

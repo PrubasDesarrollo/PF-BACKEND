@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const mongoosePaginate = require('mongoose-paginate-v2')
 
 const postScheme = new mongoose.Schema({
     name:{
@@ -20,11 +19,14 @@ const postScheme = new mongoose.Schema({
     rating:{
         type: Number
     },
-    authorUser:[{type: mongoose.Schema.Types.ObjectId, ref: 'Users', autopopulate: true}],
-    authorRest:[{type: mongoose.Schema.Types.ObjectId, ref: 'Restaurants', autopopulate: true}]
+    authorUser:{
+        type: mongoose.Types.ObjectId,
+        ref: 'users'
+    },
+    authorRest:{
+        type: mongoose.Types.ObjectId,
+        ref: 'restaurants'
+    }
 })
 
-postScheme.plugin(mongoosePaginate);
-postScheme.plugin(require('mongoose-autopopulate'));
-
-module.exports = mongoose.model('Posts', postScheme);
+module.exports = mongoose.model('posts', postScheme);
