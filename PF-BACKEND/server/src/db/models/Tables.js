@@ -9,6 +9,7 @@ const tablesScheme = new mongoose.Schema(
     capacity: {
       type: Number,
     },
+    // * p
   },
   {
     versionKey: false,
