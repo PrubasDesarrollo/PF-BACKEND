@@ -2,6 +2,7 @@ const { Router } = require("express");
 const handlerGetPosts = require("./postsHandlers/getHandler");
 const handlerPostPosts = require("./postsHandlers/postHandlerPosts");
 const handlerDeletePosts = require("./postsHandlers/deletePostsHandler");
+const handlerPutPost = require("./postsHandlers/handlerPutPost");
 
 const api = Router();
 
@@ -10,10 +11,12 @@ api.get("/", handlerGetPosts);
 
 //*Crear un posteo
 api.post("/", handlerPostPosts);
+
 //*Eliminar un posteo
 api.delete("/", handlerDeletePosts);
+
 //*Actualizar un posteo
-//? api.put("/", );
+api.put("/", handlerPutPost );
 
 
 module.exports = api;
