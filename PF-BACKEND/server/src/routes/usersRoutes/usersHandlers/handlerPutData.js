@@ -8,7 +8,7 @@ const handlerPutData = async(req,res) =>{
         for(bandera in data){
             validator = bandera;
         }
-        if(validator=="post"){
+        if(validator=="posts"){
             let {posts} = req.body;
             const user = await controllerPutDataPosts(id,posts);
             res.status(200).json(user)

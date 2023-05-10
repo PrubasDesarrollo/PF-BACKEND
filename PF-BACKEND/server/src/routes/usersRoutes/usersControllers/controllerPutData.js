@@ -4,7 +4,7 @@ const parseId = require('../../../utils/parseId');
 const controllerPutDataPosts = (_id,posts) =>{
     const idUser = parseId(_id);
 
-    return users.findOneAndUpdate(idUser, {$push: {posts: posts}})
+    return users.findOneAndUpdate(idUser, {$addToSet: {posts: posts}})
 }
 
 const controllerPutDataTable = (_id,table) =>{
