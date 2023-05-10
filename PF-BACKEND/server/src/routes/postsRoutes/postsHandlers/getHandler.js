@@ -1,4 +1,4 @@
-const getPostsController = require("postsControllers/getPostsController")
+const getPostsController = require("../postsControllers/getPostsController")
 
 const handlerGetPosts = async (req, res) => {
     try {
