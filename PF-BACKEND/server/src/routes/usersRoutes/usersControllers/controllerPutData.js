@@ -13,8 +13,8 @@ const controllerPutDataTable = (_id,table) =>{
     return users.findOneAndUpdate(idUser, {table: table})
 }
 
-const controllerPutData = (data) =>{
-    const idUser = parseId(data._id);
+const controllerPutData = (_id, data) =>{
+    const idUser = parseId(_id);
 
     return users.findOneAndUpdate(idUser, data)
 }
