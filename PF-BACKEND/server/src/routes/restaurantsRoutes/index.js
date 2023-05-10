@@ -3,11 +3,14 @@ const handlerGetData = require("./restaurantsHandlers/getHandler")
 const handlerPostData = require("./restaurantsHandlers/postHandler.js");
 const handlerDeleteData = require("./restaurantsHandlers/deleteHandler");
 const handlerPutData = require("./restaurantsHandlers/putHandler");
+const handlerGetIdData = require("./restaurantsHandlers/getIdHandler");
 const api = Router();
 
-// * Traer datos de todos los restaurantes
-
+// * Rutas GET
+//? traer todos los restaurantes
 api.get("/", handlerGetData);
+
+api.get("/:id", handlerGetIdData);
 
 // * Postear un restaurante
 
