@@ -8,7 +8,7 @@ const getIdHandler = async (req, res) => {
         res.status(200).json(restaurantData);
     } catch (error) {
         console.log(error.messaje);
-        res.status(400).json({ error: error.messaje })
+        res.status(400).json({ error: error.message })
     }
 }
 
