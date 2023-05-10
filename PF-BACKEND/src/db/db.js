@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const DB_UIL = "mongodb://127.0.0.1/foodbook";
+const createSeeds = require("./seeds/index");
 
 module.exports = () => {
     const connect = () => {
@@ -9,6 +10,7 @@ module.exports = () => {
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             },
+            createSeeds(),
             console.log("Coneccion con la BD realizada")
             )
         } catch (error) {
