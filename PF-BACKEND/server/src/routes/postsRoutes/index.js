@@ -13,10 +13,10 @@ api.get("/", handlerGetPosts);
 api.post("/", handlerPostPosts);
 
 //*Eliminar un posteo
-api.delete("/", handlerDeletePosts);
+api.delete("/:id", handlerDeletePosts);
 
 //*Actualizar un posteo
-api.put("/", handlerPutPost );
+api.put("/:id", handlerPutPost );
 
 
 module.exports = api;
