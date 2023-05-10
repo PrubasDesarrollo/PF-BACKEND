@@ -3,7 +3,7 @@ const parsId = require("../../../utils/parseId");
 
 const putRestaurantsTables = (id, restaurantData) => {
     const idTable = parsId(id);
-    return restaurants.findByIdAndUpdate(idTable, { $push: {table: restaurantData} });
+    return restaurants.findByIdAndUpdate(idTable, { $addToSet: {table: restaurantData} });
 }
 
 const putRestaurantsData = (id, restaurantData) => {
