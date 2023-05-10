@@ -12,6 +12,6 @@ api.post("/", handlerPostUser);
 
 api.delete("/:id", handlerDeleteUser);
 
-api.put("/:info", handlerPutData);
+api.put("/:id", handlerPutData);
 
 module.exports = api;
