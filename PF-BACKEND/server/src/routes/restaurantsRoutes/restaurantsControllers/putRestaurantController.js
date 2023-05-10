@@ -1,9 +1,18 @@
 const restaurants = require("../../../db/models/Restaurants");
 const parsId = require("../../../utils/parseId");
 
-const putRestaurants = (id, restaurantData) => {
+const putRestaurantsTables = (id, restaurantData) => {
     const idTable = parsId(id);
     return restaurants.findByIdAndUpdate(idTable, { $push: {table: restaurantData} });
 }
 
-module.exports = putRestaurants;
+const putRestaurantsData = (id, restaurantData) => {
+    const idTable = parsId(id);
+    return restaurants.findByIdAndUpdate(idTable, restaurantData);
+}
+
+
+module.exports = {
+    putRestaurantsData,
+    putRestaurantsTables
+};
