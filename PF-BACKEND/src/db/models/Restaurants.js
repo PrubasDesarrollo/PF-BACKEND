@@ -13,8 +13,12 @@ const restaurantsScheme = new mongoose.Schema({
     addres:{
         type: String
     },
+    valoraciones:{
+        type: Array,
+    },
     rating:{
-        type: Number
+        type: Number,
+        default: 0
     },
     menu: {
         type: Array,
