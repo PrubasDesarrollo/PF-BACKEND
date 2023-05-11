@@ -13,7 +13,7 @@ const handlerGetData = async (req, res) => {
         let info = modelateData(page || 1,restaurants)
         res.status(200).json(info);
     } catch (error) {
-        console.log(error);
+        res.status(500).json({error});
     }
 }
 
