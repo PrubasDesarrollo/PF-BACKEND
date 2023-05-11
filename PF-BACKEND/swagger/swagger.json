@@ -1,0 +1,73 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API de restaurantes",
+    "description": "Una API que maneja información de restaurantes",
+    "version": "1.0.0"
+  },
+  "host": "example.com",
+  "basePath": "/api",
+  "schemes": ["https"],
+  "paths": {
+    "/restaurants": {
+      "get": {
+        "description": "Obtiene información de restaurantes",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "El número de página que se desea obtener",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Objetos de restaurantes obtenidos con éxito",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Restaurante"
+              }
+            }
+          },
+          "400": {
+            "description": "La solicitud fue incorrecta o no se pudo procesar",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Restaurante": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "example": "Restaurante A"
+        },
+        "direccion": {
+          "type": "string",
+          "example": "Calle 1, Ciudad"
+        },
+        "telefono": {
+          "type": "string",
+          "example": "1234567890"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "mensaje": {
+          "type": "string",
+          "example": "La solicitud no se pudo procesar debido a un error"
+        }
+      }
+    }
+  }
+}
