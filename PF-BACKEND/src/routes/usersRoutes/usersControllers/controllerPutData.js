@@ -13,14 +13,22 @@ const controllerPutDataTable = (_id,table) =>{
     return users.findOneAndUpdate(idUser, {table: table})
 }
 
+const controllerPutDataValoraciones = (_id,valoraciones) =>{
+    const idUser = parseId(_id);
+
+    return users.findOneAndUpdate(idUser, {$push: {valoraciones: valoraciones}})
+}
+
 const controllerPutData = (_id, data) =>{
     const idUser = parseId(_id);
 
     return users.findOneAndUpdate(idUser, data)
 }
 
+
 module.exports = {
     controllerPutDataPosts,
     controllerPutDataTable,
-    controllerPutData
+    controllerPutData,
+    controllerPutDataValoraciones
 }
