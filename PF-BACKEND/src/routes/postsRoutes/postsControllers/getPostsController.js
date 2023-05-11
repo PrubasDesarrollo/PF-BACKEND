@@ -9,7 +9,7 @@ const getPostsController = async () =>{
     const data = await posts.find().populate('authorUser').populate('authorRest').exec();
     const postRatings = await mapDataRating(data);
 
-    return postRatings.sort((a, b) => b.rating - a.rating)
+    return postRatings.sort((a, b) => Number(b.rating) - Number(a.rating))
 }
 
 const getPostsOrdered = async (order) =>{
@@ -19,16 +19,16 @@ const getPostsOrdered = async (order) =>{
     const postRatings = await mapDataRating(data);
 
     if(order === "alphadesc"){
-        return postRatings.sort((a, b) =>b.name - a.name)
+        return await postRatings.sort((a, b) => b.name - a.name)
     }
     if(order === "alphaasc"){
-    return postRatings.sort((a, b) => a.name - b.name)
+    return await postRatings.sort((a, b) => a.name - b.name)
     }
     if(order === "ratingdesc"){
-        return postRatings.sort((a, b) => Number(b.rating) - Number(a.rating))
+        return await postRatings.sort((a, b) => Number(b.rating) - Number(a.rating))
     }
     if(order === "ratingasc"){
-    return postRatings.sort((a, b) => Number(a.rating) - Number(b.rating))
+    return await postRatings.sort((a, b) => Number(a.rating) - Number(b.rating))
 }
 }
 
@@ -38,6 +38,7 @@ const mapDataRating = async (data) => {
             _id: post._id,
             name: post.name,
             description: post.description,
+            image: post.image,
             ingredients: post.ingredients,
             original: post.original,
             cost: post.cost,
