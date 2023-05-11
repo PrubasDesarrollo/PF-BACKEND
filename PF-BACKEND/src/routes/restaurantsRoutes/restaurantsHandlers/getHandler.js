@@ -10,7 +10,7 @@ const handlerGetData = async (req, res) => {
         }else{
             restaurants = await getRestaurantsRating(order);
         }
-        let info = modelateData(page,restaurants)
+        let info = modelateData(page || 1,restaurants)
         res.status(200).json(info);
     } catch (error) {
         console.log(error);
