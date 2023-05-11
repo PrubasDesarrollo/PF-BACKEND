@@ -11,7 +11,10 @@ const handlerPutData = async (req, res) => {
         }
         let restaurant;
         if(validator == "table") restaurant = await putRestaurantsTables(id, data.table);
-        else restaurant = await putRestaurantsData(id, data);
+        else{
+            restaurant = await putRestaurantsData(id, data);
+        }
+        console.log(restaurant);
         
         res.status(200).json({ restaurant });
     } catch (error) {
