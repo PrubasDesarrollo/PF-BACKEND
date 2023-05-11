@@ -8,7 +8,12 @@ const putRestaurantsTables = (id, restaurantData) => {
 
 const putRestaurantsData = (id, restaurantData) => {
     const idTable = parsId(id);
-    return restaurants.findByIdAndUpdate(idTable, restaurantData);
+    return restaurants.findByIdAndUpdate(idTable, {
+        name: restaurantData.name,
+        type_customer: restaurantData.type_customer,
+        rating: restaurantData.rating,
+        $push:{valoraciones: restaurantData.valoraciones}
+    });
 }
 
 
