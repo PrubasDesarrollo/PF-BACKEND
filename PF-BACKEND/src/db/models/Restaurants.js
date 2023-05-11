@@ -4,11 +4,17 @@ const restaurantsScheme = new mongoose.Schema({
     name:{
         type: String
     },
+    image:[{
+        type: Buffer
+    }],
     type_customer:{
         type: String
     },
     description:{
         type: String
+    },
+    tags:{
+        type: Array
     },
     city:{
         type: String
