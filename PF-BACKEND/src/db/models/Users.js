@@ -5,11 +5,20 @@ const usersScheme = new mongoose.Schema(
         name:{
             type: String
         },
+        email:{
+            type: String
+        },
+        image:{
+            type: Buffer
+        },
         type_customer:{
             type: String
         },
         description:{
             type: String
+        },
+        valoraciones:{
+            type: Array
         },
         rating:{
             type: Number
