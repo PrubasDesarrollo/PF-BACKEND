@@ -32,6 +32,7 @@ const getRestaurantsRating = async (order) => {
 const mapDataRating = async (data) => {
     const mapData = data.map((restaurant) => {
         return{
+            _id: restaurant._id,
             name: restaurant.name,
             type_customer: restaurant.type_customer,
             valoraciones: restaurant.valoraciones ? restaurant.valoraciones : [0],
