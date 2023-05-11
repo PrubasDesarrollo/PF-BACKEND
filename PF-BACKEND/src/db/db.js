@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const DB_UIL = "mongodb://mongo:0rlihv0cPxexppVlGMdJ@containers-us-west-126.railway.app:7808";
+const DB_UIL = "mongodb://mongo:dz5O7hHCPUsqeqXGQwPN@containers-us-west-141.railway.app:7456";
 const createSeeds = require("./seeds/index");
 
 module.exports = () => {
