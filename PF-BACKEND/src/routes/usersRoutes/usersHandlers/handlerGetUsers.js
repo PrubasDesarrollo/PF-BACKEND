@@ -3,12 +3,11 @@ const modelateData = require('../../../utils/modelateData')
 
 const handlerGetUsers = async(req,res) =>{
     try{
-        let {page} = req.query
-        const data = await getUserController();
-        const info = modelateData(page,data)
-        res.status(200).json(info)
+        let params = req.query
+        const data = await getUserController(params);
+        res.status(200).json(data)
     }catch(err){
-        res.staus(400).json({error:err.message});
+        res.status(400).json({error:err.message});
     }
 }
 
