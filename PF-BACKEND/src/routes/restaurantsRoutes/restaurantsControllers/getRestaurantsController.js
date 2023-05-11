@@ -41,7 +41,9 @@ const mapDataRating = (data) => {
             address: restaurant.address,
             country: restaurant.country,
             phoneNumber: restaurant.phoneNumber,
+            tags: restaurant.tags,
             menu: restaurant.menu,
+            image: restaurant.image,
             table: restaurant.table,
         }
     });
