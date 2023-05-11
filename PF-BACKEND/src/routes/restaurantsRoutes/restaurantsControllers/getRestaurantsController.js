@@ -29,7 +29,7 @@ const getRestaurantsRating = async (order) => {
     }
 }
 
-const mapDataRating = async (data) => {
+const mapDataRating = (data) => {
     const mapData = data.map((restaurant) => {
         return{
             _id: restaurant._id,
@@ -37,6 +37,10 @@ const mapDataRating = async (data) => {
             type_customer: restaurant.type_customer,
             valoraciones: restaurant.valoraciones ? restaurant.valoraciones : [0],
             rating: averageGrades(restaurant.valoraciones),
+            city: restaurant.city,
+            address: restaurant.address,
+            country: restaurant.country,
+            phoneNumber: restaurant.phoneNumber,
             menu: restaurant.menu,
             table: restaurant.table,
         }
