@@ -17,18 +17,22 @@ const getRestaurantsRating = async (order) => {
     const restaurantRatings = await mapDataRating(data);
     if(order == "alphadesc"){
         return restaurantRatings.sort((a, b) => b.name - a.name)
-    }else if(order == "alphaasc"){
+    }
+    if(order == "alphaasc"){
         return restaurantRatings.sort((a, b) => a.name - b.name)
-    }else if(order == "ratingdesc"){
-        return restaurantRatings.sort((a, b) => a.rating - b.rating)
-    }else if(order == "ratingasc"){
-        return restaurantRatings.sort((a, b) => a.rating - b.rating)
+    }
+    if(order == "ratingdesc"){
+        return restaurantRatings.sort((a, b) => Number(b.rating) - Number(a.rating))
+    }
+    if(order == "ratingasc"){
+        return restaurantRatings.sort((a, b) => Number(a.rating) - Number(b.rating))
     }
 }
 
 const mapDataRating = async (data) => {
     const mapData = data.map((restaurant) => {
         return{
+            _id: restaurant._id,
             name: restaurant.name,
             type_customer: restaurant.type_customer,
             valoraciones: restaurant.valoraciones ? restaurant.valoraciones : [0],
