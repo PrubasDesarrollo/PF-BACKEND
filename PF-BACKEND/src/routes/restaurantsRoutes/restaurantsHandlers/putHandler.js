@@ -1,4 +1,4 @@
-const {putRestaurantsData, putRestaurantsTables} = require("../restaurantsControllers/putRestaurantController");
+const {putRestaurantsData, putRestaurantsTables, putRestaurantsMenu} = require("../restaurantsControllers/putRestaurantController");
 
 
 const handlerPutData = async (req, res) => {
@@ -11,7 +11,11 @@ const handlerPutData = async (req, res) => {
         }
         let restaurant;
         if(validator == "table") restaurant = await putRestaurantsTables(id, data.table);
-        else restaurant = await putRestaurantsData(id, data);
+        else if (validator == "menu") restaurant = await putRestaurantsMenu(id, data.menu);
+        else{
+            restaurant = await putRestaurantsData(id, data);
+        }
+        console.log(restaurant);
         
         res.status(200).json({ restaurant });
     } catch (error) {

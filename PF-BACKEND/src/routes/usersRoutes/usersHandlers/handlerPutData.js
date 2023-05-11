@@ -1,4 +1,4 @@
-const {controllerPutDataPosts,controllerPutDataTable,controllerPutData} = require('../usersControllers/controllerPutData')
+const {controllerPutDataPosts,controllerPutDataTable,controllerPutData,controllerPutDataValoraciones} = require('../usersControllers/controllerPutData')
 
 const handlerPutData = async(req,res) =>{
     try{
@@ -17,7 +17,12 @@ const handlerPutData = async(req,res) =>{
             let {table} = req.body
             const user = await controllerPutDataTable(id,table);
             res.status(200).json(user)
-        }   
+        }  
+        else if(validator=="valoraciones"){
+            let {valoraciones} = req.body
+            const user = await controllerPutDataValoraciones(id,valoraciones); 
+            res.status(200).json(user)
+        } 
         else{
             const user = await controllerPutData(id, data);
             res.status(200).json(user)
