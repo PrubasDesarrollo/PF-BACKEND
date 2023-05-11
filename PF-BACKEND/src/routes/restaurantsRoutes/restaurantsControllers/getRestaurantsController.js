@@ -43,6 +43,7 @@ const mapDataRating = (data) => {
             phoneNumber: restaurant.phoneNumber,
             tags: restaurant.tags,
             menu: restaurant.menu,
+            image: restaurant.image,
             table: restaurant.table,
         }
     });
