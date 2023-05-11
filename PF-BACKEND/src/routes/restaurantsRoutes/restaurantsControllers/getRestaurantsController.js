@@ -5,17 +5,19 @@ const averageGrades = require("../../../utils/averageGrades");
 
 const getRestaurants = async () => {
     const tablesData = await tables.find();
-    const data = await restaurants.find().populate('table').exec();
-    return data;
+    const data = await restaurants.find().sort({name:-1}).populate('table').exec();
+    const restaurantRatings = await mapDataRating(data);
+
+    return restaurantRatings.sort((a, b) => b.rating - a.rating)
 }
 
 const getRestaurantsRating = async (rating) => {
     const tablesData = await tables.find();
-    const data = await restaurants.find().populate('table').exec();
+    const data = await restaurants.find().sort({name:-1}).populate('table').exec();
     const restaurantRatings = await mapDataRating(data);
-    if(rating == "desc"){
+    if(rating == "alphadesc"){
         return restaurantRatings.sort((a, b) => b.rating - a.rating)
-    }else if(rating == "asc"){
+    }else if(rating == "alphaasc"){
         return restaurantRatings.sort((a, b) => a.rating - b.rating)
     }
 }
