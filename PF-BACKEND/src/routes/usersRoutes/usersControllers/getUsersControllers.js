@@ -6,7 +6,11 @@ const averageGrades = require('../../../utils/averageGrades')
 const getUserController = async() =>{
     const tablesData = tables.find();
     const postsData = posts.find();
-    return users.find().sort({rating: -1}).populate('posts').populate('table').exec()
+    const data = await users.find().sort({rating: -1}).populate('posts').populate('table').exec()
+
+    const usersRatings = await mapDataRating(data);
+
+    return usersRatings.sort((a, b) => b.rating - a.rating)
 }
 
 const getUserControllerQuery= async(order) =>{
