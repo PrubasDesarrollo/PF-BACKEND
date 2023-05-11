@@ -17,7 +17,7 @@ const postScheme = new mongoose.Schema({
         type: Number
     },
     rating:{
-        type: Number
+        type: Array
     },
     authorUser:{
         type: mongoose.Types.ObjectId,
