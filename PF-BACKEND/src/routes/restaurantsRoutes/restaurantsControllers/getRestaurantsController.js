@@ -50,7 +50,13 @@ const mapDataRating = (data) => {
     return mapData;
 }
 
+const filterByTag = (tag, restaurants) => {
+    const info = restaurants.filter((restaurant) => restaurant.tags.includes(tag));
+    return info;
+}
+
 module.exports ={
     getRestaurants,
-    getRestaurantsRating
+    getRestaurantsRating,
+    filterByTag
 };
