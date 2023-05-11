@@ -12,7 +12,7 @@ const handlerGetPosts = async (req, res) => {
     }
 }
 //fagsffgdjskja
-
+//jhnkdjkjdjgf
 
 
 module.exports = handlerGetPosts;
