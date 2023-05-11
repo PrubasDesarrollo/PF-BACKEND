@@ -6,9 +6,10 @@ const modelateData = (query,data) =>{
     var indexOfLastDocument = currentPage * documentsPerPage;
     var indexOfFirstDocument = indexOfLastDocument - documentsPerPage;
     var currentDocuments = data.slice(indexOfFirstDocument, indexOfLastDocument);
-        
+    var totalPages = Math.ceil( data.length/documentsPerPage ) 
     info.push({
         page: currentPage,
+        totalPages: totalPages,
         documents: currentDocuments
     })
     
