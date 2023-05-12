@@ -69,7 +69,6 @@ const mapDataRating = (data) => {
 
 const filterByTag = (tag, restaurants) => {
     const tagsArray = tag.split("~");
-   console.log(tagsArray)
     const info = restaurants.filter((restaurant) => tagsComparate(tagsArray, restaurant.tags));
     return info;
 }

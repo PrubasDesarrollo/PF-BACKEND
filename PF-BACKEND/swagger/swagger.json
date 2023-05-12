@@ -11,9 +11,6 @@
       "name": "restaurants",
       "description": "Everything about your restaurant"
     },
-    
-
-    
     {
       "name": "posts",
       "description": "Everything about your post"
@@ -29,12 +26,77 @@
   ],
   "paths": {
     "/restaurants": {
+      "get": {
+        "tags": ["restaurants"],
+        "description": "Utilizando esta ruta el servidor respondera con un estatus 200 y enviara la información de todos los restaurantes como un array de objetos paginado, si no se adiciona query de paginado devolvera la pagina 1 por defecto",
+        "operationId": "getRestaurants",
+        "summary": "Traer todos los restaurantes paginados",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Valor de la pagina para que se muestre las comidas paginadas, en total 4 por cada pagina",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "default": 1,
+              "enum": [1, 2, 3]
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Organiza ya sea ascendentemente como descendentemente los restaurantes por A-Z y Z-A, tambien se puede hacer por rating de mejor a peor o de peor a mejor, si no se coloca nada te organiza de mayor rating a menor rating",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "enum": ["alphaasc", "alphadesc", "ratingasc", "ratingdesc"]
+            }
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "Filtra segun las tags que le envias por query, cada tag debe venir separada por el signo '~'",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "enum": ["pasta", "hamburguesas", "papas"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restaurants"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ruta /restaurants con parametros invalidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restaurants404"
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "tags": ["restaurants"],
-        "description": "con esta ruta pasan los datos del restaurante por body, al momento de crear no relacionar, relacionar después de crear con la ruta PUT",
+        "summary": "Creacion de un restaurante",
+        "description": "Esta ruta tomara todos los datos del restaurante por body y lo creara en la base de datos",
         "operationId": "postRestaurants",
         "requestBody": {
-          "description": "create a restaurant",
+          "description": "Ejemplo de lo que espera la ruta por body (no colocar id ni rating)",
           "content": {
             "application/json": {
               "schema": {
@@ -57,13 +119,14 @@
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Restaurant not found"
-          },
-          "405": {
-            "description": "Validation exception"
+            "description": "Invalid ID supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restaurants404"
+                }
+              }
+            }
           }
         }
       }
@@ -71,18 +134,17 @@
     "/restaurants/:id": {
       "get": {
         "tags": ["restaurants"],
-        "summary": "Find restaurants by ID",
-        "description": "Returns a single pet",
-        "operationId": "getPetById",
+        "description": "Realiza la busqueda de un restaurante en especifico segun el id que le envien por parametro",
+        "operationId": "getRestaurantsId",
+        "summary": "Traer restaurante por ID",
         "parameters": [
           {
-            "name": "petId",
+            "name": "id",
             "in": "path",
-            "description": "ID of pet to return",
+            "description": "ID del restaurante",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string"
             }
           }
         ],
@@ -98,64 +160,16 @@
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Pet not found"
-          }
-        },
-        "security": [
-          {
-            "api_key": []
-          },
-          {
-            "petstore_auth": ["write:pets", "read:pets"]
-          }
-        ]
-      },
-      "post": {
-        "tags": ["restaurants"],
-        "summary": "Updates a pet in the store with form data",
-        "description": "",
-        "operationId": "updatePetWithForm",
-        "parameters": [
-          {
-            "name": "petId",
-            "in": "path",
-            "description": "ID of pet that needs to be updated",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "name",
-            "in": "query",
-            "description": "Name of pet that needs to be updated",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "description": "Status of pet that needs to be updated",
-            "schema": {
-              "type": "string"
+            "description": "Id invalido llegado por params",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestaurantsId404"
+                }
+              }
             }
           }
-        ],
-        "responses": {
-          "405": {
-            "description": "Invalid input"
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": ["write:pets", "read:pets"]
-          }
-        ]
+        }
       },
       "delete": {
         "tags": ["restaurants"],
@@ -1032,6 +1046,24 @@
         },
         "xml": {
           "name": "restaurants"
+        }
+      },
+      "Restaurants404": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "cannot get invalid route"
+          }
+        }
+      },
+      "RestaurantsId404": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer"
+          }
         }
       },
       "Tables": {
