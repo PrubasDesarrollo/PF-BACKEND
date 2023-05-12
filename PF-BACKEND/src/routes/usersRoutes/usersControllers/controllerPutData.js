@@ -19,10 +19,16 @@ const controllerPutDataValoraciones = (_id,valoraciones) =>{
     return users.findOneAndUpdate(idUser, {$push: {valoraciones: valoraciones}})
 }
 
-const controllerPutData = (_id, data) =>{
+const controllerPutData = (_id, data, image) =>{
     const idUser = parseId(_id);
-
-    return users.findOneAndUpdate(idUser, data)
+    let user = {
+        name: data.name,
+        email: data.email,
+        image: image,
+        type_customer: data.type_customer,
+        description: data.description
+    }
+    return users.findOneAndUpdate(idUser, user)
 }
 
 
@@ -30,5 +36,5 @@ module.exports = {
     controllerPutDataPosts,
     controllerPutDataTable,
     controllerPutData,
-    controllerPutDataValoraciones
+    controllerPutDataValoraciones,
 }
