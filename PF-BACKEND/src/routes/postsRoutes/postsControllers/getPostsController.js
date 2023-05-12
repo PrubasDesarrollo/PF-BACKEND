@@ -19,11 +19,27 @@ const getPostsOrdered = async (order) =>{
     const postRatings = await mapDataRating(data);
 
     if(order === "alphadesc"){
-        return await postRatings.sort((a, b) => b.name - a.name)
-    }
+        return await postRatings.sort((a, b) => {
+            if(a.name > b.name){
+                return 1;
+            }
+            if(a.name < b.name){
+                return -1
+            }
+            return 0
+        });
+        }
     if(order === "alphaasc"){
-    return await postRatings.sort((a, b) => a.name - b.name)
-    }
+    return await postRatings.sort((a, b) => {
+        if(a.name > b.name){
+            return -1;
+        }
+        if(a.name < b.name){
+            return 1
+        }
+        return 0
+    });
+}
     if(order === "ratingdesc"){
         return await postRatings.sort((a, b) => Number(b.rating) - Number(a.rating))
     }
