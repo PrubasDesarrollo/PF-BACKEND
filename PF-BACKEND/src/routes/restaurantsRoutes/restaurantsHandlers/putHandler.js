@@ -11,12 +11,14 @@ const handlerPutData = async (req, res) => {
             validator = bandera;
         }
         let restaurant;
-        if(validator == "table") restaurant = await putRestaurantsTables(id, data.table);
-        else if (validator == "menu") restaurant = await putRestaurantsMenu(id, data.menu);
-        else{
-            restaurant = await putRestaurantsData(id, data, firebaseUrl);
+
+        for(virula in data){
+            if(virula == "table") restaurant = await putRestaurantsTables(id, data.table);
+            else if (virula == "menu") restaurant = await putRestaurantsMenu(id, data.menu);
+            else{
+                restaurant = await putRestaurantsData(id, data, firebaseUrl);
+            }
         }
-        console.log(restaurant);
         
         res.status(200).json({ restaurant });
     } catch (error) {

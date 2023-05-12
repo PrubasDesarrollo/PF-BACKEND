@@ -1,11 +1,13 @@
 const restaurants = require("../../../db/models/Restaurants");
 // const union = require("../unionRestaurantPosts");
 const tables = require("../../../db/models/Tables");
+const posts = require("../../../db/models/Posts");
 const averageGrades = require("../../../utils/averageGrades");
 
 const getRestaurants = async () => {
     const tablesData = await tables.find();
-    const data = await restaurants.find().sort({name:-1}).populate('table').exec();
+    const postsData = await posts.find();
+    const data = await restaurants.find().sort({name:-1}).populate('table').populate('posts').exec();
     const restaurantRatings = await mapDataRating(data);
 
     return restaurantRatings.sort((a, b) => b.rating - a.rating)
@@ -13,7 +15,8 @@ const getRestaurants = async () => {
 
 const getRestaurantsRating = async (order) => {
     const tablesData = await tables.find();
-    const data = await restaurants.find().sort({name:-1}).populate('table').exec();
+    const postsData = await posts.find();
+    const data = await restaurants.find().sort({name:-1}).populate('table').populate('posts').exec();
     const restaurantRatings = await mapDataRating(data);
 
     if(order == "alphadesc"){

@@ -37,7 +37,7 @@ const restaurantsScheme = new mongoose.Schema({
     },
     menu: [{
         type: mongoose.Types.ObjectId,
-        ref: 'tables',
+        ref: 'posts',
     }],
     table: [{
         type: mongoose.Types.ObjectId,
