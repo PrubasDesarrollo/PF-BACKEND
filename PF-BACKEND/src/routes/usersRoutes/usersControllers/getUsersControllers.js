@@ -20,13 +20,29 @@ const getUserControllerQuery= async(order) =>{
     const data = await users.find().sort({name:-1}).populate('posts').populate('table').exec();
     const usersRating = await mapDataRating(data);
     if(order == "alphadesc"){
-        return usersRating.sort((a, b) => b.name - a.name)
+        return usersRating.sort((a, b) => {
+            if(a.name > b.name){
+                return 1;
+            }
+            if(a.name < b.name){
+                return -1
+            }
+            return 0
+        })
     }
     if(order == "alphaasc"){
-        return usersRating.sort((a, b) => a.name - b.name)
+        return usersRating.sort((a, b) => {
+            if(a.name > b.name){
+                return -1;
+            }
+            if(a.name < b.name){
+                return 1
+            }
+            return 0
+        })
     }
     if(order == "ratingasc"){
-        return usersRating.sort((a, b) => a.rating - b.rating)
+        return usersRating.sort((a, b) => b.rating - a.rating)
     }
     if(order == "ratingdesc"){
         return usersRating.sort((a, b) => a.rating - b.rating)
