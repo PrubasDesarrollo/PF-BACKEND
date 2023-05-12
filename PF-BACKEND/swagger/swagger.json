@@ -938,28 +938,33 @@
             "format": "int64",
             "example": 10
           },
-          "petId": {
-            "type": "integer",
-            "format": "int64",
-            "example": 198772
-          },
-          "quantity": {
-            "type": "integer",
-            "format": "int32",
-            "example": 7
-          },
-          "shipDate": {
+          "name": {
             "type": "string",
-            "format": "date-time"
+            "example": "Nombre"
           },
-          "status": {
+          "description": {
             "type": "string",
-            "description": "Order Status",
-            "example": "approved",
-            "enum": ["placed", "approved", "delivered"]
+            "example": "Descripcion"
           },
-          "complete": {
-            "type": "boolean"
+          "ingredients": {
+            "type": "string",
+            "example": "Ingredientes secretos"
+          },
+          "original": {
+            "type": "boolean",
+            "example": true
+          },
+          "cost": {
+            "type": "number",
+            "example": 127
+          },
+          "rating": {
+            "type": "array",
+            "xml": {
+              "XXXX": "xxxx",
+              "XX": "xx"
+            },
+            "items": {}
           }
         },
         "xml": {
@@ -974,19 +979,57 @@
             "format": "int64",
             "example": 100000
           },
-          "username": {
+          "name": {
             "type": "string",
-            "example": "fehguy"
+            "example": "Don Julio y Tegui"
           },
-          "address": {
+          "image": {
+            "type": "Buffer",
+            "example": "<Buffer 48 65 6c 6c 6f>"
+          },
+          "type_customer": {
+            "type": "string",
+            "example": "XXXXX"
+          },
+          "description": {
+            "type": "string",
+            "example": "La parrilla Don Julio, ubicada en el barrio de Palermo ..."
+          },
+          "tags": {
             "type": "array",
             "xml": {
-              "name": "addresses",
-              "wrapped": true
+              "XXXX": "xxxx",
+              "XX": "xx"
             },
-            "items": {
-              "$ref": "#/components/schemas/Restaurants"
-            }
+            "items": {}
+          },
+          "city": {
+            "type": "string",
+            "example": "Buenos Aires"
+          },
+          "address": {
+            "type": "string",
+            "example": "Guatemala 4699 Palermo Viejo"
+          },
+          "country": {
+            "type": "string",
+            "example": "Argentina"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "example": "+54 11 5311-5668"
+          },
+          "valoraciones": {
+            "type": "array",
+            "xml": {
+              "XXXX": "xxxx",
+              "XX": "xx"
+            },
+            "items": {}
+          },
+          "rating": {
+            "type": "number",
+            "example": 2
           }
         },
         "xml": {
@@ -996,21 +1039,14 @@
       "Tables": {
         "type": "object",
         "properties": {
-          "street": {
-            "type": "string",
-            "example": "437 Lytton"
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 100000
           },
-          "city": {
-            "type": "string",
-            "example": "Palo Alto"
-          },
-          "state": {
-            "type": "string",
-            "example": "CA"
-          },
-          "zip": {
-            "type": "string",
-            "example": "94301"
+          "capacity": {
+            "type": "number",
+            "example": "6"
           }
         },
         "xml": {
@@ -1027,7 +1063,35 @@
           },
           "name": {
             "type": "string",
-            "example": "Dogs"
+            "example": "Lali Esposito"
+          },
+          "email": {
+            "type": "string",
+            "example": "laliEsposito@gmail.com"
+          },
+          "image": {
+            "type": "Buffer",
+            "example": "<Buffer 48 65 6c 6c 6f>"
+          },
+          "type_customer": {
+            "type": "string",
+            "example": "?????????"
+          },
+          "description": {
+            "type": "string",
+            "example": "Descripcion corta"
+          },
+          "valoraciones": {
+            "type": "array",
+            "xml": {
+              "XXXX": "xxxx",
+              "XX": "xx"
+            },
+            "items": {}
+          },
+          "rating": {
+            "type": "number",
+            "example": 2
           }
         },
         "xml": {
