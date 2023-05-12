@@ -6,14 +6,21 @@ const controllerPutPosts = async (id, info) =>{
     let virula;    
     const idParsed = parseId(id)
     for(prop in info){
-            if(prop === "image"){
-                virula = await posts.findOneAndUpdate(idParsed, {$addToSet: info});
-            }else if(prop === "rating"){
+            if(prop === "rating"){
                 virula = await posts.findOneAndUpdate(idParsed, {$push: info});
             }else if(prop === "tags"){
                 virula = await posts.findOneAndUpdate(idParsed, {$addToSet: info})
             }else{
-             virula = await posts.findOneAndUpdate(idParsed, info);
+             virula = await posts.findOneAndUpdate(idParsed,{
+                name: info.name,
+                description: info.description,
+                image: firebaseUrl,
+                ingredients: info.ingredients,
+                original: info.original,
+                cost: info.cost,
+                authorUser: info.authorUser,
+                authorRest: info.authorRest 
+            });
         }}
     
     
