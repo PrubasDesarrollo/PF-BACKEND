@@ -11,7 +11,7 @@ const putRestaurantsMenu = (id, restaurantData) => {
     return restaurants.findByIdAndUpdate(idMenu, { $addToSet: {menu: restaurantData} });
 }
 
-const putRestaurantsData = (id, restaurantData) => {
+const putRestaurantsData = (id, restaurantData, firebaseUrl) => {
     const idTable = parsId(id);
     return restaurants.findByIdAndUpdate(idTable, {
         name: restaurantData.name,
@@ -20,6 +20,7 @@ const putRestaurantsData = (id, restaurantData) => {
         city: restaurantData.city,
         address: restaurantData.address,
         country: restaurantData.country,
+        image: firebaseUrl,
         phoneNumber: restaurantData.phoneNumber,
         $push:{valoraciones: restaurantData.valoraciones},
         $addToSet:{tags: restaurantData.tags},

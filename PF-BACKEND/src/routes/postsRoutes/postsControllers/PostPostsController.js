@@ -1,6 +1,7 @@
 const posts = require("../../../db/models/Posts");
 
 const controllerPostPosts = (data, firebaseUrl) =>{
+
     let post = {
         name: data.name,
         description: data.description,
