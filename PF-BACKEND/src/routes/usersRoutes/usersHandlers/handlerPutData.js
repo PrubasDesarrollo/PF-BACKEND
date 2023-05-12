@@ -4,6 +4,7 @@ const handlerPutData = async(req,res) =>{
     try{
         let { id } = req.params;
         let data = req.body;
+        let {firebaseUrl} = req.file ? req.file : "";
         let validator;
         for(bandera in data){
             validator = bandera;
@@ -22,9 +23,9 @@ const handlerPutData = async(req,res) =>{
             let {valoraciones} = req.body
             const user = await controllerPutDataValoraciones(id,valoraciones); 
             res.status(200).json(user)
-        } 
+        }
         else{
-            const user = await controllerPutData(id, data);
+            const user = await controllerPutData(id, data, firebaseUrl);
             res.status(200).json(user)
         }
     }catch(err){
