@@ -10,7 +10,8 @@ const controllerPutPosts = async (id, info) =>{
                 virula = await posts.findOneAndUpdate(idParsed, {$addToSet: info});
             }else if(prop === "rating"){
                 virula = await posts.findOneAndUpdate(idParsed, {$push: info});
-
+            }else if(prop === "tags"){
+                virula = await posts.findOneAndUpdate(idParsed, {$addToSet: info})
             }else{
              virula = await posts.findOneAndUpdate(idParsed, info);
         }}

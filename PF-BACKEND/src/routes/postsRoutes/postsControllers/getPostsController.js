@@ -46,6 +46,24 @@ const getPostsOrdered = async (order) =>{
     if(order === "ratingasc"){
     return await postRatings.sort((a, b) => Number(a.rating) - Number(b.rating))
 }
+if(order === "costdesc"){
+    return await postRatings.sort((a, b) => Number(b.cost) - Number(a.cost))
+}
+if(order === "costasc"){
+return await postRatings.sort((a, b) => Number(a.cost) - Number(b.cost))
+}
+}
+const filterByTag = (tag, posts) =>{
+    let data = posts;
+    for(t of tag){
+        const algo = data.filter((post) => post.tags.includes(t));
+        data = algo;
+    }
+    return data;
+}
+const filterByCost = (cost, posts) =>{
+    const data = posts.filter(post => post.cost <= cost);
+    return data;
 }
 
 const mapDataRating = async (data) => {
@@ -67,4 +85,6 @@ const mapDataRating = async (data) => {
 }
 module.exports = {
     getPostsController,
-     getPostsOrdered};
+     getPostsOrdered,
+     filterByTag,
+     filterByCost};

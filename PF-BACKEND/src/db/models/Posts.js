@@ -10,6 +10,9 @@ const postScheme = new mongoose.Schema({
     image:[{
         type: Buffer
     }],
+    tags:{
+        type: Array
+    },
     ingredients:{
         type: String
     },
