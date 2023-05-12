@@ -3,17 +3,16 @@ const modelateData = require("../../../utils/modelateData")
 
 const handlerGetPosts = async (req, res) => {
     try {
-        const {page, order, tagged, cost} = req.query;
+        const {page, order, tag, cost} = req.query;
         let posts;
         if(!order){
-        posts = await getPostsController();
+            posts = await getPostsController();
         }else{
-        posts = await getPostsOrdered(order)
+            posts = await getPostsOrdered(order)
         }
-        if(tagged){
-            const {tag} = req.body;            
-            let filterByTags = filterByTag(tag, posts);
-            posts = filterByTags;
+        if(tag){            
+            const filteredByTags = filterByTag(tag, posts);
+            posts = filteredByTags;
         }
         if(cost){
             const cheaperThan = filterByCost(cost, posts);

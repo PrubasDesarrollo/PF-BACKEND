@@ -54,8 +54,9 @@ return await postRatings.sort((a, b) => Number(a.cost) - Number(b.cost))
 }
 }
 const filterByTag = (tag, posts) =>{
+    let tagArray = tag.split("~");
     let data = posts;
-    for(t of tag){
+    for(t of tagArray){
         const algo = data.filter((post) => post.tags.includes(t));
         data = algo;
     }
