@@ -77,8 +77,14 @@ const tagsComparate = (tags, restaurantsTags) => {
     return tags.every((tag) => restaurantsTags.includes(tag));
 }
 
+const filterByCountry = (country, restaurants) => {
+    country = country.toLowerCase();
+    return restaurants.filter((restaurant) => restaurant.country?.toLowerCase().includes(country));
+}
+
 module.exports ={
     getRestaurants,
     getRestaurantsRating,
-    filterByTag
+    filterByTag,
+    filterByCountry
 };
