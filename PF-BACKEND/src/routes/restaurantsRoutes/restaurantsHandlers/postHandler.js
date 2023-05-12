@@ -3,7 +3,8 @@ const postRestaurantsController = require("../restaurantsControllers/postRestaur
 const handlerPostData = async (req, res) => {
     try {
         const restaurantData = req.body;
-        const restaurant = await postRestaurantsController(restaurantData);
+        const { firebaseUrl } = req.file ? req.file : "";
+        const restaurant = await postRestaurantsController(restaurantData, firebaseUrl);
         res.status(200).json({ restaurant });
     } catch (error) {
         console.log(error);

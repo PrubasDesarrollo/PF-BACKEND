@@ -1,9 +1,9 @@
 const posts = require("../../../db/models/Posts");
 
 const controllerPostPosts = (data, firebaseUrl) =>{
-    let post = {
-        name:
-    }
+    // let post = {
+    //     name:
+    // }
     return posts.create(data);
 }
 
