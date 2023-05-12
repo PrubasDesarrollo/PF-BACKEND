@@ -15,11 +15,28 @@ const getRestaurantsRating = async (order) => {
     const tablesData = await tables.find();
     const data = await restaurants.find().sort({name:-1}).populate('table').exec();
     const restaurantRatings = await mapDataRating(data);
+
     if(order == "alphadesc"){
-        return restaurantRatings.sort((a, b) => b.name - a.name)
+        return restaurantRatings.sort((a, b) => {
+            if(a.name > b.name){
+                return 1;
+            }
+            if(a.name < b.name){
+                return -1
+            }
+            return 0
+        });
     }
     if(order == "alphaasc"){
-        return restaurantRatings.sort((a, b) => a.name - b.name)
+        return restaurantRatings.sort((a, b) => {
+            if(a.name > b.name){
+                return -1;
+            }
+            if(a.name < b.name){
+                return 1
+            }
+            return 0
+        });
     }
     if(order == "ratingdesc"){
         return restaurantRatings.sort((a, b) => Number(b.rating) - Number(a.rating))
