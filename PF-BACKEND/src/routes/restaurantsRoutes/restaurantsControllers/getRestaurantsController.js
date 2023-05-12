@@ -68,8 +68,14 @@ const mapDataRating = (data) => {
 }
 
 const filterByTag = (tag, restaurants) => {
-    const info = restaurants.filter((restaurant) => restaurant.tags.includes(tag));
+    const tagsArray = tag.split("~");
+   console.log(tagsArray)
+    const info = restaurants.filter((restaurant) => tagsComparate(tagsArray, restaurant.tags));
     return info;
+}
+
+const tagsComparate = (tags, restaurantsTags) => {
+    return tags.every((tag) => restaurantsTags.includes(tag));
 }
 
 module.exports ={
