@@ -11,9 +11,7 @@
       "name": "restaurants",
       "description": "Everything about your restaurant"
     },
-    
 
-    
     {
       "name": "posts",
       "description": "Everything about your post"
@@ -295,7 +293,7 @@
       },
       "get": {
         "tags": ["posts"],
-        "summary": "se manda un query para las page:   get '/posts?page=num' ",
+        "summary": "Obtener posts por query ",
         "description": "Se debe mandar un Query page=num .Trae todas las comidas paginadas, con posibilidad de filtros ",
         "operationId": "getPosts",
         "parameters": [
@@ -327,22 +325,22 @@
             }
           },
           "400": {
-            "description": "Invalid status value"
+            "description": "ID proporcionado es invalido"
           }
         }
       }
     },
-    "/posts/:id": {
+    "/posts/{postsId}": {
       "get": {
         "tags": ["posts"],
-        "summary": "trae solo la comida indicada por id.",
-        "description": "Returns a single food dish",
-        "operationId": "getPostsById",
+        "summary": "Obtener posts por ID",
+        "description": "Retorna el posts buscado por el ID proporcionado",
+        "operationId": "getPostById",
         "parameters": [
           {
-            "name": "petId",
+            "name": "postsId",
             "in": "path",
-            "description": "ID of posts to return",
+            "description": "ID del posts para retornar",
             "required": true,
             "schema": {
               "type": "integer",
@@ -362,20 +360,12 @@
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "ID proporcionado es invalido"
           },
           "404": {
-            "description": "Pet not found"
+            "description": "Posts no encontrado"
           }
-        },
-        "security": [
-          {
-            "api_key": []
-          },
-          {
-            "petstore_auth": ["write:pets", "read:pets"]
-          }
-        ]
+        }
       },
       "delete": {
         "tags": ["posts"],
@@ -934,7 +924,7 @@
           "id": {
             "type": "integer",
             "format": "int64",
-            "example": 10
+            "example": 1
           },
           "name": {
             "type": "string",
