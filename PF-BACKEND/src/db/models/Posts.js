@@ -7,6 +7,9 @@ const postScheme = new mongoose.Schema({
     description:{
         type: String
     },
+    image:[{
+        type: Buffer
+    }],
     ingredients:{
         type: String
     },
@@ -17,7 +20,7 @@ const postScheme = new mongoose.Schema({
         type: Number
     },
     rating:{
-        type: Number
+        type: Array
     },
     authorUser:{
         type: mongoose.Types.ObjectId,

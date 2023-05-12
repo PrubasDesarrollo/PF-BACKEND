@@ -4,13 +4,28 @@ const restaurantsScheme = new mongoose.Schema({
     name:{
         type: String
     },
+    image:[{
+        type: Buffer
+    }],
     type_customer:{
         type: String
     },
     description:{
         type: String
     },
-    addres:{
+    tags:{
+        type: Array
+    },
+    city:{
+        type: String
+    },
+    address:{
+        type: String
+    },
+    country:{
+        type: String
+    },
+    phoneNumber:{
         type: String
     },
     valoraciones:{
@@ -20,10 +35,10 @@ const restaurantsScheme = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    menu: {
-        type: Array,
-    },
-
+    menu: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'tables',
+    }],
     table: [{
         type: mongoose.Types.ObjectId,
         ref: 'tables',

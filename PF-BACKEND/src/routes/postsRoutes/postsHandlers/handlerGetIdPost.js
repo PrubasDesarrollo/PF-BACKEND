@@ -1,7 +1,9 @@
 const getIdPostController = require("../postsControllers/getIdPostController")
 
+
 const handlerGetIdPost = async (req, res) => {
-    try{const {id} = req.params;
+    try{
+        const {id} = req.params;
     const postData = await getIdPostController(id);
     res.status(200).json(postData);}
     catch(error){
