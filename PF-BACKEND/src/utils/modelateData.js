@@ -1,7 +1,7 @@
 const modelateData = (query,data) =>{
     var info = []
     var currentPage = query;
-    var documentsPerPage = 4;
+    var documentsPerPage = 12;
         
     var indexOfLastDocument = currentPage * documentsPerPage;
     var indexOfFirstDocument = indexOfLastDocument - documentsPerPage;
