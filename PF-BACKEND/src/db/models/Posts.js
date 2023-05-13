@@ -7,9 +7,12 @@ const postScheme = new mongoose.Schema({
     description:{
         type: String
     },
-    image:[{
-        type: Buffer
-    }],
+    image:{
+        type: String
+    },
+    tags:{
+        type: Array
+    },
     ingredients:{
         type: String
     },

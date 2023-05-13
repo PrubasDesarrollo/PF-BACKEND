@@ -1,22 +1,32 @@
 const posts = require("../../../db/models/Posts");
 const parseId = require("../../../utils/parseId");
-const getIdPostController = require("../postsControllers/getIdPostController");
 
-const controllerPutPosts = async (id, info) =>{
-    let virula;    
-    const idParsed = parseId(id)
-    for(prop in info){
-            if(prop === "image"){
-                virula = await posts.findOneAndUpdate(idParsed, {$addToSet: info});
-            }else if(prop === "rating"){
-                virula = await posts.findOneAndUpdate(idParsed, {$push: info});
-
-            }else{
-             virula = await posts.findOneAndUpdate(idParsed, info);
-        }}
-    
-    
-    return getIdPostController(idParsed);
+const controllerPutRating = (id, rating) =>{
+    let idParsed = parseId(id)
+    return posts.findOneAndUpdate(idParsed, {$push: {rating: rating}})
 }
 
-module.exports = controllerPutPosts;
+const controllerPutTags = (id, tags) =>{
+    let idParsed = parseId(id)
+    return posts.findOneAndUpdate(idParsed, {$push: {tags: tags}})
+}
+
+const controllerPutPosts = (id, info,firebaseUrl) =>{
+    let idParsed = parseId(id)
+    return posts.findOneAndUpdate(idParsed,{
+            name: info.name,
+            description: info.description,
+            image: firebaseUrl,
+            ingredients: info.ingredients,
+            original: info.original,
+            cost: info.cost,
+            authorUser: info.authorUser,
+            authorRest: info.authorRest 
+            });
+    
+}
+
+module.exports = {
+    controllerPutTags,
+    controllerPutRating,
+    controllerPutPosts};

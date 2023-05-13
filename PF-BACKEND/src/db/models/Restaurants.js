@@ -4,9 +4,9 @@ const restaurantsScheme = new mongoose.Schema({
     name:{
         type: String
     },
-    image:[{
-        type: Buffer
-    }],
+    image:{
+        type: String
+    },
     type_customer:{
         type: String
     },
@@ -37,7 +37,7 @@ const restaurantsScheme = new mongoose.Schema({
     },
     menu: [{
         type: mongoose.Types.ObjectId,
-        ref: 'tables',
+        ref: 'posts',
     }],
     table: [{
         type: mongoose.Types.ObjectId,

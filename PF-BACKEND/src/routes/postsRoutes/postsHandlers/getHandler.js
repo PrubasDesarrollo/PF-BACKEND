@@ -1,14 +1,22 @@
-const {getPostsController, getPostsOrdered} = require("../postsControllers/getPostsController")
+const {getPostsController, getPostsOrdered, filterByTag, filterByCost} = require("../postsControllers/getPostsController")
 const modelateData = require("../../../utils/modelateData")
 
 const handlerGetPosts = async (req, res) => {
     try {
-        const {page, order} = req.query;
+        const {page, order, tag, cost} = req.query;
         let posts;
         if(!order){
-        posts = await getPostsController();
+            posts = await getPostsController();
         }else{
-        posts = await getPostsOrdered(order)
+            posts = await getPostsOrdered(order)
+        }
+        if(tag){            
+            const filteredByTags = filterByTag(tag, posts);
+            posts = filteredByTags;
+        }
+        if(cost){
+            const cheaperThan = filterByCost(cost, posts);
+            posts = cheaperThan;
         }
         let info = modelateData(page,posts)
         res.status(200).json(info);
@@ -16,8 +24,5 @@ const handlerGetPosts = async (req, res) => {
         res.status(400).json({error: error.message})
     }
 }
-//fagsffgdjskja
-//jhnkdjkjdjgf
-
 
 module.exports = handlerGetPosts;

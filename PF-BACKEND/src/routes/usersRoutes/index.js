@@ -7,6 +7,7 @@ const handlerGetUser = require('./usersHandlers/handlerGetUser')
 
 const api = Router();
 
+
 api.get("/", handlerGetUsers);
 
 api.get("/:id", handlerGetUser)
