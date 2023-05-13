@@ -2,14 +2,14 @@ const posts = require("../../../db/models/Posts");
 const parseId = require("../../../utils/parseId");
 const getIdPostController = require("../postsControllers/getIdPostController");
 
-const controllerPutPosts = async (id, info) =>{
+const controllerPutPosts = async (id, info,firebaseUrl) =>{
     let virula;    
     const idParsed = parseId(id)
     for(prop in info){
             if(prop === "rating"){
-                virula = await posts.findOneAndUpdate(idParsed, {$push: info});
+                virula = await posts.findOneAndUpdate(idParsed, {$push: info.rating});
             }else if(prop === "tags"){
-                virula = await posts.findOneAndUpdate(idParsed, {$addToSet: info})
+                virula = await posts.findOneAndUpdate(idParsed, {$addToSet: info.tags})
             }else{
              virula = await posts.findOneAndUpdate(idParsed,{
                 name: info.name,
