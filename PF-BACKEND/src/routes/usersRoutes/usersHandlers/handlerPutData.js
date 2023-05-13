@@ -9,25 +9,25 @@ const handlerPutData = async(req,res) =>{
         for(bandera in data){
             validator = bandera;
         }
-        if(validator=="posts"){
-            let {posts} = req.body;
-            const user = await controllerPutDataPosts(id,posts);
-            res.status(200).json(user)
+        let user;
+        for(virula in data){
+            if(virula=="posts"){
+                let {posts} = req.body;
+                user = await controllerPutDataPosts(id,posts);
+            }
+            else if(virula=="table"){
+                let {table} = req.body
+                user = await controllerPutDataTable(id,table);
+            }  
+            else if(virula=="valoraciones"){
+                let {valoraciones} = req.body
+                user = await controllerPutDataValoraciones(id,valoraciones); 
+            }
+            else{
+                user = await controllerPutData(id, data, firebaseUrl);
+            }
         }
-        else if(validator=="table"){
-            let {table} = req.body
-            const user = await controllerPutDataTable(id,table);
-            res.status(200).json(user)
-        }  
-        else if(validator=="valoraciones"){
-            let {valoraciones} = req.body
-            const user = await controllerPutDataValoraciones(id,valoraciones); 
-            res.status(200).json(user)
-        }
-        else{
-            const user = await controllerPutData(id, data, firebaseUrl);
-            res.status(200).json(user)
-        }
+        res.status(200).json(user)
     }catch(err){
         res.status(400).json({error: err.message})
     }
