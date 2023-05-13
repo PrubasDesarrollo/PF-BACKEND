@@ -2,7 +2,7 @@ const modelateData = (query,data) =>{
     var info = []
     var currentPage = query;
     var documentsPerPage = 12;
-        
+    if(data.length==0){throw new Error('no info');}
     var indexOfLastDocument = currentPage * documentsPerPage;
     var indexOfFirstDocument = indexOfLastDocument - documentsPerPage;
     var currentDocuments = data.slice(indexOfFirstDocument, indexOfLastDocument);
