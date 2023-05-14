@@ -2,18 +2,10 @@ const mongoose = require("mongoose");
 
 const postScheme = new mongoose.Schema({
     name:{
-        type: String,
-        required: true
-    },
-    description:{
-        type: String,
-        required: true
-    },
-    image:{
         type: String
     },
-    tags:{
-        type: Array
+    description:{
+        type: String
     },
     ingredients:{
         type: String
@@ -25,7 +17,7 @@ const postScheme = new mongoose.Schema({
         type: Number
     },
     rating:{
-        type: Array
+        type: Number
     },
     authorUser:{
         type: mongoose.Types.ObjectId,
