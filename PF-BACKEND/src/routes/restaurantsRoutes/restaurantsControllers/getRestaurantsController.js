@@ -49,6 +49,15 @@ const getRestaurantsRating = async (order) => {
     }
 }
 
+const filterByName = (name, restaurants) =>{
+    console.log(name)
+    let restaurantsFilter = restaurants.filter((rest) => {
+        return rest.name.toLowerCase() === name.toLowerCase();
+      });
+      console.log(restaurantsFilter)
+      return restaurantsFilter;
+}
+
 const mapDataRating = (data) => {
     const mapData = data.map((restaurant) => {
         return{
@@ -89,5 +98,6 @@ module.exports ={
     getRestaurants,
     getRestaurantsRating,
     filterByTag,
-    filterByCountry
+    filterByCountry,
+    filterByName
 };
