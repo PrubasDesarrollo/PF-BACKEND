@@ -19,7 +19,7 @@ const handlerGetUsers = async(req,res) =>{
        
         res.status(200).json(info);
     }catch(err){
-        res.status(400).json({error:err.message});
+        res.status(400).json({error: err.message});
     }
 }
 
