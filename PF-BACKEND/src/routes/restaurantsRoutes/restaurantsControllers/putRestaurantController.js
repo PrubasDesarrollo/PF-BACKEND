@@ -28,7 +28,6 @@ const putRestaurantsData = (id, restaurantData, firebaseUrl) => {
         country: restaurantData.country,
         image: firebaseUrl,
         phoneNumber: restaurantData.phoneNumber,
-        $push:{valoraciones: restaurantData.valoraciones},
         $addToSet:{tags: restaurantData.tags},
         $push:{image: restaurantData.image}
     });
