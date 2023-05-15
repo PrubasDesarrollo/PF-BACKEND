@@ -646,6 +646,52 @@
     },
 
     "/users": {
+      "get": {
+        "tags": ["users"],
+        "summary": "All users",
+        "description": "Retorna todos los usuarios, por defecto en un orden descendente por rating",
+        "operationId": "getUserById",
+        "parameters": [
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Orden en el que se desea recibir los usuarios, alfabeticamente o por rating",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["alphaasc", "alphadesc", "ratingasc", "ratingdesc"]
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Número de pagina deseado",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default":1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Usuario inexistente"
+          }
+        }
+      },
       "post": {
         "tags": ["users"],
         "description": "con esta ruta pasan los datos del usuario por body, al momento de crear no relacionar, relacionar después de crear con la ruta PUT",
