@@ -11,8 +11,8 @@ const putRestaurantsMenu = (id, restaurantData) => {
     return restaurants.findByIdAndUpdate(idMenu, { $addToSet: {menu: restaurantData} });
 }
 
-const putRestaurantsValoraciones = (_id,valoraciones) =>{
-    const idUser = parseId(_id);
+const putRestaurantsValoraciones = (id,valoraciones) =>{
+    const idUser = parsId(id);
 
     return restaurants.findOneAndUpdate(idUser, {$push: {valoraciones: valoraciones}})
 }
