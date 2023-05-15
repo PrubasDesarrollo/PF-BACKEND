@@ -26,6 +26,7 @@ const putRestaurantsData = (id, restaurantData, firebaseUrl) => {
         city: restaurantData.city,
         address: restaurantData.address,
         country: restaurantData.country,
+        description: restaurantData.description,
         image: firebaseUrl,
         phoneNumber: restaurantData.phoneNumber,
         $addToSet:{tags: restaurantData.tags},
