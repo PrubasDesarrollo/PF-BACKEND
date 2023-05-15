@@ -13,9 +13,18 @@ const handlerPutData = async (req, res) => {
         let restaurant;
 
         for(virula in data){
-            if(virula == "table") restaurant = await putRestaurantsTables(id, data.table);
-            else if(virula == "menu") restaurant = await putRestaurantsMenu(id, data.menu);
-            else if(virula == "valoraciones") restaurant = await putRestaurantsValoraciones(id, data.valoraciones);
+            if(virula == "table"){
+                const { table } = req.body;
+                restaurant = await putRestaurantsTables(id, table);
+            }
+            else if(virula == "menu") {
+                const { menu } = req.body;
+                restaurant = await putRestaurantsMenu(id, menu);
+            }
+            else if(virula == "valoraciones"){
+                const { valoraciones } = req.body;
+                restaurant = await putRestaurantsValoraciones(id, valoraciones);
+            }
             else{
                 restaurant = await putRestaurantsData(id, data, firebaseUrl);
             }
