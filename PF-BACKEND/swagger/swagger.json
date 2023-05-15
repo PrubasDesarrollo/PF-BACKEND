@@ -270,11 +270,11 @@
     "/posts": {
       "post": {
         "tags": ["posts"],
-        "summary": "creará un posteo de esa comida. recibe todo por body ",
+        "summary": "creará un posts de esa comida. recibe todo por body ",
         "description": "creará un posteo de esa comida. recibe todo por body  ",
         "operationId": "postRestaurants",
         "requestBody": {
-          "description": "Create the food dish",
+          "description": "Crear el plato de comida",
           "content": {
             "application/json": {
               "schema": {
@@ -297,13 +297,7 @@
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Restaurant not found"
-          },
-          "405": {
-            "description": "Validation exception"
+            "description": "posts validation failed: name: Path `name` is required., description: Path `description` is required."
           }
         }
       },
@@ -328,25 +322,15 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Posts"
-                  }
-                }
-              }
-            }
+            "description": "Operación exitosa"
           },
           "400": {
-            "description": "ID proporcionado es invalido"
+            "description": "Error por parte del cliente"
           }
         }
       }
     },
-    "/posts/{postsId}": {
+    "/posts/{id}": {
       "get": {
         "tags": ["posts"],
         "summary": "Obtener posts por ID",
@@ -354,129 +338,84 @@
         "operationId": "getPostById",
         "parameters": [
           {
-            "name": "postsId",
+            "name": "id",
             "in": "path",
             "description": "ID del posts para retornar",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string",
+              "default": 1
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Posts"
-                }
-              }
-            }
+            "description": "Operación exitosa"
           },
           "400": {
-            "description": "ID proporcionado es invalido"
-          },
-          "404": {
-            "description": "Posts no encontrado"
+            "description": "Error por parte del cliente"
           }
         }
       },
       "delete": {
         "tags": ["posts"],
-        "summary": "Con esta ruta se elimina el registro que coincida con el id pasado por params. ",
-        "description": "",
-        "operationId": "deletePet",
+        "summary": "Delete posts",
+        "description": "Para eliminar un posts",
+        "operationId": "deletePosts",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "petId",
+            "name": "id",
             "in": "path",
-            "description": "Pet id to delete",
+            "description": "El ID del post para eliminar",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string"
             }
           }
         ],
         "responses": {
           "400": {
-            "description": "Invalid pet value"
+            "description": "Invalido ID brindado"
           }
-        },
-        "security": [
-          {
-            "petstore_auth": ["write:pets", "read:pets"]
-          }
-        ]
+        }
       },
       "put": {
         "tags": ["posts"],
-        "summary": "Actualiza un Posts",
-        "description": "recibe el id por params. por body un objeto con el nombre de la propiedad a cambiar , y el nuevo valor. ",
-        "operationId": "updatePet",
+        "summary": "Actualizar un post por ID",
+        "description": "Para actualizar un post se pasa el ID por PARAMS y los datos a actualizar mediante el body",
+
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID del post a actualizar",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
-          "description": "Update an existent pet in the store",
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/Posts"
               }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Posts"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Posts"
-              }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Posts"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Posts"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
+            "description": "Post actualizado exitosamente"
           },
           "404": {
-            "description": "Pet not found"
+            "description": "No se encontró el post con el ID proporcionado"
           },
-          "405": {
-            "description": "Validation exception"
+          "500": {
+            "description": "Error interno del servidor"
           }
-        },
-        "security": [
-          {
-            "petstore_auth": ["write:posts", "read:posts"]
-          }
-        ]
+        }
       }
     },
 
@@ -892,6 +831,14 @@
             "type": "string",
             "example": "Descripcion"
           },
+          "image": {
+            "type": "string",
+            "example": "www.imagen.com"
+          },
+          "tags": {
+            "type": "array",
+            "example": ["test1", "test2"]
+          },
           "ingredients": {
             "type": "string",
             "example": "Ingredientes secretos"
@@ -906,11 +853,7 @@
           },
           "rating": {
             "type": "array",
-            "xml": {
-              "XXXX": "xxxx",
-              "XX": "xx"
-            },
-            "items": {}
+            "example": [2, 3]
           }
         },
         "xml": {
