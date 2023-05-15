@@ -1,8 +1,8 @@
 var admin = require("firebase-admin");
 
 var serviceAccount = require("../db/firebase config/firebaseConfig.json");
-
-const BUCKET = "pf-backend-93476.appspot.com";
+require('dotenv').config();
+const { BUCKET } = process.env;
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
