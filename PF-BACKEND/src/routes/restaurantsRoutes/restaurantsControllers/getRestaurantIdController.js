@@ -7,6 +7,7 @@ const modelateData = (data) => {
     const restaurant = {
         name: data.name,
         type_customer: data.type_customer,
+        description: data.description,
         rating: averageGrades(data.valoraciones),
         city: data.city,
         address: data.address,
