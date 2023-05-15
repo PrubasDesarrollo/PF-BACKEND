@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
-const DB_UIL = "mongodb://mongo:dz5O7hHCPUsqeqXGQwPN@containers-us-west-141.railway.app:7456";
+require('dotenv').config();
 const createSeeds = require("./seeds/index");
+const { DB_UIL } = process.env;
 
 module.exports = () => {
     const connect = () => {
