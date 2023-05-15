@@ -13,7 +13,8 @@ const modelateData = (data) => {
         country: data.country,
         image: data.image,
         phoneNumber: data.phoneNumber,
-        tags: data.tags
+        tags: data.tags,
+        menu: data.menu
     };
     return restaurant;
 }
