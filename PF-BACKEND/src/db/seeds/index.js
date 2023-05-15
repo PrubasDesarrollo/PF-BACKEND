@@ -6,8 +6,7 @@ const Users = require("../models/Users");
 const restaurantSeed = {
     name: "Seed Restaurant",
     type_customer: "Restaurante",
-    country: "Seed",
-    rating: 10,
+    country: "Seed"
 }
 
 const postsSeed = {
@@ -22,8 +21,7 @@ const tablesSeed = {
 const usersSeed = {
     name: "Seed Users",
     description: "Seed",
-    type_customer: "User",
-    rating: 5
+    type_customer: "User"
 }
 
 const createSeeds = async () => {
