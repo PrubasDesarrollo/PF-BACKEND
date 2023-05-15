@@ -1,8 +1,9 @@
+require('dotenv').config();
+const { BUCKET } = process.env;
+
 var admin = require("firebase-admin");
 
 var serviceAccount = require("../db/firebase config/firebaseConfig.json");
-require('dotenv').config();
-const { BUCKET } = process.env;
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
