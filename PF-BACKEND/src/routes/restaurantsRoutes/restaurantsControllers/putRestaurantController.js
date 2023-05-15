@@ -11,6 +11,12 @@ const putRestaurantsMenu = (id, restaurantData) => {
     return restaurants.findByIdAndUpdate(idMenu, { $addToSet: {menu: restaurantData} });
 }
 
+const putRestaurantsValoraciones = (_id,valoraciones) =>{
+    const idUser = parseId(_id);
+
+    return restaurants.findOneAndUpdate(idUser, {$push: {valoraciones: valoraciones}})
+}
+
 const putRestaurantsData = (id, restaurantData, firebaseUrl) => {
     const idTable = parsId(id);
     return restaurants.findByIdAndUpdate(idTable, {
@@ -32,5 +38,6 @@ const putRestaurantsData = (id, restaurantData, firebaseUrl) => {
 module.exports = {
     putRestaurantsData,
     putRestaurantsTables,
-    putRestaurantsMenu
+    putRestaurantsMenu,
+    putRestaurantsValoraciones
 };
