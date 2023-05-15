@@ -2,6 +2,7 @@ require('dotenv').config();
 const { BUCKET } = process.env;
 
 var admin = require("firebase-admin");
+require("dotenv").config();
 
 var serviceAccount = require("../db/firebase config/firebaseConfig.json");
 
