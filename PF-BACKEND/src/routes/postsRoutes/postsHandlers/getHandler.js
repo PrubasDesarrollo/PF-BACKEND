@@ -18,7 +18,7 @@ const handlerGetPosts = async (req, res) => {
             const cheaperThan = filterByCost(cost, posts);
             posts = cheaperThan;
         }
-        let info = modelateData(page,posts)
+        let info = modelateData(page || 1,posts)
         res.status(200).json(info);
     } catch (error) {
         res.status(400).json({error: error.message})
