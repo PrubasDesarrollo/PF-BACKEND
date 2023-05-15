@@ -5,7 +5,6 @@ var admin = require("firebase-admin");
 
 var serviceAccount = require("../db/firebase config/firebaseConfig.json");
 
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   storageBucket: BUCKET,
