@@ -6,7 +6,8 @@ const Users = require("../models/Users");
 const restaurantSeed = {
     name: "Seed Restaurant",
     type_customer: "Restaurante",
-    country: "Seed"
+    country: "Seed",
+    description: "description seed"
 }
 
 const postsSeed = {
