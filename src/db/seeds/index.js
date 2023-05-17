@@ -22,7 +22,8 @@ const tablesSeed = {
 const usersSeed = {
     name: "Seed Users",
     description: "Seed",
-    type_customer: "User"
+    type_customer: "User",
+    password:"token"
 }
 
 const createSeeds = async () => {

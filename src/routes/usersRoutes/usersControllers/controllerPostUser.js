@@ -6,7 +6,9 @@ const  controllerPostUser = (data, firebaseUrl) =>{
         email: data.email,
         image:firebaseUrl,
         type_customer: data.type_customer,
-        description: data.description
+        description: data.description,
+        token: data.token,
+        password: data.password
     }
     return users.create(user)
 }
