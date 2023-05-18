@@ -16,6 +16,10 @@ const usersScheme = new mongoose.Schema(
     email: {
       type: String,
     },
+    isAdmin:{
+      type: Boolean,
+      default: false,
+    },
     image: {
       type: String,
     },

@@ -7,6 +7,7 @@ const mapDataRating =  (user) => {
         let newUser = {
             id:user._id,
             name: user.name,
+            isAdmin: user.isAdmin,
             email: user.email,
             image: user.image,
             type_customer: user.type_customer,
