@@ -6,15 +6,9 @@ const usersScheme = new mongoose.Schema(
       type: String,
       required: true
     },
-    token:{
-      type: String
-    },
-    password:{
-      type: String,
-      required: true
-    },
     email: {
       type: String,
+      required: true
     },
     isAdmin:{
       type: Boolean,
@@ -33,6 +27,10 @@ const usersScheme = new mongoose.Schema(
     valoraciones: {
       type: Array,
     },
+    created:{
+      type: Boolean,
+      default: false
+  },
     rating: {
       type: Number,
     },
