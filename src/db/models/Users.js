@@ -23,6 +23,10 @@ const usersScheme = new mongoose.Schema(
     valoraciones: {
       type: Array,
     },
+    created:{
+      type: Boolean,
+      default: false
+  },
     rating: {
       type: Number,
     },
