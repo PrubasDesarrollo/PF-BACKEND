@@ -1,15 +1,19 @@
-const {getUserController, getUserControllerQuery} = require('../usersControllers/getUsersControllers');
+const {getUserController, getUserControllerQuery,getUserByMail} = require('../usersControllers/getUsersControllers');
 const modelateData = require('../../../utils/modelateData')
 
 const handlerGetUsers = async(req,res) =>{
     try{
-        const {page, order} = req.query;
+        const {page, order, email} = req.query;
         let users;
         let info;
         if(!order){
             users = await getUserController();
         }else if(order){
             users = await getUserControllerQuery(order);
+        }
+        if(email){
+            let data = await getUserByMail(email)
+            res.status(200).json(data)
         }
         if(!page){
              info = modelateData(1,users)
