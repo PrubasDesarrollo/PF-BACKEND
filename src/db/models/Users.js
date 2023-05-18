@@ -7,7 +7,7 @@ const usersScheme = new mongoose.Schema(
       required: true
     },
     token:{
-      type: String,
+      type: String
     },
     password:{
       type: String,

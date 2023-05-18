@@ -23,7 +23,7 @@ const usersSeed = {
     name: "Seed Users",
     description: "Seed",
     type_customer: "User",
-    password:"token"
+    password: "token"
 }
 
 const createSeeds = async () => {

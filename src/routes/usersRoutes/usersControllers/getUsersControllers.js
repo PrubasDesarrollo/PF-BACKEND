@@ -74,6 +74,7 @@ const mapDataRating = async (data) => {
             rating: averageGrades(user.valoraciones),
             posts: user.menu,
             table: user.table,
+            token: user.token
         }
     });
     return mapData;

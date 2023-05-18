@@ -3,10 +3,11 @@ const handlerGetUsers = require('./usersHandlers/handlerGetUsers')
 const handlerPostUser = require('./usersHandlers/handlerPostUser')
 const handlerDeleteUser = require('./usersHandlers/handlerDeleteUser')
 const handlerPutData = require('./usersHandlers/handlerPutData')
-const handlerGetUser = require('./usersHandlers/handlerGetUser');
-const verifyToken = require("../../utils/jwt");
+const handlerGetUser = require('./usersHandlers/handlerGetUser')
+const verifyToken = require('../../utils/jwt');
 
 const api = Router();
+
 
 
 api.get("/", handlerGetUsers);

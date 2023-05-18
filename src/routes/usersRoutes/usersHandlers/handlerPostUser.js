@@ -1,17 +1,22 @@
 const controllerPostUser = require('../usersControllers/controllerPostUser')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const { TOKEN_KEY } = process.env;
+const { TOKEN_KEY } = process.env
 
 const handlerPostUser = async(req,res) =>{
     const { firebaseUrl } = req.file ? req.file : "";
     const data = req.body;
     const token = jwt.sign(
-        {userPassword: data.password, email: data.email},
+        {
+            userPassword: data.password,
+            email: data.email
+        },
         TOKEN_KEY,
-        {expiresIn: "5s"}
+        {
+            expiresIn: "7d" 
+        }
     )
-    let dataCompleta = {...data,token}
+    const dataCompleta = {...data, token};
     try{
         let info = await controllerPostUser(dataCompleta,firebaseUrl);
         res.status(200).json(info)
