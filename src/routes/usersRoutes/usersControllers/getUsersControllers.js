@@ -13,6 +13,14 @@ const getUserController = async() =>{
     return usersRatings.sort((a, b) => b.rating - a.rating)
 }
 
+const getUserByMail = async(email) =>{
+    const tablesData = tables.find();
+    const postsData = posts.find();
+    const data = await users.find({email:email})
+    let user = data.shift();
+    return user
+}
+
 const getUserControllerQuery= async(order) =>{
     
     const tablesData = await tables.find();
@@ -76,5 +84,6 @@ const mapDataRating = async (data) => {
 
 module.exports = {
     getUserController,
-    getUserControllerQuery
+    getUserControllerQuery,
+    getUserByMail
 } 
