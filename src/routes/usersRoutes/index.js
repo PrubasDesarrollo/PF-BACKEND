@@ -4,6 +4,7 @@ const handlerPostUser = require('./usersHandlers/handlerPostUser')
 const handlerDeleteUser = require('./usersHandlers/handlerDeleteUser')
 const handlerPutData = require('./usersHandlers/handlerPutData')
 const handlerGetUser = require('./usersHandlers/handlerGetUser')
+const handlerPutToken = require('./usersHandlers/handlerPutToken')
 const verifyToken = require('../../utils/jwt');
 
 const api = Router();
@@ -16,8 +17,13 @@ api.get("/:id", handlerGetUser)
 
 api.post("/", handlerPostUser);
 
-api.delete("/:id", handlerDeleteUser);
+api.delete("/:id",verifyToken, handlerDeleteUser);
 
-api.put("/:id", handlerPutData);
+api.put("/:id", verifyToken, handlerPutData);
+
+api.get("/login/:email", handlerPutToken)
+
+
+
 
 module.exports = api;
