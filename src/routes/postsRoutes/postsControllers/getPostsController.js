@@ -18,23 +18,27 @@ const getPostsOrdered = async (order) =>{
     const data = await posts.find().populate('authorUser').populate('authorRest').exec();
     const postRatings = await mapDataRating(data);
 
-    if(order === "alphadesc"){
+    if(order === "alphaasc"){
         return await postRatings.sort((a, b) => {
-            if(a.name > b.name){
+            const nameA = a.name.toLowerCase();
+            const nameB = b.name.toLowerCase();
+            if(nameA > nameB){
                 return 1;
             }
-            if(a.name < b.name){
+            if(nameA < nameB){
                 return -1
             }
             return 0
         });
         }
-    if(order === "alphaasc"){
+    if(order === "alphadesc"){
     return await postRatings.sort((a, b) => {
-        if(a.name > b.name){
+        const nameA = a.name.toLowerCase();
+        const nameB = b.name.toLowerCase();
+        if(nameA > nameB){
             return -1;
         }
-        if(a.name < b.name){
+        if(nameA < nameB){
             return 1
         }
         return 0

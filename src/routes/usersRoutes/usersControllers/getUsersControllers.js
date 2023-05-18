@@ -13,29 +13,41 @@ const getUserController = async() =>{
     return usersRatings.sort((a, b) => b.rating - a.rating)
 }
 
+const getUserByMail = async(email) =>{
+    const tablesData = tables.find();
+    const postsData = posts.find();
+    const data = await users.find({email:email})
+    let user = data.shift();
+    return user
+}
+
 const getUserControllerQuery= async(order) =>{
     
     const tablesData = await tables.find();
     const postsData = await posts.find();
     const data = await users.find().sort({name:-1}).populate('posts').populate('table').exec();
     const usersRating = await mapDataRating(data);
-    if(order == "alphadesc"){
+    if(order == "alphaasc"){
         return usersRating.sort((a, b) => {
-            if(a.name > b.name){
+            const nameA = a.name.toLowerCase();
+            const nameB = b.name.toLowerCase();
+            if(nameA > nameB){
                 return 1;
             }
-            if(a.name < b.name){
+            if(nameA < nameB){
                 return -1
             }
             return 0
         })
     }
-    if(order == "alphaasc"){
+    if(order == "alphadesc"){
         return usersRating.sort((a, b) => {
-            if(a.name > b.name){
+            const nameA = a.name.toLowerCase();
+            const nameB = b.name.toLowerCase();
+            if(nameA > nameB){
                 return -1;
             }
-            if(a.name < b.name){
+            if(nameA < nameB){
                 return 1
             }
             return 0
@@ -72,5 +84,6 @@ const mapDataRating = async (data) => {
 
 module.exports = {
     getUserController,
-    getUserControllerQuery
+    getUserControllerQuery,
+    getUserByMail
 } 
