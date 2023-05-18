@@ -9,6 +9,9 @@ const usersScheme = new mongoose.Schema(
     email: {
       type: String,
     },
+    isAdmin:{
+      type: Boolean,
+    },
     image: {
       type: String,
     },
