@@ -9,7 +9,7 @@ const restaurantsScheme = new mongoose.Schema({
         type: String
     },
     email:{
-        type: string
+        type: String
     },
     type_customer:{
         type: String,
