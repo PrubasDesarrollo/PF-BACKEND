@@ -99,10 +99,17 @@ const filterByCountry = (country, restaurants) => {
     return restaurants.filter((restaurant) => restaurant.country?.toLowerCase().includes(country));
 }
 
+const filterByEmail = async(email) =>{
+    const data = await restaurants.find({email:email})
+    const restaurants = data.shift();
+    return user
+}
+
 module.exports ={
     getRestaurants,
     getRestaurantsRating,
     filterByTag,
     filterByCountry,
-    filterByName
+    filterByName,
+    filterByEmail
 };
