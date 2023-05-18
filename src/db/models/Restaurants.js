@@ -8,6 +8,9 @@ const restaurantsScheme = new mongoose.Schema({
     image:{
         type: String
     },
+    email:{
+        type: String
+    },
     type_customer:{
         type: String,
         required: true
