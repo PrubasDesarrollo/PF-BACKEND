@@ -16,7 +16,8 @@ const postsSeed = {
 }
 
 const tablesSeed = {
-    capacity: 1
+    capacity: 1,
+    dateBooking: "07/08/2023"
 }
 
 const usersSeed = {

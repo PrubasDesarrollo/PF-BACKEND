@@ -1,5 +1,5 @@
 const tables = require("../../../db/models/Tables");
-const restaurants = require("../../../db/models/Reservas");
+const restaurants = require("../../../db/models/Restaurants");
 const users = require("../../../db/models/Users");
 
 const tablesGetController = async () =>{
