@@ -4,6 +4,8 @@ const {putRestaurantsData, putRestaurantsTables, putRestaurantsMenu, putRestaura
 const handlerPutData = async (req, res) => {
     try {
         const { id } = req.params
+        const {_id} = req.user;
+        if(id!==_id){throw new Error("You can't modify this restaurant")}
         const { firebaseUrl } = req.file ? req.file : "";
         let data = req.body;
         let validator;

@@ -3,6 +3,8 @@ const {controllerPutDataPosts,controllerPutDataTable,controllerPutData,controlle
 const handlerPutData = async(req,res) =>{
     try{
         let { id } = req.params;
+        let {_id} = req.user;
+        if(id!==_id){throw new Error("You can't modify this user")}
         let data = req.body;
         let {firebaseUrl} = req.file ? req.file : "";
         let validator;
