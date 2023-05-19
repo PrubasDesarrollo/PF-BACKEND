@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const { TOKEN_KEY } = process.env
 
-const postRestaurants = (restaurantData, firebaseUrl) => {
+const postRestaurants = async(restaurantData, firebaseUrl) => {
     const restaurant = {
         name: restaurantData.name,
         type_customer: restaurantData.type_customer,
@@ -17,9 +17,10 @@ const postRestaurants = (restaurantData, firebaseUrl) => {
         valoraciones: restaurantData.valoraciones,
         rating: restaurantData.rating,
         menu: restaurantData.menu,
-        table: restaurantData.table
+        table: restaurantData.table,
+        email: restaurantData.email
     };
-    let informacionRestaurant = restaurants.create(restaurant);
+    let informacionRestaurant = await restaurants.create(restaurant);
     const token = jwt.sign(
         {
             _id: informacionRestaurant._id, 
@@ -46,7 +47,8 @@ const postRestaurants = (restaurantData, firebaseUrl) => {
         menu: informacionRestaurant.menu,
         table: informacionRestaurant.table,
         token: token,
-        id: informacionRestaurant._id
+        id: informacionRestaurant._id,
+        email: informacionRestaurant.email
     }
     return infoRestaurants;
 }

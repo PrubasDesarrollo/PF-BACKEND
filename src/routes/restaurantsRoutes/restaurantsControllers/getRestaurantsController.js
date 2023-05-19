@@ -79,6 +79,7 @@ const mapDataRating = (data) => {
             menu: restaurant.menu,
             image: restaurant.image,
             table: restaurant.table,
+            email: restaurant.email
         }
     });
     return mapData;
@@ -99,10 +100,14 @@ const filterByCountry = (country, restaurants) => {
     return restaurants.filter((restaurant) => restaurant.country?.toLowerCase().includes(country));
 }
 
-const filterByEmail = async(email) =>{
-    const data = await restaurants.find({email:email})
-    const restaurants = data.shift();
-    return user
+const filterByEmail = async(restaurantEmail) =>{
+    const tablesData = await tables.find();
+    const postsData = await posts.find();
+    const data = await restaurants.find({email:restaurantEmail})
+    const dataRestaurant = data.shift();
+    console.log('ESTO ES LO QUE DEVUELVE DATA'+data)
+    console.log('ESTO ES LO QUE DEVUELVE DATARESTAURANT'+dataRestaurant)
+    return dataRestaurant
 }
 
 module.exports ={

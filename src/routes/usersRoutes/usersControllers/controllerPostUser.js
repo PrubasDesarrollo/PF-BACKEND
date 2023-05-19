@@ -2,6 +2,7 @@ const users = require("../../../db/models/Users");
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const { TOKEN_KEY, PASSWORD_ADMIN } = process.env
+const sendEmail = require('../../../utils/configEmailer')
 
 
 const  controllerPostUser = async(data, firebaseUrl,password) =>{

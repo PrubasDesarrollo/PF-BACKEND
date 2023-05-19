@@ -25,6 +25,7 @@ const putRestaurantsData = (id, restaurantData, firebaseUrl) => {
         rating: restaurantData.rating,
         city: restaurantData.city,
         address: restaurantData.address,
+        email: restaurantData.email,
         country: restaurantData.country,
         description: restaurantData.description,
         image: firebaseUrl,
