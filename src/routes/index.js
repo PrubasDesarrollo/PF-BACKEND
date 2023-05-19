@@ -14,6 +14,5 @@ router.use("/tables", tablesRoutes);
 router.use("/posts", postsRoutes);
 router.use("/restaurants", restaurantsRoutes);
 router.use("/upload", uploadRoutes);
-router.use("/bookings", bookingsRoutes);
 
 module.exports = router;
