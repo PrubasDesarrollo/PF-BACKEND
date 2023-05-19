@@ -37,6 +37,9 @@ const deliveryScheme = new mongoose.Schema(
     },
     observations:{
         type: String,
+    },
+    status:{
+        type: String,
     }
 },
 {

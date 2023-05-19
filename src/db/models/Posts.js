@@ -35,6 +35,10 @@ const postScheme = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "restaurants",
   },
+  isActive:{
+    type: Boolean,
+    default: true
+}
 });
 
 module.exports = mongoose.model("posts", postScheme);
