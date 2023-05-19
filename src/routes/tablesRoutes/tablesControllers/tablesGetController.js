@@ -6,7 +6,7 @@ const tablesGetController = async () =>{
     const usersData = users.find();
     const restaurantsData = restaurants.find();
 
-    return await tables.find().populate('user').populate('restaurant').exec();
+    return await tables.find().populate('diners').populate('restaurant').exec();
 }
 
 module.exports = tablesGetController;
