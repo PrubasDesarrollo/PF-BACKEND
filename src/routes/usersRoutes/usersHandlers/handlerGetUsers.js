@@ -6,14 +6,15 @@ const handlerGetUsers = async(req,res) =>{
         const {page, order, email} = req.query;
         let users;
         let info;
+        if(email){
+            let data = await getUserByMail(email)
+            res.status(200).json(data)
+        }
+        else{
         if(!order){
             users = await getUserController();
         }else if(order){
             users = await getUserControllerQuery(order);
-        }
-        if(email){
-            let data = await getUserByMail(email)
-            res.status(200).json(data)
         }
         if(!page){
              info = modelateData(1,users)
@@ -21,7 +22,7 @@ const handlerGetUsers = async(req,res) =>{
             info = modelateData(page,users)
         }
        
-        res.status(200).json(info);
+        res.status(200).json(info);}
     }catch(err){
         res.status(400).json({error: err.message});
     }

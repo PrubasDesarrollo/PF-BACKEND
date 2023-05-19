@@ -11,6 +11,9 @@ const restaurantsScheme = new mongoose.Schema({
     email:{
         type: String
     },
+    phone:{
+        type: String,
+      },
     type_customer:{
         type: String,
         required: true
@@ -52,7 +55,11 @@ const restaurantsScheme = new mongoose.Schema({
     table: [{
         type: mongoose.Types.ObjectId,
         ref: 'tables',
-    }]
+    }],
+    isActive:{
+        type: Boolean,
+        default: true
+    }
 },
 {
     versionKey: false,
