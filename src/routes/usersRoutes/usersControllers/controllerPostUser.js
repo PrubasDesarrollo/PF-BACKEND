@@ -1,7 +1,8 @@
 const users = require("../../../db/models/Users");
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const { TOKEN_KEY } = process.env
+const { TOKEN_KEY } = process.env;
+const sendEmail = require('../../../utils/configEmailer');
 
 const  controllerPostUser = async(data, firebaseUrl) =>{
     let user = {
@@ -33,6 +34,7 @@ const  controllerPostUser = async(data, firebaseUrl) =>{
         token: token,
         id: informacion._id
     }
+    await sendEmail(data.email);
     return infoUser;
 }
 
