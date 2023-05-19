@@ -10,11 +10,11 @@ const api = Router();
 // Ruta para subir imágenes
 api.post("/", async (req, res) => {
   try {
-    let {admin, password} = req.body
-    if(admin && password == PASSWORD_ADMIN){
+    let {isAdmin, password} = req.body
+    if(isAdmin && password == PASSWORD_ADMIN){
       const token = jwt.sign(
         { 
-            admin: admin
+            isAdmin: isAdmin
         },
         TOKEN_KEY,
         {

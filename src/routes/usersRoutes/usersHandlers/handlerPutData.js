@@ -3,8 +3,8 @@ const {controllerPutDataPosts,controllerPutDataTable,controllerPutData,controlle
 const handlerPutData = async(req,res) =>{
     try{
         let { id } = req.params;
-        let {_id} = req.user;
-        if(id!==_id){throw new Error("You can't modify this user")}
+        let {_id, isAdmin} = req.user;
+        if(id==_id || isAdmin){
         let data = req.body;
         let {firebaseUrl} = req.file ? req.file : "";
         let validator;
@@ -30,6 +30,7 @@ const handlerPutData = async(req,res) =>{
             }
         }
         res.status(200).json(user)
+    }else{throw new Error("You can't modify this restaurant")}
     }catch(err){
         res.status(400).json({error: err.message})
     }

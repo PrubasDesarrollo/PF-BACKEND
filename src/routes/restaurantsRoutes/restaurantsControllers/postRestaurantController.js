@@ -24,7 +24,7 @@ const postRestaurants = (restaurantData, firebaseUrl) => {
         {
             _id: informacionRestaurant._id, 
             email: informacionRestaurant.email,
-            type_customer: informacionRestaurant.type_customer
+            type_customer: informacionRestaurant.type_customer,
         },
         TOKEN_KEY,
         {

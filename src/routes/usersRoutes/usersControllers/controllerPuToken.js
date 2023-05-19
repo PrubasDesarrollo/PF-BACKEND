@@ -16,7 +16,8 @@ const controllerPuToken = async(email) =>{
     {
         _id: info._id, 
         email: info.email,
-        type_customer: info.type_customer
+        type_customer: info.type_customer,
+        isAdmin: info.isAdmin
     },
     TOKEN_KEY,
     {
