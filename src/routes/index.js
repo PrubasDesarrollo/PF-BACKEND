@@ -5,6 +5,7 @@ const postsRoutes = require("./postsRoutes/index");
 const restaurantsRoutes = require("./restaurantsRoutes/index");
 const tablesRoutes = require("./tablesRoutes/index");
 const uploadRoutes = require("./uploadRoutes/index");
+const bookingsRoutes = require("./bookings/index");
 
 const router = Router();
 
@@ -13,5 +14,6 @@ router.use("/tables", tablesRoutes);
 router.use("/posts", postsRoutes);
 router.use("/restaurants", restaurantsRoutes);
 router.use("/upload", uploadRoutes);
+router.use("/bookings", bookingsRoutes);
 
 module.exports = router;
