@@ -6,10 +6,10 @@ require('dotenv').config();
 const { TOKEN_KEY } = process.env
 
 
-const controllerPuToken = async(email) =>{
+const controllerPuToken = async(userEmail) =>{
     let mesas =await tables.find()
     let posteos = await posts.find()
-   let oneUser = await users.find({email:email})
+   let oneUser = await users.find({email:userEmail})
    let info = oneUser.shift()
    
    const token = jwt.sign(

@@ -14,11 +14,15 @@ const getUserController = async() =>{
 }
 
 const getUserByMail = async(email) =>{
+   try{
     const tablesData = tables.find();
     const postsData = posts.find();
     const data = await users.find({email:email})
     let user = data.shift();
-    return user
+    return user}
+    catch(error){
+        throw new Error("invaid email")
+    }
 }
 
 const getUserControllerQuery= async(order) =>{
