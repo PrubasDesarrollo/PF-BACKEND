@@ -52,7 +52,11 @@ const restaurantsScheme = new mongoose.Schema({
     table: [{
         type: mongoose.Types.ObjectId,
         ref: 'tables',
-    }]
+    }],
+    isActive:{
+        type: Boolean,
+        default: true
+    }
 },
 {
     versionKey: false,

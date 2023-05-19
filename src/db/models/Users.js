@@ -42,6 +42,10 @@ const usersScheme = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "tables",
     },
+    isActive:{
+      type: Boolean,
+      default: true
+  }
   },
   {
     versionKey: false,
