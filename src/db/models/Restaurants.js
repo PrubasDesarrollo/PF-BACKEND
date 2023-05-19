@@ -11,6 +11,9 @@ const restaurantsScheme = new mongoose.Schema({
     email:{
         type: String
     },
+    phone:{
+        type: String,
+      },
     type_customer:{
         type: String,
         required: true
