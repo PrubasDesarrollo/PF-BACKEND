@@ -24,7 +24,7 @@ const usersSeed = {
     name: "Seed Users",
     description: "Seed",
     type_customer: "User",
-    password: "token"
+    email: "exampleSeed@algo.com"
 }
 
 const createSeeds = async () => {
