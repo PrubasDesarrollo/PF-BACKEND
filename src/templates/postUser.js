@@ -1,4 +1,24 @@
-const template = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>New Template</title><style type="text/css">body { font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; } .container { max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); } h1 { font-size: 24px; margin: 0 0 20px; text-align: center; } p { font-size: 16px; margin: 0 0 10px; } .button { display: inline-block; padding: 10px 20px; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 4px; font-size: 16px; transition: background-color 0.3s ease; } .button:hover { background-color: #0056b3; } /* Estilos para hacer la plantilla responsive */ @media screen and (max-width: 600px) { .container { padding: 10px; } }ul li, ol li { margin-left:0;}.msohide { mso-hide:all;}</style></head>
-<body><div class="container"><h1>¡Welcome to FoodBook!</h1><p>Enjoy and explore the content of our community and make your ideas of the culinary environment known on our website</p><p><a href="https://www.ejemplo.com" class="button">Enlace</a></p></div></body></html>`
+const htmlCode = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .fondo{
+        background-image: url("https://i.postimg.cc/Gh6WL9mD/pnatilla-Email-min.png");
+        background-repeat: no-repeat;
+        padding: 50em;
+        padding-bottom: 0;
+    }
+</style>
+<body>
+    <div class="fondo"></div>
+</body>
+</html>
+`;
 
-module.exports = template;
+module.exports = htmlCode;
