@@ -1,13 +1,15 @@
 const users = require("../../../db/models/Users");
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const { TOKEN_KEY } = process.env
+const { TOKEN_KEY, PASSWORD_ADMIN } = process.env
+const sendEmail = require('../../../utils/configEmailer')
 
-const  controllerPostUser = async(data, firebaseUrl) =>{
+
+const  controllerPostUser = async(data, firebaseUrl,password) =>{
     let user = {
         name: data.name,
         email: data.email,
-        isAdmin: data.isAdmin,
+        isAdmin:password?(password===PASSWORD_ADMIN):false,
         image:firebaseUrl,
         type_customer: data.type_customer,
         description: data.description
@@ -17,7 +19,8 @@ const  controllerPostUser = async(data, firebaseUrl) =>{
         {
             _id: informacion._id, 
             email: informacion.email,
-            type_customer: informacion.type_customer
+            type_customer: informacion.type_customer,
+            isAdmin: informacion.isAdmin
         },
         TOKEN_KEY,
         {
@@ -25,6 +28,7 @@ const  controllerPostUser = async(data, firebaseUrl) =>{
         }
     )
     let infoUser = {
+        isAdmin: informacion.isAdmin,
         name: informacion.name,
         email: informacion.email,
         image:informacion.image,
@@ -33,6 +37,7 @@ const  controllerPostUser = async(data, firebaseUrl) =>{
         token: token,
         id: informacion._id
     }
+    await sendEmail(data.email);
     return infoUser;
 }
 

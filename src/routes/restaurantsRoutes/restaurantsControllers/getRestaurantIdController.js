@@ -15,7 +15,8 @@ const modelateData = (data) => {
         image: data.image,
         phoneNumber: data.phoneNumber,
         tags: data.tags,
-        menu: data.menu
+        menu: data.menu,
+        email: data.email
     };
     return restaurant;
 }

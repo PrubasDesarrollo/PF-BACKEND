@@ -4,6 +4,8 @@ const handlerPostData = require("./restaurantsHandlers/postHandler.js");
 const handlerDeleteData = require("./restaurantsHandlers/deleteHandler");
 const handlerPutData = require("./restaurantsHandlers/putHandler");
 const handlerGetIdData = require("./restaurantsHandlers/getIdHandler");
+const handlerPutToken = require('./restaurantsHandlers/handlerPutToken')
+const verifyToken = require('../../utils/jwt')
 const api = Router();
 
 // * Rutas GET
@@ -18,10 +20,12 @@ api.post("/", handlerPostData);
 
 // * Eliminar un restaurante segun id
 
-api.delete("/:id", handlerDeleteData);
+api.delete("/:id",verifyToken, handlerDeleteData);
 
 // * Actualizar restaurante segun id
 
-api.put("/:id", handlerPutData);
+api.put("/:id",verifyToken, handlerPutData);
+
+api.get("/login/:email", handlerPutToken)
 
 module.exports = api;

@@ -4,6 +4,8 @@ const {putRestaurantsData, putRestaurantsTables, putRestaurantsMenu, putRestaura
 const handlerPutData = async (req, res) => {
     try {
         const { id } = req.params
+        const {_id, isAdmin} = req.user;
+        if(id==_id || isAdmin){
         const { firebaseUrl } = req.file ? req.file : "";
         let data = req.body;
         let validator;
@@ -31,6 +33,8 @@ const handlerPutData = async (req, res) => {
         }
         
         res.status(200).json({ restaurant });
+    }
+    else{throw new Error("You can't modify this restaurant")}
     } catch (error) {
         res.status(400).json({error: err.message})
     }
