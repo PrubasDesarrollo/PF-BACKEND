@@ -22,6 +22,10 @@
     {
       "name": "users",
       "description": "Everything about your user"
+    },
+    {
+      "name": "payment",
+      "description": "Everything about your payment"
     }
   ],
   "paths": {
@@ -83,7 +87,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Restaurants404"
+                  "$ref": "#/components/schemas/Restaurants"
                 }
               }
             }
@@ -123,7 +127,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Restaurants404"
+                  "$ref": "#/components/schemas/Restaurants"
                 }
               }
             }
@@ -164,7 +168,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RestaurantsId404"
+                  "$ref": "#/components/schemas/Restaurants"
                 }
               }
             }
@@ -669,7 +673,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "default":1
+              "default": 1
             }
           }
         ],
@@ -857,6 +861,48 @@
           }
         ]
       }
+    },
+    "/payment": {
+      "post": {
+        "tags": ["payment"],
+        "summary": "Creacion de un payment",
+        "description": "Esta ruta recibe un array de objetos de productos en formato JSON",
+        "operationId": "postPayment",
+        "requestBody": {
+          "description": "Ejemplo de lo que espera la ruta por body name, image, description y cost",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Payment"
+              }
+            }
+          },
+          "readOnly": true,
+          "x-displayName": "Post Payment"
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payment"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payment"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -971,24 +1017,7 @@
           "name": "restaurants"
         }
       },
-      "Restaurants404": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "string",
-            "example": "cannot get invalid route"
-          }
-        }
-      },
-      "RestaurantsId404": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "string",
-            "example": "Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer"
-          }
-        }
-      },
+
       "Tables": {
         "type": "object",
         "properties": {
@@ -1050,6 +1079,45 @@
         "xml": {
           "name": "users"
         }
+      },
+      "Payment": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Producto 1"
+            },
+            "image": {
+              "type": "string",
+              "example": "https://example.com/product1.jpg"
+            },
+            "description": {
+              "type": "string",
+              "example": "Descripción del producto 1"
+            },
+            "cost": {
+              "type": "integer",
+              "format": "int64",
+              "example": 4
+            }
+          }
+        },
+        "example": [
+          {
+            "name": "Producto 1",
+            "image": "https://example.com/product1.jpg",
+            "description": "Descripción del producto 1",
+            "cost": 4
+          },
+          {
+            "name": "Producto 2",
+            "image": "https://example.com/product2.jpg",
+            "description": "Descripción del producto 2",
+            "cost": 8
+          }
+        ]
       }
     }
   }
