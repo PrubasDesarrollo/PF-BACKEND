@@ -45,7 +45,7 @@ router.post("/payment", (req, res) => {
     };
     mercadopago.preferences
       .create(preference)
-      .then((response) => res.status(200).send({ response }))
+      .then((response) => res.status(200).send(response.body.init_point))
       .catch((error) => res.status(400).send({ error: error.message }));
   } catch (error) {
     res.status(400).json({ error: error.message });
