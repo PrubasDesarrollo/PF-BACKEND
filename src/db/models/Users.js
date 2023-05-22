@@ -1,16 +1,17 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const usersScheme = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     email: {
       type: String,
-      required: true
+      required: true,
     },
-    isAdmin:{
+    isAdmin: {
       type: Boolean,
       default: false,
     },
@@ -19,19 +20,21 @@ const usersScheme = new mongoose.Schema(
     },
     type_customer: {
       type: String,
-      required: true
+      required: true,
     },
     description: {
       type: String,
     },
-    valoraciones: {
-      type: Array,
-    },
-    created:{
+    valoraciones: [
+      {
+        type: Schema.Types.Mixed,
+      },
+    ],
+    created: {
       type: Boolean,
-      default: false
-  },
-    phone:{
+      default: false,
+    },
+    phone: {
       type: String,
     },
     rating: {
@@ -45,10 +48,10 @@ const usersScheme = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "tables",
     },
-    isActive:{
+    isActive: {
       type: Boolean,
-      default: true
-  }
+      default: true,
+    },
   },
   {
     versionKey: false,

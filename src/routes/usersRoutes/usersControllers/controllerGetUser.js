@@ -12,8 +12,8 @@ const mapDataRating =  (user) => {
             image: user.image,
             type_customer: user.type_customer,
             description: user.description,
-            valoraciones: user.valoraciones ? user.valoraciones : [0],
-            rating: averageGrades(user.valoraciones),
+            valoraciones: user.valoraciones ? user.valoraciones : [],
+            rating: averageGrades(user.valoraciones || []),
             posts: user.menu,
             table: user.table,
             token: user.token

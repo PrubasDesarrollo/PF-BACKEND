@@ -69,8 +69,8 @@ const mapDataRating = (data) => {
             name: restaurant.name,
             description: restaurant.description,
             type_customer: restaurant.type_customer,
-            valoraciones: restaurant.valoraciones ? restaurant.valoraciones : [0],
-            rating: averageGrades(restaurant.valoraciones),
+            valoraciones: restaurant.valoraciones ? restaurant.valoraciones : [],
+            rating: averageGrades(restaurant.valoraciones || []),
             city: restaurant.city,
             address: restaurant.address,
             country: restaurant.country,
@@ -109,6 +109,9 @@ const filterByEmail = async(restaurantEmail) =>{
     console.log('ESTO ES LO QUE DEVUELVE DATARESTAURANT'+dataRestaurant)
     return dataRestaurant
 }
+const filterByRating = (rating, restaurants) => {
+    return restaurants.filter((rest) => rest.rating >= rating)
+}
 
 module.exports ={
     getRestaurants,
@@ -116,5 +119,6 @@ module.exports ={
     filterByTag,
     filterByCountry,
     filterByName,
-    filterByEmail
+    filterByEmail,
+    filterByRating
 };
