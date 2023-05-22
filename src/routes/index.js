@@ -18,20 +18,18 @@ router.use("/tokenAdmin", tokenRoute);
 
 mercadopago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 router.post("/payment", (req, res) => {
-  const prod = req.body;
-  let preference = {
-    items: [
-      {
-        id: 123,
-        title: prod.name,
-        currency_id: "USD",
-        picture_url: prod.image,
-        description: prod.description,
-        category_id: "art",
-        quantity: 1,
-        unit_price: prod.cost,
-      },
-    ],
+  const products = req.body; //array de productos
+  var preference = {
+    items: products.map((prod, index) => ({
+      id: index + 1,
+      title: prod.name,
+      currency_id: "ARS",
+      picture_url: prod.image,
+      description: prod.description,
+      category_id: "art",
+      quantity: 1,
+      unit_price: prod.cost,
+    })),
     back_urls: {
       success: "http://localhost:3000",
       failure: "",
@@ -39,6 +37,7 @@ router.post("/payment", (req, res) => {
     },
     auto_return: "approved",
     binary_mode: true,
+    marketplace: "MP-ARGENTINA",
   };
   mercadopago.preferences
     .create(preference)
