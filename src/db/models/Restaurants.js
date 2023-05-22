@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const restaurantsScheme = new mongoose.Schema({
     name:{
@@ -41,9 +42,9 @@ const restaurantsScheme = new mongoose.Schema({
     phoneNumber:{
         type: String
     },
-    valoraciones:{
-        type: Array,
-    },
+    valoraciones:[{
+        type: Schema.Types.Mixed,
+    }],
     rating:{
         type: Number,
         default: 0

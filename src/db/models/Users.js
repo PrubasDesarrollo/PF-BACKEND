@@ -24,9 +24,9 @@ const usersScheme = new mongoose.Schema(
     description: {
       type: String,
     },
-    valoraciones: {
-      type: Array,
-    },
+    valoraciones: [{
+      type: Schema.Types.Mixed,
+    }],
     created:{
       type: Boolean,
       default: false
