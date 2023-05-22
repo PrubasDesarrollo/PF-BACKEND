@@ -1,9 +1,9 @@
-const {getRestaurants, getRestaurantsRating, filterByTag, filterByCountry,filterByName, filterByEmail} = require("../restaurantsControllers/getRestaurantsController");
+const {getRestaurants, getRestaurantsRating, filterByTag, filterByCountry,filterByName, filterByEmail, filterByRating} = require("../restaurantsControllers/getRestaurantsController");
 const modelateData = require("../../../utils/modelateData")
 
 const handlerGetData = async (req, res) => {
     try {
-        const {page, order, tag, country, name, email} = req.query;
+        const {page, order, tag, country, name, email, rating} = req.query;
         if(email){
             let restaurant = await filterByEmail(email);
             res.status(200).json(restaurant);
@@ -24,6 +24,10 @@ const handlerGetData = async (req, res) => {
         if(tag){
             let filterByTags = filterByTag(tag, restaurants);
             restaurants = filterByTags;
+        }
+        if(rating){
+            let filteredByRating = filterByRating(rating, restaurants);
+            restaurants = filteredByRating;
         }
 
         let info = modelateData(page || 1,restaurants)
