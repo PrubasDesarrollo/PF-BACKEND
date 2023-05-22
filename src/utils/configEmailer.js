@@ -21,8 +21,6 @@ const transporter = () => {
             apiKey: KEY_SENDGRID_EMAIL
         })
     )
-
-    return transport;
 };
 
 
