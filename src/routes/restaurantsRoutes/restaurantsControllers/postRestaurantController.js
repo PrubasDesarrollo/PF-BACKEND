@@ -51,7 +51,7 @@ const postRestaurants = async(restaurantData, firebaseUrl) => {
         id: informacionRestaurant._id,
         email: informacionRestaurant.email
     }
-    await sendEmail(data.email);
+    await sendEmail(restaurantData.email);
     return infoRestaurants;
 }
 
