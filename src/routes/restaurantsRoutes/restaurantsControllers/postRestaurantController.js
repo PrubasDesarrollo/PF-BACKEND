@@ -1,6 +1,7 @@
 const restaurants = require("../../../db/models/Restaurants");
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const sendEmail = require('../../../utils/configEmailer')
 const { TOKEN_KEY } = process.env
 
 const postRestaurants = async(restaurantData, firebaseUrl) => {
@@ -50,6 +51,7 @@ const postRestaurants = async(restaurantData, firebaseUrl) => {
         id: informacionRestaurant._id,
         email: informacionRestaurant.email
     }
+    await sendEmail(restaurantData.email);
     return infoRestaurants;
 }
 

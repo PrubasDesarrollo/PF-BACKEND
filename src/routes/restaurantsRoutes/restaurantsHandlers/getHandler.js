@@ -25,7 +25,7 @@ const handlerGetData = async (req, res) => {
             let filterByTags = filterByTag(tag, restaurants);
             restaurants = filterByTags;
         }
-        
+
         let info = modelateData(page || 1,restaurants)
         res.status(200).json(info);}
     } catch (error) {

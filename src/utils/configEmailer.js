@@ -2,6 +2,7 @@ const nodemailer = require('nodemailer');
 const templatePostUser = require('../templates/postUser.js');
 const nodemailerSendgrid = require('nodemailer-sendgrid');
 require('dotenv').config();
+const path = require('path');
 const { KEY_SENDGRID_EMAIL } = process.env;
 
 const transporter = () => {
@@ -21,7 +22,6 @@ const transporter = () => {
             apiKey: KEY_SENDGRID_EMAIL
         })
     )
-
     return transport;
 };
 
@@ -32,7 +32,14 @@ const sendEmail = async (toEmail) => {
         from: '"FoodBook" <sierrabolanosmiguel@gmail.com>',
         to: `${toEmail}`,
         subject: "FoodBook!!!!!",
-        html: templatePostUser
+        html: templatePostUser,
+        attachments: [
+            {
+                filename: 'Welcome.png',
+                path: path.resolve(__dirname, '../templates/pnatillaEmail.png'),
+                cid: 'welcome@image.png'
+            }
+        ]
     });
     return;
 };
