@@ -99,6 +99,10 @@ const filterByCountry = (country, restaurants) => {
     country = country.toLowerCase();
     return restaurants.filter((restaurant) => restaurant.country?.toLowerCase().includes(country));
 }
+const filterByCity = (city, restaurants) => {
+    city = city.toLowerCase();
+    return restaurants.filter((restaurant) => restaurant.city?.toLowerCase().includes(city));
+}
 
 const filterByEmail = async(restaurantEmail) =>{
     const tablesData = await tables.find();
@@ -120,5 +124,6 @@ module.exports ={
     filterByCountry,
     filterByName,
     filterByEmail,
+    filterByCity,
     filterByRating
 };
