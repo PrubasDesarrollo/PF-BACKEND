@@ -69,6 +69,30 @@
               "type": "string",
               "enum": ["pasta", "hamburguesas", "papas"]
             }
+          },
+          {
+          "name": "country",
+          "in": "query",
+          "description": "Filtra segun el país que le envias por query, devuelve restaurants de ese país",
+          "required": false,
+          "explode": true,
+          "schema": {
+            "type": "string",
+            "enum": ["Argentina", "Perú", "Colombia"]
+          }
+
+
+          },
+          {
+            "name": "rating",
+            "in": "query",
+            "description": "Filtra segun el rating que le envias por query, devuelve restaurants con rating mayor o igual",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "number",
+              "enum": [1, 2, 3, 4, 5]
+            }
           }
         ],
         "responses": {

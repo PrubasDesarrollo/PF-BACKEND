@@ -6,6 +6,7 @@ const usersRoutes = require("./usersRoutes/index");
 const postsRoutes = require("./postsRoutes/index");
 const restaurantsRoutes = require("./restaurantsRoutes/index");
 const tablesRoutes = require("./tablesRoutes/index");
+const deliveryRoutes = require("./deliveryRoutes/index");
 const tokenRoute = require("./tokenRoute/index");
 
 const router = Router();
@@ -14,6 +15,7 @@ router.use("/users", usersRoutes);
 router.use("/tables", tablesRoutes);
 router.use("/posts", postsRoutes);
 router.use("/restaurants", restaurantsRoutes);
+router.use("/delivery", deliveryRoutes)
 router.use("/tokenAdmin", tokenRoute);
 
 mercadopago.configure({ access_token: process.env.MERCADOPAGO_KEY });
@@ -43,7 +45,7 @@ router.post("/payment", (req, res) => {
     };
     mercadopago.preferences
       .create(preference)
-      .then((response) => res.status(200).send({ response }))
+      .then((response) => res.status(200).send(response.body.init_point))
       .catch((error) => res.status(400).send({ error: error.message }));
   } catch (error) {
     res.status(400).json({ error: error.message });

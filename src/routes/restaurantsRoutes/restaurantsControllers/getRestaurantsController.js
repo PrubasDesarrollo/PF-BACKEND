@@ -113,6 +113,9 @@ const filterByEmail = async(restaurantEmail) =>{
     console.log('ESTO ES LO QUE DEVUELVE DATARESTAURANT'+dataRestaurant)
     return dataRestaurant
 }
+const filterByRating = (rating, restaurants) => {
+    return restaurants.filter((rest) => rest.rating >= rating)
+}
 
 module.exports ={
     getRestaurants,
@@ -121,5 +124,6 @@ module.exports ={
     filterByCountry,
     filterByName,
     filterByEmail,
-    filterByCity
+    filterByCity,
+    filterByRating
 };
