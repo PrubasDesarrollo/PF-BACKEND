@@ -92,7 +92,10 @@ const filterByTag = (tag, restaurants) => {
 }
 
 const tagsComparate = (tags, restaurantsTags) => {
-    return tags.every((tag) => restaurantsTags.includes(tag));
+
+    const tagsArrayLow = tags.map((tag)=> tag.toLowerCase());
+    const restaurantTagsLow = restaurantsTags.map((tag) => tag.toLowerCase());
+    return tagsArrayLow.every((tag) => restaurantTagsLow.includes(tag));
 }
 
 const filterByCountry = (country, restaurants) => {
