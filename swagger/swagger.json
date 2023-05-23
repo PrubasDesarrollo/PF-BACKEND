@@ -71,14 +71,14 @@
             }
           },
           {
-          "name": "country",
+          "name": "city",
           "in": "query",
-          "description": "Filtra segun el país que le envias por query, devuelve restaurants de ese país",
+          "description": "Filtra según la ciudad que le envias por query, devuelve restaurants de ese país",
           "required": false,
           "explode": true,
           "schema": {
             "type": "string",
-            "enum": ["Argentina", "Perú", "Colombia"]
+            "enum": ["Río Cuarto", "Lima", "Cali"]
           }
 
 
