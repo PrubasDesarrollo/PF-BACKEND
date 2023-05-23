@@ -3,7 +3,7 @@ const modelateData = require("../../../utils/modelateData")
 
 const handlerGetData = async (req, res) => {
     try {
-        const {page, order, tag, country, name, email, rating} = req.query;
+        const {page, order, tag, country, name, email, rating, city} = req.query;
         if(email){
             let restaurant = await filterByEmail(email);
             res.status(200).json(restaurant);
