@@ -1,8 +1,13 @@
-const averageGrades = (arr) =>{
-    if(!arr.length) return 0
-    const sum = arr.reduce((a, b) => (Number(a.valoraciones)*1) + (Number(b.valoraciones)*1));
+const averageGrades = (arr) => {
+    if (!arr.length) return 0;
+
+    const sum = arr.reduce((acumulador, objeto) => {
+        const rating = parseFloat(objeto.rating);
+        return acumulador + (isNaN(rating) ? 0 : rating);
+    }, 0);
+
     const average = sum / arr.length;
-    return average
+    return average;
 }
 
 module.exports = averageGrades;
