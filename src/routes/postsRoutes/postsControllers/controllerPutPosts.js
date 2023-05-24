@@ -3,7 +3,7 @@ const parseId = require("../../../utils/parseId");
 
 const controllerPutRating = (id, rating) =>{
     let idParsed = parseId(id)
-    return posts.findOneAndUpdate(idParsed, {$push: {rating: rating}})
+    return posts.findOneAndUpdate(idParsed, {$push: {valoraciones: rating}})
 }
 
 const controllerPutTags = (id, tags) =>{

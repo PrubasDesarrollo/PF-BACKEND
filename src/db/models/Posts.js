@@ -24,7 +24,7 @@ const postScheme = new mongoose.Schema({
   cost: {
     type: Number,
   },
-  rating: {
+  valoraciones: {
     type: Array,
   },
   authorUser: {
