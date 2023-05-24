@@ -1,15 +1,20 @@
 const postRestaurantsController = require("../restaurantsControllers/postRestaurantController");
 
 const handlerPostData = async (req, res) => {
-    try {
-        const {password} = req.query
-        const restaurantData = req.body;
-        const { firebaseUrl } = req.file ? req.file : "";
-        const restaurant = await postRestaurantsController(restaurantData, firebaseUrl, password);
-        res.status(200).json({ restaurant });
-    } catch (error) {
-        console.log(error);
-    }
-}
+  try {
+    const { password } = req.query;
+    const restaurantData = req.body;
+    const { firebaseUrl } = req.file ? req.file : "";
+    const restaurant = await postRestaurantsController(
+      restaurantData,
+      firebaseUrl,
+      password
+    );
+    res.status(200).json({ restaurant });
+  } catch (error) {
+    // console.log(error);
+    res.status(400).json({ error: error.message });
+  }
+};
 
 module.exports = handlerPostData;
