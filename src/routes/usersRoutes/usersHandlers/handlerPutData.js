@@ -4,6 +4,7 @@ const handlerPutData = async(req,res) =>{
     try{
         let { id } = req.params;
         let {_id, isAdmin} = req.user;
+        console.log('TOKEN DESGLOSADO'+req.user)
         if(id==_id || isAdmin){
         let data = req.body;
         let {firebaseUrl} = req.file ? req.file : "";
