@@ -26,7 +26,8 @@ const mapDataRating = async (data) => {
             original: post.original,
             cost: post.cost,
             isActive: post.isActive,
-            rating: averageGrades(post.rating),
+            rating: averageGrades(post.valoraciones),
+            comentarios: mapearComentarios(post.valoraciones),
             authorUser: post.authorUser,
             authorRest: post.authorRest,
         }
