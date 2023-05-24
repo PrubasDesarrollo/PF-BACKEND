@@ -22,7 +22,7 @@ const modelateData = (data) => {
     return restaurant;
 }
 
-const origetRestaurantIdController = async (id) => {
+const getRestaurantIdController = async (id) => {
     const idParsed = parseId(id)
     const tablesData = await tables.find();
     let data = await restaurants.find({_id: idParsed}).populate('table').exec();
