@@ -30,6 +30,7 @@ const putRestaurantsData = (id, restaurantData, firebaseUrl) => {
         description: restaurantData.description,
         image: firebaseUrl,
         phoneNumber: restaurantData.phoneNumber,
+        isActive: restaurantData.isActive,
         $addToSet:{tags: restaurantData.tags},
         $push:{image: restaurantData.image}
     });

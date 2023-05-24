@@ -16,7 +16,8 @@ const modelateData = (data) => {
         phoneNumber: data.phoneNumber,
         tags: data.tags,
         menu: data.menu,
-        email: data.email
+        email: data.email,
+        isActive: data.isActive
     };
     return restaurant;
 }

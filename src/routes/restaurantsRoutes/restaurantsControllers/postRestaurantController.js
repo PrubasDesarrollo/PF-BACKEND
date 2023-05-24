@@ -10,7 +10,7 @@ const postRestaurants = async(restaurantData, firebaseUrl) => {
         type_customer: restaurantData.type_customer,
         description: restaurantData.description,
         image: firebaseUrl,
-        tags: restaurantData.tags,
+        tags: [...restaurantData.tags],
         city: restaurantData.city,
         address: restaurantData.address,
         country: restaurantData.country,
