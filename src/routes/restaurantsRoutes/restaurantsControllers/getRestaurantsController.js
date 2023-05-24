@@ -79,7 +79,8 @@ const mapDataRating = (data) => {
             menu: restaurant.menu,
             image: restaurant.image,
             table: restaurant.table,
-            email: restaurant.email
+            email: restaurant.email,
+            isActive: restaurant.isActive
         }
     });
     return mapData;

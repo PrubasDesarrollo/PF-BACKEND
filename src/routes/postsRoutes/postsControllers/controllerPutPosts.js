@@ -20,6 +20,7 @@ const controllerPutPosts = (id, info,firebaseUrl) =>{
             ingredients: info.ingredients,
             original: info.original,
             cost: info.cost,
+            isActive: info.isActive,
             authorUser: info.authorUser,
             authorRest: info.authorRest 
             });
