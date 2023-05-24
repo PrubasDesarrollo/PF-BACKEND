@@ -1,5 +1,6 @@
 const restaurants = require("../../../db/models/Restaurants");
 const tables = require("../../../db/models/Tables");
+const posts = require("../../../db/models/Posts");
 const parseId = require("../../../utils/parseId");
 const averageGrades = require('../../../utils/averageGrades')
 
@@ -24,7 +25,8 @@ const modelateData = (data) => {
 const getRestaurantIdController = async (id) => {
     const idParsed = parseId(id)
     const tablesData = await tables.find();
-    let data = await restaurants.find({_id: idParsed}).populate('table').exec();
+    const posts = await tables.find();
+    let data = await restaurants.find({_id: idParsed}).populate('table').populate('menu').exec();
     data = data.shift()
     return modelateData(data)
 }
