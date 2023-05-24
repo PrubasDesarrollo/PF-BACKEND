@@ -6,6 +6,7 @@ const handlerPutData = require("./restaurantsHandlers/putHandler");
 const handlerGetIdData = require("./restaurantsHandlers/getIdHandler");
 const handlerPutToken = require('./restaurantsHandlers/handlerPutToken')
 const verifyToken = require('../../utils/jwt')
+const dashHandler = require('./restaurantsHandlers/dashHandler');
 const api = Router();
 
 // * Rutas GET
@@ -27,5 +28,10 @@ api.delete("/:id",verifyToken, handlerDeleteData);
 api.put("/:id",verifyToken, handlerPutData);
 
 api.get("/login/:email", handlerPutToken)
+
+
+// * Rutas informacion dashboard restaurant
+
+api.get("/dashboard/:id", dashHandler);
 
 module.exports = api;

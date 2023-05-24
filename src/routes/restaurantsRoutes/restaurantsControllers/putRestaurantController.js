@@ -1,25 +1,25 @@
 const restaurants = require("../../../db/models/Restaurants");
 const parsId = require("../../../utils/parseId");
 
-const putRestaurantsTables = (id, restaurantData) => {
+const putRestaurantsTables = async (id, restaurantData) => {
     const idTable = parsId(id);
-    return restaurants.findByIdAndUpdate(idTable, { $addToSet: {table: restaurantData} });
+    return await restaurants.findByIdAndUpdate(idTable, { $addToSet: {table: restaurantData} });
 }
 
-const putRestaurantsMenu = (id, restaurantData) => {
+const putRestaurantsMenu = async (id, restaurantData) => {
     const idMenu = parsId(id);
-    return restaurants.findByIdAndUpdate(idMenu, { $addToSet: {menu: restaurantData} });
+    return await restaurants.findByIdAndUpdate(idMenu, { $addToSet: {menu: restaurantData} });
 }
 
-const putRestaurantsValoraciones = (id,valoraciones) =>{
+const putRestaurantsValoraciones = async (id,valoraciones) =>{
     const idUser = parsId(id);
 
-    return restaurants.findOneAndUpdate(idUser, {$push: {valoraciones: valoraciones}})
+    return await restaurants.findByIdAndUpdate(idUser, {$push: {valoraciones: valoraciones}})
 }
 
-const putRestaurantsData = (id, restaurantData, firebaseUrl) => {
+const putRestaurantsData = async (id, restaurantData, firebaseUrl) => {
     const idTable = parsId(id);
-    return restaurants.findByIdAndUpdate(idTable, {
+    return await restaurants.findByIdAndUpdate(idTable, {
         name: restaurantData.name,
         type_customer: restaurantData.type_customer,
         rating: restaurantData.rating,
