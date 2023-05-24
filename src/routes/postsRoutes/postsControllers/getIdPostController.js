@@ -3,7 +3,7 @@ const users = require("../../../db/models/Users");
 const restaurants = require("../../../db/models/Restaurants");
 const parseId = require("../../../utils/parseId");
 const averageGrades = require("../../../utils/averageGrades");
-
+const mapearComentarios = require("../../../utils/mapearComentarios");
 
 
 const getIdPostController = async (id) => {
@@ -27,7 +27,7 @@ const mapDataRating = async (data) => {
             cost: post.cost,
             isActive: post.isActive,
             rating: averageGrades(post.valoraciones),
-            comentarios: mapearComentarios(post.valoraciones),
+            comments: mapearComentarios(post.valoraciones),
             authorUser: post.authorUser,
             authorRest: post.authorRest,
         }
