@@ -92,12 +92,19 @@ const filterByTag = (tag, restaurants) => {
 }
 
 const tagsComparate = (tags, restaurantsTags) => {
-    return tags.every((tag) => restaurantsTags.includes(tag));
+
+    const tagsArrayLow = tags.map((tag)=> tag.toLowerCase());
+    const restaurantTagsLow = restaurantsTags.map((tag) => tag.toLowerCase());
+    return tagsArrayLow.every((tag) => restaurantTagsLow.includes(tag));
 }
 
 const filterByCountry = (country, restaurants) => {
     country = country.toLowerCase();
     return restaurants.filter((restaurant) => restaurant.country?.toLowerCase().includes(country));
+}
+const filterByCity = (city, restaurants) => {
+    city = city.toLowerCase();
+    return restaurants.filter((restaurant) => restaurant.city?.toLowerCase().includes(city));
 }
 
 const filterByEmail = async(restaurantEmail) =>{
@@ -120,5 +127,6 @@ module.exports ={
     filterByCountry,
     filterByName,
     filterByEmail,
+    filterByCity,
     filterByRating
 };
