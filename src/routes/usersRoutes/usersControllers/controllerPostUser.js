@@ -1,4 +1,5 @@
 const users = require("../../../db/models/Users");
+const banned = require('../../../db/models/Banned')
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const { TOKEN_KEY, PASSWORD_ADMIN } = process.env
@@ -6,6 +7,8 @@ const sendEmail = require('../../../utils/configEmailer')
 
 
 const  controllerPostUser = async(data, firebaseUrl,password) =>{
+    let validate = await banned.find({'user_banned.email':data.email})
+    if (validate.length!==0){throw new Error('ususario baneado')}
     let user = {
         name: data.name,
         email: data.email,
