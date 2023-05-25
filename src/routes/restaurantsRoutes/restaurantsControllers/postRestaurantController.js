@@ -1,10 +1,13 @@
 const restaurants = require("../../../db/models/Restaurants");
+const banned = require('../../../db/models/Banned')
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const sendEmail = require('../../../utils/configEmailer')
 const { TOKEN_KEY } = process.env
 
 const postRestaurants = async(restaurantData, firebaseUrl) => {
+    let validate = await banned.find({'user_banned.email':restaurantData.email})
+    if (validate.length!==0){throw new Error('ususario baneado')}
     const restaurant = {
         name: restaurantData.name,
         type_customer: restaurantData.type_customer,

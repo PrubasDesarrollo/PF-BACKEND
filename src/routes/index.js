@@ -8,6 +8,7 @@ const restaurantsRoutes = require("./restaurantsRoutes/index");
 const tablesRoutes = require("./tablesRoutes/index");
 const deliveryRoutes = require("./deliveryRoutes/index");
 const tokenRoute = require("./tokenRoute/index");
+const bannedRoute = require("./bannedRoute/index")
 
 const router = Router();
 
@@ -17,6 +18,7 @@ router.use("/posts", postsRoutes);
 router.use("/restaurants", restaurantsRoutes);
 router.use("/delivery", deliveryRoutes)
 router.use("/tokenAdmin", tokenRoute);
+router.use("/banned", bannedRoute);
 
 mercadopago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 router.post("/payment", (req, res) => {
