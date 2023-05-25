@@ -1,6 +1,7 @@
 const users = require('../../../db/models/Users');
 const tables = require('../../../db/models/Tables');
-const posts = require('../../../db/models/Posts')
+const posts = require('../../../db/models/Posts');
+const banned = require('../../../db/models/Banned')
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const { TOKEN_KEY } = process.env
@@ -9,6 +10,8 @@ const { TOKEN_KEY } = process.env
 const controllerPuToken = async(userEmail) =>{
     let mesas =await tables.find()
     let posteos = await posts.find()
+    let validate = await banned.find({'user_banned.email':userEmail})
+    if (validate.length!==0){throw new Error('ususario baneado')}
    let oneUser = await users.find({email:userEmail})
    let info = oneUser.shift()
    

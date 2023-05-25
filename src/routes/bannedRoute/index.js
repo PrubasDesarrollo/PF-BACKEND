@@ -60,8 +60,8 @@ api.delete("/:id", verifyToken, async (req, res) => {
         const {isAdmin} = req.user;
         const {id} = req.params;
         if(isAdmin){
-            let info = banned.deleteOne({_id: parseId(id)})
-            res.status(200).json(info)
+            await banned.deleteOne({_id: parseId(id)})
+            res.status(200).send('borrado con exito')
         }else{
             throw new Error('Token invalido')
         }
