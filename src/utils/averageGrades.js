@@ -1,5 +1,5 @@
 const averageGrades = (arr) => {
-    if (!arr.length) return 0;
+    if (!arr.length) return "Aún nadie calificó este restaurant";
 
     const sum = arr.reduce((acumulador, objeto) => {
         const rating = parseFloat(objeto.rating || objeto);

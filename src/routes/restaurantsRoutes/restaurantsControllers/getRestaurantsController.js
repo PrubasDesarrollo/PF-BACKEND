@@ -69,7 +69,6 @@ const mapDataRating = (data) => {
             name: restaurant.name,
             description: restaurant.description,
             type_customer: restaurant.type_customer,
-            valoraciones: restaurant.valoraciones ? restaurant.valoraciones : [],
             rating: averageGrades(restaurant.valoraciones || []),
             city: restaurant.city,
             address: restaurant.address,

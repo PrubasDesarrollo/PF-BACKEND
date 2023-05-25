@@ -53,6 +53,9 @@ const restaurantsScheme = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'posts',
     }],
+    transactions: [{
+      type: Schema.Types.Mixed,
+    }],
     table: [{
         type: mongoose.Types.ObjectId,
         ref: 'tables',

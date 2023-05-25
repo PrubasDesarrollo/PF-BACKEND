@@ -1,4 +1,4 @@
-const {putRestaurantsData, putRestaurantsTables, putRestaurantsMenu, putRestaurantsValoraciones} = require("../restaurantsControllers/putRestaurantController");
+const {putRestaurantsData, putRestaurantsTables, putRestaurantsMenu, putRestaurantsValoraciones, putRestaurantsTransaction} = require("../restaurantsControllers/putRestaurantController");
 
 
 const handlerPutData = async (req, res) => {
@@ -19,13 +19,17 @@ const handlerPutData = async (req, res) => {
                 const { table } = req.body;
                 restaurant = await putRestaurantsTables(id, table);
             }
-            if(virula == "menu") {
+            else if(virula == "menu") {
                 const { menu } = req.body;
                 restaurant = await putRestaurantsMenu(id, menu);
             }
-            if(virula == "valoraciones"){
+            else if(virula == "valoraciones"){
                 const { valoraciones } = req.body;
                 restaurant = await putRestaurantsValoraciones(id, valoraciones);
+            }
+            else if(virula == "transaction"){
+                const {transaction} = req.body;
+                restaurant = await putRestaurantsTransaction(id, transaction);
             }
             else{
                 restaurant = await putRestaurantsData(id, data, firebaseUrl);

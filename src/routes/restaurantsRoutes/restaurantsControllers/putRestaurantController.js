@@ -17,6 +17,11 @@ const putRestaurantsValoraciones = async (id,valoraciones) =>{
     return await restaurants.findByIdAndUpdate(idUser, {$push: {valoraciones: valoraciones}})
 }
 
+const putRestaurantsTransaction = async (id, transaction) =>{
+    const idResto = parsId(id);
+    return await restaurants.findByIdAndUpdate(idResto, {$push: {transactions: transaction} })
+}
+
 const putRestaurantsData = async (id, restaurantData, firebaseUrl) => {
     const idTable = parsId(id);
     return await restaurants.findByIdAndUpdate(idTable, {
@@ -41,5 +46,6 @@ module.exports = {
     putRestaurantsData,
     putRestaurantsTables,
     putRestaurantsMenu,
-    putRestaurantsValoraciones
+    putRestaurantsValoraciones,
+    putRestaurantsTransaction
 };

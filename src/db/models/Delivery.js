@@ -9,10 +9,10 @@ const deliveryScheme = new mongoose.Schema(
     },
     c_country:{
         type: String,
-        required: true
     },
     c_city:{
-        type: String
+        type: String,
+        required: true
     },
     c_address:{
         type: String,
