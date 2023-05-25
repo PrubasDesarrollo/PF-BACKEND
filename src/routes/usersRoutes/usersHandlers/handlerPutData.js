@@ -1,17 +1,14 @@
-const {controllerPutDataPosts,controllerPutDataTable,controllerPutData,controllerPutDataValoraciones} = require('../usersControllers/controllerPutData')
+const {controllerPutDataPosts,controllerPutDataTable,controllerPutData,controllerPutDataValoraciones, controllerPutDataTransaction} = require('../usersControllers/controllerPutData')
 
 const handlerPutData = async(req,res) =>{
     try{
         let { id } = req.params;
         let {_id, isAdmin} = req.user;
-        console.log('TOKEN DESGLOSADO'+req.user)
+        console.log('TOKEN DESGLOSADO '+req.user)
         if(id==_id || isAdmin){
         let data = req.body;
         let {firebaseUrl} = req.file ? req.file : "";
-        let validator;
-        for(bandera in data){
-            validator = bandera;
-        }
+        
         let user;
         for(virula in data){
             if(virula=="posts"){
@@ -25,6 +22,10 @@ const handlerPutData = async(req,res) =>{
             else if(virula=="valoraciones"){
                 let {valoraciones} = req.body
                 user = await controllerPutDataValoraciones(id,valoraciones); 
+            }
+            else if(virula == "transaction"){
+                let {transaction} = req.body;
+                user = await controllerPutDataTransaction(id, transaction);
             }
             else{
                 user = await controllerPutData(id, data, firebaseUrl);

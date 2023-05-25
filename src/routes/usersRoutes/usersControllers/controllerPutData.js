@@ -32,10 +32,18 @@ const controllerPutData = (_id, data, image) =>{
     return users.findOneAndUpdate(idUser, user)
 }
 
+const controllerPutDataTransaction = (id, transaction) => {
+
+    const idUser = parseId(id);
+
+    return users.findOneAndUpdate(idUser, {$push: {transactions: transaction}})
+}
+
 
 module.exports = {
     controllerPutDataPosts,
     controllerPutDataTable,
     controllerPutData,
     controllerPutDataValoraciones,
+    controllerPutDataTransaction
 }
