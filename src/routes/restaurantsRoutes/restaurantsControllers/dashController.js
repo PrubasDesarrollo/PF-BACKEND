@@ -1,6 +1,19 @@
 const parseId = require("../../../utils/parseId");
-const restaurants = require('../../../db/models/Restaurants');
 const averageGrades = require('../../../utils/averageGrades');
+const restaurants = require('../../../db/models/Restaurants');
+const delivery = require("../../../db/models/Delivery")
+const users = require("../../../db/models/Users")
+const posts = require("../../../db/models/Posts");
+
+
+const deliverysData = async (id) => {
+    const usersData = users.find();
+    const restaurantsData = restaurants.find();
+    const postData = posts.find();
+
+    return await delivery.find({restaurant:id}).populate('customer').populate('c_order').populate('restaurant').exec();
+}
+
 
 const dashController = async (id) => {
     const idParsed = parseId(id)
@@ -28,11 +41,13 @@ const dashController = async (id) => {
 
     const stockPerMonth = [];
     const ratingPerMonth = [];
-    const votesPerMonth = [];
+    const deliverysStock = await deliverysData(idParsed);
+    const deliverysPerMonth = [];
 
-    for(let i = 1; i < 12; i++){
+    for(let i = 1; i < 13; i++){
         let stock = 0;
         let rating = [];
+        let deliverys = 0;
         for(let j = 0; j < valoraciones.length; j++){
             let monthValoration = Number(valoraciones[j].createdAt.split("-")[1])
             if(monthValoration == i){
@@ -40,18 +55,29 @@ const dashController = async (id) => {
                 rating.push(valoraciones[j].rating);
             }
         }
+        for(let x = 0; x < deliverysStock.length; x++){
+            const fechaObjeto = new Date(deliverysStock[x].created_at);
+            const numeroMes = fechaObjeto.getMonth() + 1;
+            if(numeroMes == i){
+                deliverys +=1;
+            }
+        }
         stockPerMonth.push(stock);
         ratingPerMonth.push(averageGrades(rating));
+        deliverysPerMonth.push(deliverys)
     }
+
     data = {
         ratingPerMonth:{
             stockPerMonth,
             ratingPerMonth
-        }
+        },
+        deliverysPerMonth
     }
 
 
     return data;
 };
+
 
 module.exports = dashController;
