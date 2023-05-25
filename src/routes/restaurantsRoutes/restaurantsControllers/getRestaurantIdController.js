@@ -18,6 +18,7 @@ const modelateData = (data) => {
         country: data.country,
         image: data.image,
         phoneNumber: data.phoneNumber,
+        transactions: data.transactions,
         tags: data.tags,
         menu: data.menu,
         email: data.email,

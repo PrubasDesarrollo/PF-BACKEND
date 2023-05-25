@@ -1,7 +1,8 @@
 const users = require('../../../db/models/Users');
 const posts = require('../../../db/models/Posts');
 const tables = require('../../../db/models/Tables');
-const averageGrades = require('../../../utils/averageGrades')
+const averageGrades = require('../../../utils/averageGrades');
+const mapearComentarios = require('../../../utils/mapearComentarios');
 
 const mapDataRating =  (user) => {
         let newUser = {
@@ -12,10 +13,11 @@ const mapDataRating =  (user) => {
             image: user.image,
             type_customer: user.type_customer,
             description: user.description,
-            valoraciones: user.valoraciones ? user.valoraciones : [],
+            comments: mapearComentarios(user.valoraciones),
             rating: averageGrades(user.valoraciones || []),
             posts: user.menu,
             isAdmin: user.isAdmin,
+            transactions: user.transactions,
             table: user.table,
             token: user.token
         }
