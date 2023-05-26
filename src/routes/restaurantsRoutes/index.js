@@ -1,12 +1,15 @@
 const { Router } = require("express");
-const handlerGetData = require("./restaurantsHandlers/getHandler")
-const handlerPostData = require("./restaurantsHandlers/postHandler.js");
+const handlerGetData = require("./restaurantsHandlers/getHandler");
+const handlerPostData = require("./restaurantsHandlers/postHandler");
 const handlerDeleteData = require("./restaurantsHandlers/deleteHandler");
 const handlerPutData = require("./restaurantsHandlers/putHandler");
 const handlerGetIdData = require("./restaurantsHandlers/getIdHandler");
-const handlerPutToken = require('./restaurantsHandlers/handlerPutToken')
-const verifyToken = require('../../utils/jwt')
 const dashHandler = require('./restaurantsHandlers/dashHandler');
+const handlerPutToken = require('./restaurantsHandlers/handlerPutToken')
+const handlerGetTransactions = require("./restaurantsHandlers/handlerGetTransactions")
+const verifyToken = require('../../utils/jwt')
+
+
 const api = Router();
 
 // * Rutas GET
@@ -28,6 +31,9 @@ api.delete("/:id",verifyToken, handlerDeleteData);
 api.put("/:id",verifyToken, handlerPutData);
 
 api.get("/login/:email", handlerPutToken)
+
+// * Ruta para ver ventas
+api.get("transactions/:id", handlerGetTransactions)
 
 
 // * Rutas informacion dashboard restaurant

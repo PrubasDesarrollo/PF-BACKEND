@@ -17,6 +17,18 @@ const putRestaurantsValoraciones = async (id,valoraciones) =>{
     return await restaurants.findByIdAndUpdate(idUser, {$push: {valoraciones: valoraciones}})
 }
 
+const putRestaurantTransactions = async (id, transaction) =>{
+    const idParsed = parsId(id);
+    const { user, ordered, cost, createdAt } = transaction;
+    const transactionData = {
+        userId: parsId(user),
+        order: parsId(ordered),
+        cost: cost,
+        date, createdAt
+    }
+    return await restaurants.findByIdAndUpdate(idParsed, {$push: {transactions: transactionData}});
+}
+
 const putRestaurantsData = async (id, restaurantData, firebaseUrl) => {
     const idTable = parsId(id);
     return await restaurants.findByIdAndUpdate(idTable, {
