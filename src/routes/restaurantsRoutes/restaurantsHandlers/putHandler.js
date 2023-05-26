@@ -19,11 +19,11 @@ const handlerPutData = async (req, res) => {
                 const { table } = req.body;
                 restaurant = await putRestaurantsTables(id, table);
             }
-            else if(virula == "menu") {
+            if(virula == "menu") {
                 const { menu } = req.body;
                 restaurant = await putRestaurantsMenu(id, menu);
             }
-            else if(virula == "valoraciones"){
+            if(virula == "valoraciones"){
                 const { valoraciones } = req.body;
                 restaurant = await putRestaurantsValoraciones(id, valoraciones);
             }
