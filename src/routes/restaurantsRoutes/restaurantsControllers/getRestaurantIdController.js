@@ -12,6 +12,7 @@ const modelateData = (data) => {
         description: data.description,
         rating: averageGrades(data.valoraciones || []),
         comments: mapearComentarios(data.valoraciones),
+        valorations: data.valoraciones,
         city: data.city,
         address: data.address,
         country: data.country,

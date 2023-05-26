@@ -3,7 +3,7 @@ const deliveryGetController = require("../deliveryControllers/deliveryGetControl
 
 const deliveryGetHandler = async (req, res) =>{
 try {
-    const deliveries = await deliveryGetController(id);
+    const deliveries = await deliveryGetController();
     res.status(200).json(deliveries);
 } catch (error) {
     res.status(400).json({error: error.message})
