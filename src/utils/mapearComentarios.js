@@ -5,5 +5,3 @@ const mapearComentarios = (arr) =>{
     const comments = arr.map((ar)=> {return ar.comment || ar.comentario})
     return comments;
 }
-
-module.exports = mapearComentarios;
