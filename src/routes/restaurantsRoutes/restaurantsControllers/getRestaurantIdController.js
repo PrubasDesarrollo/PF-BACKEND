@@ -3,7 +3,7 @@ const tables = require("../../../db/models/Tables");
 const posts = require("../../../db/models/Posts");
 const parseId = require("../../../utils/parseId");
 const averageGrades = require('../../../utils/averageGrades')
-const mapearComentarios= require('../../../utils/mapearComentarios')
+const mapearComentarios = require('../../../utils/mapearComentarios')
 
 const modelateData = (data) => {
     const restaurant = {
