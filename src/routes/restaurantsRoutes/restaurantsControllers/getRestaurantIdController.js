@@ -3,7 +3,7 @@ const tables = require("../../../db/models/Tables");
 const posts = require("../../../db/models/Posts");
 const parseId = require("../../../utils/parseId");
 const averageGrades = require("../../../utils/averageGrades");
-const mapearComentarios = require("../../../utils/mapearComentarios");
+// const mapearComentarios = require("../../../utils/mapearComentarios");
 
 const modelateData = (data) => {
   const restaurant = {
@@ -11,7 +11,7 @@ const modelateData = (data) => {
     type_customer: data.type_customer,
     description: data.description,
     rating: averageGrades(data.valoraciones || []),
-    comments: mapearComentarios(data.valoraciones),
+    // comments: mapearComentarios(data.valoraciones),
     valorations: data.valoraciones,
     city: data.city,
     address: data.address,
