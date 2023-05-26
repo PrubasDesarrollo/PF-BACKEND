@@ -19,12 +19,12 @@ const putRestaurantsValoraciones = async (id,valoraciones) =>{
 
 const putRestaurantTransactions = async (id, transaction) =>{
     const idParsed = parsId(id);
-    const { user, ordered, cost, createdAt } = transaction;
+    const { userId, ordered, cost, createdAt } = transaction;
     const transactionData = {
-        userId: parsId(user),
-        order: parsId(ordered),
+        user: parsId(userId),
+        order: ordered.map((order) => parsId(order)),
         cost: cost,
-        date, createdAt
+        date: createdAt
     }
     return await restaurants.findByIdAndUpdate(idParsed, {$push: {transactions: transactionData}});
 }
