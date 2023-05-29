@@ -7,11 +7,6 @@ const controllerPutDataPosts = (_id,posts) =>{
     return users.findOneAndUpdate(idUser, {$addToSet: {posts: posts}})
 }
 
-const controllerPutDataTable = (_id,table) =>{
-    const idUser = parseId(_id);
-
-    return users.findOneAndUpdate(idUser, {table: table})
-}
 
 const controllerPutDataValoraciones = (_id,valoraciones) =>{
     const idUser = parseId(_id);
@@ -49,7 +44,7 @@ const controllerPutTransaction = async (id, transaction) =>{
 
 module.exports = {
     controllerPutDataPosts,
-    controllerPutDataTable,
+    
     controllerPutData,
     controllerPutDataValoraciones,
     controllerPutTransaction

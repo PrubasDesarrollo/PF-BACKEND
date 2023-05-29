@@ -29,7 +29,10 @@ const getUserControllerQuery= async(order) =>{
     
     const tablesData = await tables.find();
     const postsData = await posts.find();
-    const data = await users.find().sort({name:-1}).populate('posts').populate('table').exec();
+    const data = await users.find().sort({name:-1})
+                            .populate('posts')
+                            // .populate('table')
+                            .exec();
     const usersRating = await mapDataRating(data);
     if(order == "alphaasc"){
         return usersRating.sort((a, b) => {
@@ -77,7 +80,7 @@ const mapDataRating = async (data) => {
             valoraciones: user.valoraciones ? user.valoraciones : [0],
             rating: averageGrades(user.valoraciones),
             posts: user.menu,
-            table: user.table,
+            
             isAdmin: user.isAdmin,
             token: user.token
         }
