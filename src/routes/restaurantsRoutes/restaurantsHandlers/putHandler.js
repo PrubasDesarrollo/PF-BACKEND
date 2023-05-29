@@ -1,4 +1,4 @@
-const {putRestaurantsData, putRestaurantsTables, putRestaurantsMenu, putRestaurantsValoraciones} = require("../restaurantsControllers/putRestaurantController");
+const {putRestaurantsData, putRestaurantsTables, putRestaurantsMenu, putRestaurantsValoraciones, putRestaurantTransactions} = require("../restaurantsControllers/putRestaurantController");
 
 
 const handlerPutData = async (req, res) => {
@@ -23,6 +23,10 @@ const handlerPutData = async (req, res) => {
                 const { menu } = req.body;
                 restaurant = await putRestaurantsMenu(id, menu);
             }
+            if(virula == "transaction"){
+                const { transaction } = req.body;
+                restaurant = await putRestaurantTransactions(id, transaction);
+            }
             if(virula == "valoraciones"){
                 const { valoraciones } = req.body;
                 restaurant = await putRestaurantsValoraciones(id, valoraciones);
@@ -40,4 +44,5 @@ const handlerPutData = async (req, res) => {
     }
 }
 
-module.exports = handlerPutData;
+module.exports  = handlerPutData;
+// module.exports = handlerPutData;

@@ -60,7 +60,10 @@ const restaurantsScheme = new mongoose.Schema({
     isActive:{
         type: Boolean,
         default: true
-    }
+    },
+    transactions:[{
+        type: Schema.Types.Mixed,
+    }]
 },
 {
     versionKey: false,
