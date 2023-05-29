@@ -32,6 +32,6 @@ api.get("/login/:email", handlerPutToken)
 
 // * Rutas informacion dashboard restaurant
 
-api.get("/dashboard/:id", dashHandler);
+api.get("/dashboard/:id", verifyToken, dashHandler);
 
 module.exports = api;
