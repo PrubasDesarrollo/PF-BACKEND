@@ -15,8 +15,8 @@ const usersScheme = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    image: {
-      type: String,
+    images: {
+      type: [String],
     },
     type_customer: {
       type: String,
