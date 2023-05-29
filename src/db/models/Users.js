@@ -48,6 +48,9 @@ const usersScheme = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "tables",
     },
+    transactions:[{
+      type: Schema.Types.Mixed,
+  }],
     isActive: {
       type: Boolean,
       default: true,

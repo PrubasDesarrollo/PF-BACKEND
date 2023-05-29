@@ -53,5 +53,6 @@ module.exports = {
     putRestaurantsData,
     putRestaurantsTables,
     putRestaurantsMenu,
-    putRestaurantsValoraciones
+    putRestaurantsValoraciones,
+    putRestaurantTransactions
 };
