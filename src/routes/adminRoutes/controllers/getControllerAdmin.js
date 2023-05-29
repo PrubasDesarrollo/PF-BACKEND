@@ -14,8 +14,8 @@ const getControllerAdmin = async() =>{
             name: user.name,
             email: user.email,
             rol: user.type_customer,
-            status: user.isActive,
-            banned:(bandera.length>0) ? true : false,
+            status: (bandera.length>0) ? "banned" : (user.isActive ? "active" : "innactive"),
+            // banned:(bandera.length>0) ? true : false,
             rating: 0,
             country: user.country,
         }
@@ -29,8 +29,8 @@ const getControllerAdmin = async() =>{
             name: restaurant.name,
             email: restaurant.email,
             rol: restaurant.type_customer,
-            status: restaurant.isActive,
-            banned:(bandera.length>0) ? true : false,
+            status: (bandera.length>0) ? "banned" : (restaurant.isActive ? "active" : "innactive"),
+            // banned:(bandera.length>0) ? true : false,
             rating: averageGrades(restaurant.valoraciones || []),
             country: restaurant.country,
         }
