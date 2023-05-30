@@ -9,7 +9,7 @@ const getTransactionsController = async (id) => {
     const posts = await posts.find();
     const users = await users.find();
 
-    const transactions = await restaurants.findOne({_id: idParsed}, {"transactions":1})
+    const transactions = await restaurants.find({_id: idParsed}, {"transactions":1})
                                           .populate({path: "transactions", populate: {path: "userId"}})
                                           .populate({path: "transactions", populate: {path: "order"}})
                                           

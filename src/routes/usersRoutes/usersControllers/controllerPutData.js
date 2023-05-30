@@ -32,10 +32,25 @@ const controllerPutData = (_id, data, image) =>{
     return users.findOneAndUpdate(idUser, user)
 }
 
+const controllerPutTransaction = async (id, transaction) =>{
+    const idUser = parseId(id);
+
+    const { restId, ordered, cost, createdAt } = transaction;
+    const transactionData = {
+        restaurant: parseId(restId),
+        order: ordered.map((order) => parseId(order)),
+        cost: cost,
+        date: createdAt
+    }
+    return await users.findByIdAndUpdate(idUser, {$push: {transactions: transactionData}})
+
+}
+
 
 module.exports = {
     controllerPutDataPosts,
     controllerPutDataTable,
     controllerPutData,
     controllerPutDataValoraciones,
+    controllerPutTransaction
 }
