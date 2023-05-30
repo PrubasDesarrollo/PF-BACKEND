@@ -1,4 +1,4 @@
-const parseId = require("../../../db/utils/parseId");
+const parseId = require("../../../utils/parseId");
 const restaurants = require("../../../db/models/Restaurants");
 const users = require("../../../db/models/Restaurants");
 
