@@ -10,7 +10,8 @@ const restaurantsScheme = new mongoose.Schema({
         type: [String],
     },
     email:{
-        type: String
+        type: String,
+        required: true
     },
     phone:{
         type: String,
@@ -26,10 +27,12 @@ const restaurantsScheme = new mongoose.Schema({
         type: Array
     },
     city:{
-        type: String
+        type: String,
+        required: true
     },
     address:{
-        type: String
+        type: String,
+        required: true
     },
     country:{
         type: String,
