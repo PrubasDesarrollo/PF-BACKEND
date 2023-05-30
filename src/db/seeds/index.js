@@ -5,8 +5,11 @@ const Users = require("../models/Users");
 
 const restaurantSeed = {
     name: "Seed Restaurant",
+    email: "exampleSeed@example.com",
     type_customer: "Restaurante",
     country: "Seed",
+    address:"seed",
+    city:"seed",
     description: "description seed"
 }
 
@@ -24,7 +27,10 @@ const usersSeed = {
     name: "Seed Users",
     description: "Seed",
     type_customer: "User",
-    email: "exampleSeed@algo.com"
+    email: "exampleSeed@algo.com",
+    city:"seed",
+    address: "seed",
+    country:"seed"
 }
 
 const createSeeds = async () => {
