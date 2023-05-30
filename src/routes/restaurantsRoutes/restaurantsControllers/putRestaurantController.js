@@ -1,9 +1,9 @@
 const restaurants = require("../../../db/models/Restaurants");
 const parsId = require("../../../utils/parseId");
 
-const putRestaurantsTables = async (id, restaurantData) => {
+const putRestaurantsReservations = async (id, reservation) => {
     const idTable = parsId(id);
-    return await restaurants.findByIdAndUpdate(idTable, { $addToSet: {table: restaurantData} });
+    return await restaurants.findByIdAndUpdate(idTable, { $addToSet: {reservations: reservation} });
 }
 
 const putRestaurantsMenu = async (id, restaurantData) => {
@@ -49,6 +49,7 @@ const putRestaurantsData = async (id, restaurantData, firebaseUrl) => {
         description: restaurantData.description,
         image: firebaseUrl,
         phoneNumber: restaurantData.phoneNumber,
+        capacity: restaurantData.capacity,
         isActive: restaurantData.isActive,
         $addToSet:{tags: restaurantData.tags},
         $push:{image: restaurantData.image}
@@ -58,7 +59,7 @@ const putRestaurantsData = async (id, restaurantData, firebaseUrl) => {
 
 module.exports = {
     putRestaurantsData,
-    putRestaurantsTables,
+    putRestaurantsReservations,
     putRestaurantsMenu,
     putRestaurantsValoraciones,
     putRestaurantTransactions,
