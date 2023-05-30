@@ -2,9 +2,14 @@ const restaurants = require("../../../db/models/Restaurants");
 const parsId = require("../../../utils/parseId");
 
 const putRestaurantsReservations = async (id, reservation) => {
-    const idTable = parsId(id);
-    // calculateCapacity(capacity, arraydereservasprevias, reservation)
-    return await restaurants.findByIdAndUpdate(idTable, { $addToSet: {reservations: reservation} });
+    const idParsed = parsId(id);
+    const miResto = await restaurants.findOne({_id: id})
+    const reservasPrevias = miResto.reservations;
+    const capacity = miResto.capacity;
+
+    const guardar = calculateCapacity(capacity, reservasPrevias, reservation);
+
+    return await restaurants.findByIdAndUpdate(idParsed, { $addToSet: {reservations: guardar} });
 }
 
 const putRestaurantsMenu = async (id, restaurantData) => {
