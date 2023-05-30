@@ -30,7 +30,7 @@ const controllerPuToken = async (email) => {
   let infoUser = {
     name: info.name,
     email: info.email,
-    image: info.image,
+    image: info.images,
     type_customer: info.type_customer,
     description: info.description,
     tags: info.tags,

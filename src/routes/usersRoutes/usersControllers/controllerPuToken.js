@@ -28,9 +28,13 @@ const controllerPuToken = async(email) =>{
     }
 )
 let infoUser = {
+    isAdmin: info.isAdmin,
+    country: info.country,
+    city: info.city,
+    address: info.address,
     name: info.name,
     email: info.email,
-    image:info.image,
+    image:info.images,
     type_customer: info.type_customer,
     description: info.description,
     token: token,

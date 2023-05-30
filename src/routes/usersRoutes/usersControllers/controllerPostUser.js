@@ -12,6 +12,10 @@ const controllerPostUser = async (data, firebaseUrls, password) => {
   }
 //! te acabo de hacer un cambio
   let user = {
+
+    country: data.country,
+    city: data.city,
+    address: data.address,
     name: data.name,
     email: data.email,
     phone: data.phone,
@@ -38,6 +42,9 @@ const controllerPostUser = async (data, firebaseUrls, password) => {
 
   let infoUser = {
     isAdmin: informacion.isAdmin,
+    country: informacion.country,
+    city: informacion.city,
+    address: informacion.address,
     name: informacion.name,
     email: informacion.email,
     images: informacion.images, // Utilizando el array de URLs de las imágenes guardadas
