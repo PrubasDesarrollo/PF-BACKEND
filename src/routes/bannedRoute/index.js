@@ -9,11 +9,18 @@ const api = Router();
 api.get("/", verifyToken, async (req, res) => {
     try{
         const {isAdmin} = req.user;
-        const {page} = req.query
+        const {page, email} = req.query
         if(isAdmin){
-            const usersBanned = await banned.find()
-            let info = modelateData(page || 1,usersBanned)
-            res.status(200).json(info)
+            if(email){
+                const userBanned = await banned.find({'user_banned.email':email})
+                let info = userBanned.shift();
+                res.status(200).json(info)
+            }
+            else{
+                const usersBanned = await banned.find()
+                let info = modelateData(page || 1,usersBanned)
+                res.status(200).json(info)
+            }
         }else{
             throw new Error('Token invalido')
         }
