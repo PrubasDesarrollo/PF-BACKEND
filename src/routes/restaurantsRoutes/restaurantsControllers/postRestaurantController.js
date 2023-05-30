@@ -18,10 +18,10 @@ const postRestaurants = async(restaurantData, firebaseUrls) => {
         address: restaurantData.address,
         country: restaurantData.country,
         phoneNumber: restaurantData.phoneNumber,
+        capacity: restaurantData.capacity,
         valoraciones: restaurantData.valoraciones,
         rating: restaurantData.rating,
         menu: restaurantData.menu,
-        table: restaurantData.table,
         email: restaurantData.email
     };
     let informacionRestaurant = await restaurants.create(restaurant);
@@ -46,10 +46,10 @@ const postRestaurants = async(restaurantData, firebaseUrls) => {
         address: informacionRestaurant.address,
         country: informacionRestaurant.country,
         phoneNumber: informacionRestaurant.phoneNumber,
+        capacity: restaurantData.capacity,
         valoraciones: informacionRestaurant.valoraciones,
         rating: informacionRestaurant.rating,
         menu: informacionRestaurant.menu,
-        table: informacionRestaurant.table,
         token: token,
         id: informacionRestaurant._id,
         email: informacionRestaurant.email

@@ -1,6 +1,6 @@
 const parseId = require("../../../utils/parseId");
 const restaurants = require("../../../db/models/Restaurants");
-const tables = require("../../../db/models/Tables");
+// const tables = require("../../../db/models/Tables");
 const posts = require("../../../db/models/Posts");
 const users = require("../../../db/models/Users");
 
@@ -12,10 +12,10 @@ const getTransactionsController = async (id) => {
     const transactions = await restaurants.find({_id: idParsed}, {"transactions":1})
                                           .populate({path: "transactions", populate: {path: "userId"}})
                                           .populate({path: "transactions", populate: {path: "order"}})
-                                          
+                                          .exec();
 
     // if(!transactions.length) return ["No has hecho transacciones aún"];
-    return transactions;
+    return transactions.shift();
 
 }
 
