@@ -9,7 +9,7 @@ const mapDataRating =  (user) => {
             name: user.name,
             isAdmin: user.isAdmin,
             email: user.email,
-            image: user.image,
+            images: user.images,
             type_customer: user.type_customer,
             description: user.description,
             valoraciones: user.valoraciones ? user.valoraciones : [],

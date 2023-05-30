@@ -12,6 +12,7 @@ const getControllerAdmin = async() =>{
         return { 
             id: user._id,
             name: user.name,
+            image: user.images.length>0 ? user.images[0] :"",
             email: user.email,
             rol: user.type_customer,
             status: (bandera.length>0) ? "banned" : (user.isActive ? "active" : "innactive"),
@@ -27,6 +28,7 @@ const getControllerAdmin = async() =>{
         return { 
             id: restaurant._id,
             name: restaurant.name,
+            images: restaurant.images.length ? restaurant.images[0] : "",
             email: restaurant.email,
             rol: restaurant.type_customer,
             status: (bandera.length>0) ? "banned" : (restaurant.isActive ? "active" : "innactive"),

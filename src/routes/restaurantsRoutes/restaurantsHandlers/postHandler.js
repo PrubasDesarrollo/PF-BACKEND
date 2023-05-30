@@ -4,10 +4,10 @@ const handlerPostData = async (req, res) => {
   try {
     const { password } = req.query;
     const restaurantData = req.body;
-    const { firebaseUrl } = req.file ? req.file : "";
+    const firebaseUrls = req.files.map((file) => file.firebaseUrl);
     const restaurant = await postRestaurantsController(
       restaurantData,
-      firebaseUrl,
+      firebaseUrls,
       password
     );
     res.status(200).json({ restaurant });
