@@ -1,4 +1,4 @@
-const {putRestaurantsData, putRestaurantsTables, putRestaurantsMenu, putRestaurantsValoraciones, putRestaurantTransactions, controllerPutDataImages} = require("../restaurantsControllers/putRestaurantController");
+const {putRestaurantsData, putRestaurantsReservations, putRestaurantsMenu, putRestaurantsValoraciones, putRestaurantTransactions, controllerPutDataImages} = require("../restaurantsControllers/putRestaurantController");
 
 
 const handlerPutData = async (req, res) => {
@@ -17,9 +17,9 @@ const handlerPutData = async (req, res) => {
         let restaurant;
 
         for(virula in data){
-            if(virula == "table"){
-                const { table } = req.body;
-                restaurant = await putRestaurantsTables(id, table);
+            if(virula == "reservation"){
+                const { reservation } = req.body;
+                restaurant = await putRestaurantsReservations(id, reservation);
             }
             if(virula == "menu") {
                 const { menu } = req.body;

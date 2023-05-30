@@ -7,6 +7,7 @@ const handlerGetIdData = require("./restaurantsHandlers/getIdHandler");
 const dashHandler = require('./restaurantsHandlers/dashHandler');
 const handlerPutToken = require('./restaurantsHandlers/handlerPutToken')
 const handlerGetTransactions = require("./restaurantsHandlers/handlerGetTransactions")
+
 const verifyToken = require('../../utils/jwt')
 
 
@@ -33,7 +34,8 @@ api.put("/:id",verifyToken, handlerPutData);
 api.get("/login/:email", handlerPutToken)
 
 // * Ruta para ver ventas
-api.get("transactions/:id", handlerGetTransactions)
+api.get("transactions/:id", handlerGetTransactions);
+
 
 
 // * Rutas informacion dashboard restaurant
