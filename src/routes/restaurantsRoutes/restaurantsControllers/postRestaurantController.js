@@ -46,7 +46,7 @@ const postRestaurants = async(restaurantData, firebaseUrls) => {
         address: informacionRestaurant.address,
         country: informacionRestaurant.country,
         phoneNumber: informacionRestaurant.phoneNumber,
-        capacity: restaurantData.capacity,
+        capacity: informacionRestaurant.capacity,
         valoraciones: informacionRestaurant.valoraciones,
         rating: informacionRestaurant.rating,
         menu: informacionRestaurant.menu,
