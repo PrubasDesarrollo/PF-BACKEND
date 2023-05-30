@@ -8,7 +8,7 @@ const getControllerAdmin = async() =>{
     let infoRestaurants = await restaurants.find();
 
     let modelateInfoUsers = infoUsers.map(async(user)=>{
-        let bandera = await banned.find({'user_banned.email': user.email})
+        let bandera =user.email ? await banned.find({'user_banned.email': user.email}) : []
         return { 
             id: user._id,
             name: user.name,
