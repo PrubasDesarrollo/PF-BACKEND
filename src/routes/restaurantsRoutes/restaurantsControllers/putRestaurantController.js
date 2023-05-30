@@ -17,6 +17,25 @@ const putRestaurantsValoraciones = async (id,valoraciones) =>{
     return await restaurants.findByIdAndUpdate(idUser, {$push: {valoraciones: valoraciones}})
 }
 
+const controllerPutDataImages = async(id, firebaseUrls) =>{
+    const idRestaurant = parsId(id);
+    return await restaurants.findOneAndUpdate(idRestaurant, {
+        $push:{images:firebaseUrls},
+    })
+}
+
+const putRestaurantTransactions = async (id, transaction) =>{
+    const idParsed = parsId(id);
+    const { userId, ordered, cost, createdAt } = transaction;
+    const transactionData = {
+        user: parsId(userId),
+        order: ordered.map((order) => parsId(order)),
+        cost: cost,
+        date: createdAt
+    }
+    return await restaurants.findByIdAndUpdate(idParsed, {$push: {transactions: transactionData}});
+}
+
 const putRestaurantsData = async (id, restaurantData, firebaseUrl) => {
     const idTable = parsId(id);
     return await restaurants.findByIdAndUpdate(idTable, {
@@ -41,5 +60,7 @@ module.exports = {
     putRestaurantsData,
     putRestaurantsTables,
     putRestaurantsMenu,
-    putRestaurantsValoraciones
+    putRestaurantsValoraciones,
+    putRestaurantTransactions,
+    controllerPutDataImages
 };

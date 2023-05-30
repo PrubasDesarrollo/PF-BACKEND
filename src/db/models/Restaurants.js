@@ -6,8 +6,8 @@ const restaurantsScheme = new mongoose.Schema({
         type: String,
         required: true
     },
-    image:{
-        type: String
+    images: {
+        type: [String],
     },
     email:{
         type: String
@@ -60,7 +60,10 @@ const restaurantsScheme = new mongoose.Schema({
     isActive:{
         type: Boolean,
         default: true
-    }
+    },
+    transactions:[{
+        type: Schema.Types.Mixed,
+    }]
 },
 {
     versionKey: false,

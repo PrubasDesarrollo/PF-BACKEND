@@ -9,7 +9,7 @@ const mapDataRating =  (user) => {
             name: user.name,
             isAdmin: user.isAdmin,
             email: user.email,
-            image: user.image,
+            images: user.images,
             type_customer: user.type_customer,
             description: user.description,
             valoraciones: user.valoraciones ? user.valoraciones : [],
@@ -25,7 +25,10 @@ const mapDataRating =  (user) => {
 const controllerGetUser = async (id) => {
     const tablesData = tables.find();
     const postsData = posts.find();
-    const data = await users.find({_id: id}).populate('posts').populate('table').exec();
+    const data = await users.find({_id: id})
+                            .populate('posts')
+                            .populate('table')
+                            .exec();
     let user = data.shift();
     return mapDataRating(user)
 }

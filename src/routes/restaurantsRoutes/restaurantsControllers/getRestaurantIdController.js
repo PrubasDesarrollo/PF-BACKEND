@@ -16,7 +16,7 @@ const modelateData = (data) => {
     city: data.city,
     address: data.address,
     country: data.country,
-    image: data.image,
+    images: data.images,
     phoneNumber: data.phoneNumber,
     tags: data.tags,
     menu: data.menu,
@@ -29,7 +29,7 @@ const modelateData = (data) => {
 const getRestaurantIdController = async (id) => {
   const idParsed = parseId(id);
   const tablesData = await tables.find();
-  const posts = await tables.find();
+  const postsData = await posts.find();
   let data = await restaurants
     .find({ _id: idParsed })
     .populate("table")

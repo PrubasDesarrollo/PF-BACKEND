@@ -15,8 +15,8 @@ const usersScheme = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    image: {
-      type: String,
+    images: {
+      type: [String],
     },
     type_customer: {
       type: String,
@@ -24,6 +24,16 @@ const usersScheme = new mongoose.Schema(
     },
     description: {
       type: String,
+    },
+    city:{
+      type: String
+    },
+    address:{
+      type: String
+    },
+    country:{
+      type: String,
+      required: true
     },
     valoraciones: [
       {
@@ -48,6 +58,9 @@ const usersScheme = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "tables",
     },
+    transactions:[{
+      type: Schema.Types.Mixed,
+  }],
     isActive: {
       type: Boolean,
       default: true,

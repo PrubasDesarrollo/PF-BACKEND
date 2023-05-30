@@ -1,4 +1,4 @@
-const {putRestaurantsData, putRestaurantsTables, putRestaurantsMenu, putRestaurantsValoraciones} = require("../restaurantsControllers/putRestaurantController");
+const {putRestaurantsData, putRestaurantsTables, putRestaurantsMenu, putRestaurantsValoraciones, putRestaurantTransactions, controllerPutDataImages} = require("../restaurantsControllers/putRestaurantController");
 
 
 const handlerPutData = async (req, res) => {
@@ -6,8 +6,10 @@ const handlerPutData = async (req, res) => {
         const { id } = req.params
         const {_id, isAdmin} = req.user;
         if(id==_id || isAdmin){
-        const { firebaseUrl } = req.file ? req.file : "";
+        const firebaseUrls = req.files.map((file) => file.firebaseUrl);const { firebaseUrl } = req.file ? req.file : "";
         let data = req.body;
+        data.image = "image"
+        data.galleta = "galleta"
         let validator;
         for(bandera in data){
             validator = bandera;
@@ -23,9 +25,16 @@ const handlerPutData = async (req, res) => {
                 const { menu } = req.body;
                 restaurant = await putRestaurantsMenu(id, menu);
             }
+            if(virula == "transaction"){
+                const { transaction } = req.body;
+                restaurant = await putRestaurantTransactions(id, transaction);
+            }
             if(virula == "valoraciones"){
                 const { valoraciones } = req.body;
                 restaurant = await putRestaurantsValoraciones(id, valoraciones);
+            }
+            if (virula === "image"){
+                user = await controllerPutDataImages(id, firebaseUrls)
             }
             else{
                 restaurant = await putRestaurantsData(id, data, firebaseUrl);
@@ -40,4 +49,5 @@ const handlerPutData = async (req, res) => {
     }
 }
 
-module.exports = handlerPutData;
+module.exports  = handlerPutData;
+// module.exports = handlerPutData;
