@@ -7,8 +7,9 @@ const handlerPutData = async(req,res) =>{
         console.log('TOKEN DESGLOSADO'+req.user)
         if(id==_id || isAdmin){
         let data = req.body;
-        if(req.files !== undefined){
-        const firebaseUrls = req.files.map((file) => file.firebaseUrl);
+        let firebaseUrls;
+        if(req.files){
+        firebaseUrls = req.files.map((file) => file.firebaseUrl);
         data.image = "image"
         data.galleta = "galleta"
         console.log(data)}
