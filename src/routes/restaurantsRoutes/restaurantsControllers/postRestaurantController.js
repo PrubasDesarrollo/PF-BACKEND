@@ -5,7 +5,7 @@ require('dotenv').config();
 const sendEmail = require('../../../utils/configEmailer')
 const { TOKEN_KEY } = process.env
 
-const postRestaurants = async(restaurantData, firebaseUrl) => {
+const postRestaurants = async(restaurantData, firebaseUrl ) => {
     let validate = await banned.find({'user_banned.email':restaurantData.email})
     if (validate.length!==0){throw new Error('ususario baneado')}
     const restaurant = {
