@@ -1,7 +1,9 @@
 const controllerPostUser = require("../usersControllers/controllerPostUser");
 
 const handlerPostUser = async (req, res) => {
-  const firebaseUrls = req.files.map((file) => file.firebaseUrl);
+  let firebaseUrls
+  if(req.files){
+  firebaseUrls = req.files.map((file) => file.firebaseUrl);}
   const data = req.body;
   const { password } = req.query;
   try {
