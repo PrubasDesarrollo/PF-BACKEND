@@ -36,7 +36,11 @@ const controllerPutData = async(_id, data, firebaseUrls) =>{
         email: data.email,
         type_customer: data.type_customer,
         description: data.description,
-        isAdmin: data.isAdmin
+        isAdmin: data.isAdmin,
+        phone: data.phone,
+        country: data.country,
+        city: data.city,
+        adress: data.adress
     })
 }
 
