@@ -25,6 +25,16 @@ const usersScheme = new mongoose.Schema(
     description: {
       type: String,
     },
+    city:{
+      type: String
+    },
+    address:{
+      type: String
+    },
+    country:{
+      type: String,
+      required: true
+    },
     valoraciones: [
       {
         type: Schema.Types.Mixed,

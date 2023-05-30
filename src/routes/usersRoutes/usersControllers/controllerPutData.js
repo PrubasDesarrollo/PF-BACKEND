@@ -27,7 +27,11 @@ const controllerPutData = (_id, data, image) =>{
         image: image,
         type_customer: data.type_customer,
         description: data.description,
-        isAdmin: data.isAdmin
+        isAdmin: data.isAdmin,
+        phone: data.phone,
+        city: data.city,
+        country: data.country,
+        adress: data.adress
     }
     return users.findOneAndUpdate(idUser, user)
 }
