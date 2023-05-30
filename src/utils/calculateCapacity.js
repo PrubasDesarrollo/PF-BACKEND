@@ -1,8 +1,8 @@
 const calculateCapacity = (totalQuantity, arr, obj) =>{
     let totalPeople = 0;
-    arr.map((reserv)=>{
-        totalPeople += reserv.people
-    })
+    arr.forEach((reserv) => {
+        totalPeople += reserv.people;
+      });
     let compared = totalPeople + obj.people
 
     if (compared > totalQuantity){
