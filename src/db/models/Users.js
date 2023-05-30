@@ -26,10 +26,12 @@ const usersScheme = new mongoose.Schema(
       type: String,
     },
     city:{
-      type: String
+      type: String,
+      required: true
     },
     address:{
-      type: String
+      type: String,
+      required: true
     },
     country:{
       type: String,
