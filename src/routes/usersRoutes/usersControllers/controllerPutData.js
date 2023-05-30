@@ -19,21 +19,36 @@ const controllerPutDataValoraciones = (_id,valoraciones) =>{
     return users.findOneAndUpdate(idUser, {$push: {valoraciones: valoraciones}})
 }
 
-const controllerPutData = (_id, data, image) =>{
+const controllerPutData = async(_id, data, firebaseUrls) =>{
     const idUser = parseId(_id);
-    let user = {
+    // const infoUsers = await users.find({_id:idUser})
+    // let user = {
+    //     name: data.name,
+    //     email: data.email,
+    //     image: [...infoUsers.images, ...images],
+    //     type_customer: data.type_customer,
+    //     description: data.description,
+    //     isAdmin: data.isAdmin
+    // }
+    console.log(firebaseUrls)
+    return await users.findOneAndUpdate(idUser, {
         name: data.name,
         email: data.email,
-        image: image,
         type_customer: data.type_customer,
         description: data.description,
         isAdmin: data.isAdmin,
         phone: data.phone,
-        city: data.city,
         country: data.country,
+        city: data.city,
         adress: data.adress
-    }
-    return users.findOneAndUpdate(idUser, user)
+    })
+}
+
+const controllerPutDataImages = async(id, firebaseUrls) =>{
+    const idUser = parseId(id);
+    return await users.findOneAndUpdate(idUser, {
+        $push:{images:firebaseUrls},
+    })
 }
 
 const controllerPutTransaction = async (id, transaction) =>{
@@ -56,5 +71,6 @@ module.exports = {
     controllerPutDataTable,
     controllerPutData,
     controllerPutDataValoraciones,
-    controllerPutTransaction
+    controllerPutTransaction,
+    controllerPutDataImages
 }
