@@ -3,6 +3,7 @@ const parsId = require("../../../utils/parseId");
 
 const putRestaurantsReservations = async (id, reservation) => {
     const idTable = parsId(id);
+    // calculateCapacity(capacity, arraydereservasprevias, reservation)
     return await restaurants.findByIdAndUpdate(idTable, { $addToSet: {reservations: reservation} });
 }
 
