@@ -14,7 +14,7 @@ const controllerPuToken = async(userEmail) =>{
     if (validate.length!==0){throw new Error('ususario baneado')}
    let oneUser = await users.find({email:userEmail})
    let info = oneUser.shift()
-   
+   //comentario 
    const token = jwt.sign(
     {
         _id: info._id, 
