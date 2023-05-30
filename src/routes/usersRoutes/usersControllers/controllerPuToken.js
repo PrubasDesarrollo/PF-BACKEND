@@ -7,12 +7,12 @@ require('dotenv').config();
 const { TOKEN_KEY } = process.env
 
 
-const controllerPuToken = async(userEmail) =>{
+const controllerPuToken = async(email) =>{
     let mesas =await tables.find()
     let posteos = await posts.find()
-    let validate = await banned.find({'user_banned.email':userEmail})
+    let validate = await banned.find({'user_banned.email':email})
     if (validate.length!==0){throw new Error('ususario baneado')}
-   let oneUser = await users.find({email:userEmail})
+   let oneUser = await users.find({email:email})
    let info = oneUser.shift()
    //comentario 
    const token = jwt.sign(
