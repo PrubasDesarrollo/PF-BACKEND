@@ -83,7 +83,7 @@ const mapDataRating = (data) => {
             phoneNumber: restaurant.phoneNumber,
             tags: restaurant.tags,
             menu: restaurant.menu,
-            image: restaurant.image,
+            images: restaurant.images,
             table: restaurant.table,
             email: restaurant.email,
             isActive: restaurant.isActive
