@@ -1,7 +1,8 @@
 const users = require('../../../db/models/Users');
 const parseId = require('../../../utils/parseId');
 require('dotenv').config();
-const { PASSWORD_ADMIN } = process.env
+const { PASSWORD_ADMIN, TOKEN_KEY } = process.env
+const jwt = require("jsonwebtoken");
 
 const controllerPutDataPosts = (_id,posts) =>{
     const idUser = parseId(_id);
@@ -49,7 +50,24 @@ const controllerPutData = async(_id, data, firebaseUrls) =>{
 const controllerAdminUser=async(password, id) =>{
     const idUser = parseId(id);
     if(password==PASSWORD_ADMIN){
-        return await users.findOneAndUpdate(idUser,{isAdmin:true})
+        let user = await users.findOneAndUpdate(idUser,{isAdmin:true})
+        const token = jwt.sign(
+            {
+              _id: user._id,
+              email: user.email,
+              type_customer: user.type_customer,
+              isAdmin: true,
+            },
+            TOKEN_KEY,
+            {
+              expiresIn: "7d",
+            }
+          );
+    
+          return {
+            isAdmin:true,
+            token:token
+          }
     }else{throw new Error('Invalid Password')}
 }
 
@@ -71,6 +89,28 @@ const controllerPutTransaction = async (id, transaction) =>{
         date: createdAt
     }
     return await users.findByIdAndUpdate(idUser, {$push: {transactions: transactionData}})
+}
+
+const controllerFalseAdmin = async(falseAdmin,id) =>{
+    const idUser = parseId(id);
+    let user = await users.findOneAndUpdate(idUser,{isAdmin:falseAdmin})
+    const token = jwt.sign(
+        {
+          _id: user._id,
+          email: user.email,
+          type_customer: user.type_customer,
+          isAdmin: false,
+        },
+        TOKEN_KEY,
+        {
+          expiresIn: "7d",
+        }
+      );
+
+      return {
+        isAdmin:false,
+        token:token
+      }
 
 }
 
@@ -82,5 +122,6 @@ module.exports = {
     controllerPutDataValoraciones,
     controllerPutTransaction,
     controllerPutDataImages,
-    controllerAdminUser
+    controllerAdminUser,
+    controllerFalseAdmin
 }
