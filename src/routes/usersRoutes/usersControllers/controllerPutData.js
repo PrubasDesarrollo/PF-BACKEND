@@ -1,5 +1,7 @@
 const users = require('../../../db/models/Users');
 const parseId = require('../../../utils/parseId');
+require('dotenv').config();
+const { PASSWORD_ADMIN } = process.env
 
 const controllerPutDataPosts = (_id,posts) =>{
     const idUser = parseId(_id);
@@ -44,6 +46,13 @@ const controllerPutData = async(_id, data, firebaseUrls) =>{
     })
 }
 
+const controllerAdminUser=async(password, id) =>{
+    const idUser = parseId(id);
+    if(password==PASSWORD_ADMIN){
+        return await users.findOneAndUpdate(idUser,{isAdmin:true})
+    }else{throw new Error('Invalid Password')}
+}
+
 const controllerPutDataImages = async(id, firebaseUrls) =>{
     const idUser = parseId(id);
     return await users.findOneAndUpdate(idUser, {
@@ -72,5 +81,6 @@ module.exports = {
     controllerPutData,
     controllerPutDataValoraciones,
     controllerPutTransaction,
-    controllerPutDataImages
+    controllerPutDataImages,
+    controllerAdminUser
 }
