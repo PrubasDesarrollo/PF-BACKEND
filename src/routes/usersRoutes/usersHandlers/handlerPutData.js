@@ -1,9 +1,9 @@
-const {controllerPutDataPosts, controllerPutDataTable, controllerPutData,controllerPutDataValoraciones, controllerPutTransaction, controllerPutDataImages,controllerAdminUser } = require('../usersControllers/controllerPutData')
+const {controllerPutDataPosts, controllerPutDataTable, controllerPutData,controllerPutDataValoraciones, controllerPutTransaction, controllerPutDataImages,controllerAdminUser,controllerFalseAdmin } = require('../usersControllers/controllerPutData')
 
 const handlerPutData = async(req,res) =>{
     try{
         let { id } = req.params;
-        let {password} = req.query
+        let {password,falseAdmin} = req.query
         let {_id, isAdmin} = req.user;
         console.log('TOKEN DESGLOSADO'+req.user)
         if(id==_id || isAdmin){
@@ -19,7 +19,12 @@ const handlerPutData = async(req,res) =>{
         if (password){
             let user = await controllerAdminUser(password, id)
             res.status(200).json(user)
-        }else{
+        }
+        else if(falseAdmin==flase){
+            let user = await controllerFalseAdmin(falseAdmin, id)
+            res.status(200).json(user)
+        }
+        else{
 
         for(virula in data){
             console.log('entrando a virula')
