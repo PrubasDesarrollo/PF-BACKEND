@@ -12,8 +12,11 @@ const handlerPutData = async (req, res) => {
     const { id } = req.params;
     const { _id, isAdmin } = req.user;
     if (id == _id || isAdmin) {
-      const firebaseUrls = req.files.map((file) => file.firebaseUrl);
-      const { firebaseUrl } = req.file ? req.file : "";
+      let firebaseUrls;
+      if (req.files) {
+        firebaseUrls = req.files.map((file) => file.firebaseUrl);
+      }
+
       let data = req.body;
       data.image = "image";
       data.galleta = "galleta";
@@ -22,7 +25,6 @@ const handlerPutData = async (req, res) => {
         validator = bandera;
       }
       let restaurant;
-
       for (virula in data) {
         if (virula == "reservation") {
           const { reservation } = req.body;
@@ -43,7 +45,7 @@ const handlerPutData = async (req, res) => {
         if (virula === "image") {
           user = await controllerPutDataImages(id, firebaseUrls);
         } else {
-          restaurant = await putRestaurantsData(id, data, firebaseUrl);
+          restaurant = await putRestaurantsData(id, data);
         }
       }
 
