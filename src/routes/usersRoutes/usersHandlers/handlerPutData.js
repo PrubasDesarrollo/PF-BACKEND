@@ -20,7 +20,7 @@ const handlerPutData = async(req,res) =>{
             let user = await controllerAdminUser(password, id)
             res.status(200).json(user)
         }
-        else if(falseAdmin==flase){
+        else if(falseAdmin==false){
             let user = await controllerFalseAdmin(falseAdmin, id)
             res.status(200).json(user)
         }
