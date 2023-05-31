@@ -40,7 +40,7 @@ const controllerPutData = async(_id, data, firebaseUrls) =>{
         phone: data.phone,
         country: data.country,
         city: data.city,
-        adress: data.adress
+        address: data.address
     })
 }
 

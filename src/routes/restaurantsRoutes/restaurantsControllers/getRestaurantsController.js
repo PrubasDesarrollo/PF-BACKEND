@@ -13,6 +13,12 @@ const getRestaurants = async () => {
     return restaurantRatings.sort((a, b) => b.rating - a.rating)
 }
 
+const allRestaurantController = async() =>{
+    const postsData = await posts.find();
+    const data = await restaurants.find().exec();
+    return data
+}
+
 const getRestaurantsRating = async (order) => {
     const tablesData = await tables.find();
     const postsData = await posts.find();
@@ -129,5 +135,6 @@ module.exports ={
     filterByName,
     filterByEmail,
     filterByCity,
-    filterByRating
+    filterByRating,
+    allRestaurantController
 };
