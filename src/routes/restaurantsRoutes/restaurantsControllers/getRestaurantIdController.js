@@ -32,7 +32,6 @@ const getRestaurantIdController = async (id) => {
   const postsData = await posts.find();
   let data = await restaurants
     .find({ _id: idParsed })
-    .populate("table")
     .populate("menu")
     .exec();
   data = data.shift();

@@ -16,18 +16,17 @@ const mapDataRating =  (user) => {
             rating: averageGrades(user.valoraciones || []),
             posts: user.menu,
             isAdmin: user.isAdmin,
-            table: user.table,
-            token: user.token
+            token: user.token,
+            phone:user.phone,
+            reservation: user.reservation
         }
     return newUser;
 }
 
 const controllerGetUser = async (id) => {
-    const tablesData = tables.find();
     const postsData = posts.find();
     const data = await users.find({_id: id})
                             .populate('posts')
-                            .populate('table')
                             .exec();
     let user = data.shift();
     return mapDataRating(user)

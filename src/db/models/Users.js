@@ -56,9 +56,8 @@ const usersScheme = new mongoose.Schema(
       type: [mongoose.Schema.Types.ObjectId],
       ref: "posts",
     },
-    table: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "tables",
+    reservation: {
+      type: Schema.Types.Mixed,
     },
     transactions:[{
       type: Schema.Types.Mixed,

@@ -13,6 +13,9 @@ const restaurantsScheme = new mongoose.Schema({
         type: String,
         required: true
     },
+    capacity:{
+        type: Number,
+    },
     phone:{
         type: String,
       },
@@ -56,9 +59,8 @@ const restaurantsScheme = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'posts',
     }],
-    table: [{
-        type: mongoose.Types.ObjectId,
-        ref: 'tables',
+    reservations: [{
+        type: Schema.Types.Mixed
     }],
     isActive:{
         type: Boolean,

@@ -4,11 +4,12 @@ const handlerPostData = require("./restaurantsHandlers/postHandler");
 const handlerDeleteData = require("./restaurantsHandlers/deleteHandler");
 const handlerPutData = require("./restaurantsHandlers/putHandler");
 const handlerGetIdData = require("./restaurantsHandlers/getIdHandler");
-const dashHandler = require('./restaurantsHandlers/dashHandler');
-const handlerPutToken = require('./restaurantsHandlers/handlerPutToken')
-const handlerGetTransactions = require("./restaurantsHandlers/handlerGetTransactions")
-const verifyToken = require('../../utils/jwt')
+const dashHandler = require("./restaurantsHandlers/dashHandler");
+const handlerPutToken = require("./restaurantsHandlers/handlerPutToken");
+const handlerGetTransactions = require("./restaurantsHandlers/handlerGetTransactions");
+const handlerGetReservations = require("./restaurantsHandlers/handlerGetReservations");
 
+const verifyToken = require("../../utils/jwt");
 
 const api = Router();
 
@@ -24,17 +25,18 @@ api.post("/", handlerPostData);
 
 // * Eliminar un restaurante segun id
 
-api.delete("/:id",verifyToken, handlerDeleteData);
+api.delete("/:id", verifyToken, handlerDeleteData);
 
 // * Actualizar restaurante segun id
 
-api.put("/:id",verifyToken, handlerPutData);
+api.put("/:id", verifyToken, handlerPutData);
 
-api.get("/login/:email", handlerPutToken)
+api.get("/login/:email", handlerPutToken);
 
 // * Ruta para ver ventas
-api.get("transactions/:id", handlerGetTransactions)
+api.get("/transactions/:id", handlerGetTransactions);
 
+api.get("/reservations/:id", handlerGetReservations);
 
 // * Rutas informacion dashboard restaurant
 

@@ -10,10 +10,15 @@ const controllerPostUser = async (data, firebaseUrls, password) => {
   if (validate.length !== 0) {
     throw new Error("Usuario baneado");
   }
-
+//! te acabo de hacer un cambio
   let user = {
+
+    country: data.country,
+    city: data.city,
+    address: data.address,
     name: data.name,
     email: data.email,
+    phone: data.phone,
     isAdmin: password ? password === PASSWORD_ADMIN : false,
     images: firebaseUrls, // Utilizando el array de URLs de las imágenes subidas
     type_customer: data.type_customer,
@@ -37,6 +42,9 @@ const controllerPostUser = async (data, firebaseUrls, password) => {
 
   let infoUser = {
     isAdmin: informacion.isAdmin,
+    country: informacion.country,
+    city: informacion.city,
+    address: informacion.address,
     name: informacion.name,
     email: informacion.email,
     images: informacion.images, // Utilizando el array de URLs de las imágenes guardadas
