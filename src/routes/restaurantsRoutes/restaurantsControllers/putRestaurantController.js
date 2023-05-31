@@ -4,8 +4,11 @@ const calculateCapacity = require("../../../utils/calculateCapacity");
 
 const putRestaurantsReservations = async (id, reservation) => {
   const idParsed = parsId(id);
-  const miResto = await restaurants.findOne({ _id: id });
-  const reservasPrevias = miResto.reservations;
+
+  const miResto = await restaurants.findOne({ _id: idParsed });
+
+  const reservasPrevias = miResto.reservations ? miResto.reservations : [];
+
   const capacity = miResto.capacity;
 
   const guardar = calculateCapacity(capacity, reservasPrevias, reservation);
