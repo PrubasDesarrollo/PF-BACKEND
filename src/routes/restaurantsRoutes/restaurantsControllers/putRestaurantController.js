@@ -11,7 +11,7 @@ const putRestaurantsReservations = async (id, reservation) => {
 
   const capacity = miResto.capacity;
 
-  const guardar = calculateCapacity(capacity, reservasPrevias, reservation);
+  const guardar = await calculateCapacity(capacity, reservasPrevias, reservation, idParsed);
 
   return await restaurants.findByIdAndUpdate(idParsed, {
     $addToSet: { reservations: guardar },

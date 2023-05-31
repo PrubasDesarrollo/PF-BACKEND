@@ -6,7 +6,7 @@ const averageGrades = require('../../../utils/averageGrades')
 const getUserController = async() =>{
     const tablesData = tables.find();
     const postsData = posts.find();
-    const data = await users.find().sort({rating: -1}).populate('posts').populate('table').exec()
+    const data = await users.find().sort({rating: -1}).populate('posts').exec()
 
     const usersRatings = await mapDataRating(data);
 
@@ -31,7 +31,6 @@ const getUserControllerQuery= async(order) =>{
     const postsData = await posts.find();
     const data = await users.find().sort({name:-1})
                             .populate('posts')
-                            .populate('table')
                             .exec();
     const usersRating = await mapDataRating(data);
     if(order == "alphaasc"){
@@ -80,9 +79,9 @@ const mapDataRating = async (data) => {
             valoraciones: user.valoraciones ? user.valoraciones : [0],
             rating: averageGrades(user.valoraciones),
             posts: user.menu,
-            table: user.table,
             isAdmin: user.isAdmin,
-            token: user.token
+            token: user.token,
+            reservation: user.reservation
         }
     });
     return mapData;
