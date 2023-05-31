@@ -7,7 +7,8 @@ const calculateCapacity = async(totalQuantity, arr, obj, idRestaurant) => {
   const restaurant = await restaurants.findById(idRestaurant,'name phone email address _id').exec() 
   let totalPeople = 0;
   arr.forEach((reserv) => {
-    totalPeople += reserv.people;
+    if(obj.dia == reserv.dia && obj.hora == reserv.hora){
+    totalPeople += reserv.people;}
   });
   let compared = totalPeople + obj.people;
 
