@@ -19,7 +19,8 @@ const handlerPutData = async(req,res) =>{
         if (password){
             let user = await controllerAdminUser(password, id)
             res.status(200).json(user)
-        }else{
+        }
+        else{
 
         for(virula in data){
             console.log('entrando a virula')
