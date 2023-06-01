@@ -1,8 +1,9 @@
-const {controllerPutDataPosts, controllerPutDataTable, controllerPutData,controllerPutDataValoraciones, controllerPutTransaction, controllerPutDataImages } = require('../usersControllers/controllerPutData')
+const {controllerPutDataPosts, controllerPutDataTable, controllerPutData,controllerPutDataValoraciones, controllerPutTransaction, controllerPutDataImages,controllerAdminUser } = require('../usersControllers/controllerPutData')
 
 const handlerPutData = async(req,res) =>{
     try{
         let { id } = req.params;
+        let {password} = req.query
         let {_id, isAdmin} = req.user;
         console.log('TOKEN DESGLOSADO'+req.user)
         if(id==_id || isAdmin){
@@ -12,9 +13,14 @@ const handlerPutData = async(req,res) =>{
         firebaseUrls = req.files.map((file) => file.firebaseUrl);
         data.image = "image"
         data.galleta = "galleta"
-        console.log(data)}
+        }
 
         let user;
+        if (password){
+            let user = await controllerAdminUser(password, id)
+            res.status(200).json(user)
+        }
+        else{
 
         for(virula in data){
             console.log('entrando a virula')
@@ -41,7 +47,7 @@ const handlerPutData = async(req,res) =>{
              user = await controllerPutData(id, data, firebaseUrls)
             
         }
-        res.status(200).json(user)
+        res.status(200).json(user)}
     }else{throw new Error("You can't modify this restaurant")}
     }catch(err){
         res.status(400).json({error: err.message})

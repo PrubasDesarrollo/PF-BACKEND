@@ -1,5 +1,8 @@
 const users = require('../../../db/models/Users');
 const parseId = require('../../../utils/parseId');
+require('dotenv').config();
+const { PASSWORD_ADMIN, TOKEN_KEY } = process.env
+const jwt = require("jsonwebtoken");
 
 const controllerPutDataPosts = (_id,posts) =>{
     const idUser = parseId(_id);
@@ -40,8 +43,51 @@ const controllerPutData = async(_id, data, firebaseUrls) =>{
         phone: data.phone,
         country: data.country,
         city: data.city,
-        adress: data.adress
+        address: data.address
     })
+}
+
+const controllerAdminUser=async(password, id) =>{
+    const idUser = parseId(id);
+    if(password==PASSWORD_ADMIN){
+        let user = await users.findOneAndUpdate(idUser,{isAdmin:true})
+        const token = jwt.sign(
+            {
+              _id: user._id,
+              email: user.email,
+              type_customer: user.type_customer,
+              isAdmin: true,
+            },
+            TOKEN_KEY,
+            {
+              expiresIn: "7d",
+            }
+          );
+    
+          return {
+            isAdmin:true,
+            token:token
+          }}
+          if(password=="removeAdmin"){
+            let user = await users.findOneAndUpdate(idUser,{isAdmin:false})
+          const token = jwt.sign(
+              {
+                _id: user._id,
+                email: user.email,
+                type_customer: user.type_customer,
+                isAdmin: false,
+              },
+              TOKEN_KEY,
+              {
+                expiresIn: "7d",
+              }
+            );
+      
+            return {
+              isAdmin:false,
+              token:token
+            }
+    }else{throw new Error('Invalid Password')}
 }
 
 const controllerPutDataImages = async(id, firebaseUrls) =>{
@@ -62,8 +108,8 @@ const controllerPutTransaction = async (id, transaction) =>{
         date: createdAt
     }
     return await users.findByIdAndUpdate(idUser, {$push: {transactions: transactionData}})
-
 }
+
 
 
 module.exports = {
@@ -72,5 +118,6 @@ module.exports = {
     controllerPutData,
     controllerPutDataValoraciones,
     controllerPutTransaction,
-    controllerPutDataImages
+    controllerPutDataImages,
+    controllerAdminUser
 }

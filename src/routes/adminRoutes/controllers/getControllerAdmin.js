@@ -14,7 +14,7 @@ const getControllerAdmin = async() =>{
             name: user.name,
             image: user.images.length>0 ? user.images[0] :"",
             email: user.email,
-            rol: user.type_customer,
+            rol: (user.isAdmin==true)?"Admin":user.type_customer,
             status: (bandera.length>0) ? "banned" : (user.isActive ? "active" : "innactive"),
             // banned:(bandera.length>0) ? true : false,
             rating: 0,
