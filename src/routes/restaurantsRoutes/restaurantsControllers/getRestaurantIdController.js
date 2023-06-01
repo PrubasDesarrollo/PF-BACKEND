@@ -14,6 +14,7 @@ const modelateData = (data) => {
     comments: mapearComentarios(data.valoraciones),
     valorations: data.valoraciones,
     city: data.city,
+    reservations : data.reservations,
     address: data.address,
     country: data.country,
     images: data.images,
