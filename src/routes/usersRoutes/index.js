@@ -24,7 +24,7 @@ api.put("/:id", verifyToken, handlerPutData);
 
 api.get("/login/:email", handlerPutToken);
 
-api.get("transactions/:id", handlerGetTransactions)
+api.get("/transactions/:id", handlerGetTransactions)
 
 
 
