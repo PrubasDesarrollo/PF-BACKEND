@@ -67,7 +67,26 @@ const controllerAdminUser=async(password, id) =>{
           return {
             isAdmin:true,
             token:token
-          }
+          }}
+          if(password=="removeAdmin"){
+            let user = await users.findOneAndUpdate(idUser,{isAdmin:false})
+          const token = jwt.sign(
+              {
+                _id: user._id,
+                email: user.email,
+                type_customer: user.type_customer,
+                isAdmin: false,
+              },
+              TOKEN_KEY,
+              {
+                expiresIn: "7d",
+              }
+            );
+      
+            return {
+              isAdmin:false,
+              token:token
+            }
     }else{throw new Error('Invalid Password')}
 }
 
@@ -91,28 +110,6 @@ const controllerPutTransaction = async (id, transaction) =>{
     return await users.findByIdAndUpdate(idUser, {$push: {transactions: transactionData}})
 }
 
-const controllerFalseAdmin = async(falseAdmin,id) =>{
-    const idUser = parseId(id);
-    let user = await users.findOneAndUpdate(idUser,{isAdmin:falseAdmin})
-    const token = jwt.sign(
-        {
-          _id: user._id,
-          email: user.email,
-          type_customer: user.type_customer,
-          isAdmin: false,
-        },
-        TOKEN_KEY,
-        {
-          expiresIn: "7d",
-        }
-      );
-
-      return {
-        isAdmin:false,
-        token:token
-      }
-
-}
 
 
 module.exports = {
@@ -122,6 +119,5 @@ module.exports = {
     controllerPutDataValoraciones,
     controllerPutTransaction,
     controllerPutDataImages,
-    controllerAdminUser,
-    controllerFalseAdmin
+    controllerAdminUser
 }

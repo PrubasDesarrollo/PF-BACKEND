@@ -1,9 +1,9 @@
-const {controllerPutDataPosts, controllerPutDataTable, controllerPutData,controllerPutDataValoraciones, controllerPutTransaction, controllerPutDataImages,controllerAdminUser,controllerFalseAdmin } = require('../usersControllers/controllerPutData')
+const {controllerPutDataPosts, controllerPutDataTable, controllerPutData,controllerPutDataValoraciones, controllerPutTransaction, controllerPutDataImages,controllerAdminUser } = require('../usersControllers/controllerPutData')
 
 const handlerPutData = async(req,res) =>{
     try{
         let { id } = req.params;
-        let {password,falseAdmin} = req.query
+        let {password} = req.query
         let {_id, isAdmin} = req.user;
         console.log('TOKEN DESGLOSADO'+req.user)
         if(id==_id || isAdmin){
@@ -18,10 +18,6 @@ const handlerPutData = async(req,res) =>{
         let user;
         if (password){
             let user = await controllerAdminUser(password, id)
-            res.status(200).json(user)
-        }
-        else if(falseAdmin==false){
-            let user = await controllerFalseAdmin(falseAdmin, id)
             res.status(200).json(user)
         }
         else{
