@@ -1,11 +1,11 @@
 const posts = require("../../../db/models/Posts");
 
-const controllerPostPosts = (data, firebaseUrl) =>{
+const controllerPostPosts = (data, firebaseUrls) =>{
 
     let post = {
         name: data.name,
         description: data.description,
-        image: firebaseUrl,
+        images: firebaseUrls,
         tags: data.tags,
         ingredients: data.ingredients,
         original: data.original,
