@@ -17,7 +17,7 @@ const createTransaction = async (idParsed, transactionData) =>{
     console.log("esto es "+userTransaction)
     console.log("esto es "+restTransaction)
     
-    await users.findOneAndUpdate({_id: userID}, {transaction: userTransaction})
+    await users.findByIdAndUpdate(userID, {transaction: userTransaction})
     
     return restTransaction
 }
