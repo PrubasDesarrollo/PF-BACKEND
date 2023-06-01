@@ -23,6 +23,8 @@ const modelateData = (data) => {
     menu: data.menu,
     email: data.email,
     isActive: data.isActive,
+    reservations: data.reservations,
+    valoraciones: data.valoraciones
   };
   return restaurant;
 };
