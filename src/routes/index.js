@@ -42,8 +42,8 @@ router.post("/payment", (req, res) => {
       })),
       back_urls: {
         success: "https://pf-front-test-production.up.railway.app/",
-        failure: "https://pf-front-test-production.up.railway.app/",
-        pending: "https://pf-front-test-production.up.railway.app/",
+        failure: "https://pf-front-test-production.up.railway.app/failure",
+        pending: "https://pf-front-test-production.up.railway.app/failure",
       },
       auto_return: "approved",
       binary_mode: true,
