@@ -7,11 +7,11 @@ const getTransactionsController = async (id) => {
     const idParsed = parseId(id);
     
     
-    const transactions = await restaurants.findById(idParsed,'transactions')    
-                                          .exec();
-    const enviar = transactions;
+    const transactions = await restaurants.findById(idParsed,'transactions').exec();
+
+                                          
     // if(!transactions.length) return ["No has hecho transacciones aún"];
-    return enviar;
+    return transactions;
 
 }
 

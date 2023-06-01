@@ -12,8 +12,8 @@ const createTransaction = async (idParsed, transactionData) =>{
     console.log("esta es la data del restaurant: "+restaurant)
     const user = await users.findById(userID, 'name phone');
     console.log("esta es la data user "+user)
-    const userTransaction =  {restaurant: restaurant, platos: platos, cost : cost, date: date};
-    const restTransaction =  {user: user, platos: platos, cost : cost, date: date};
+    const userTransaction =  await {restaurant: restaurant, platos: platos, cost : cost, date: date};
+    const restTransaction =  await {user: user, platos: platos, cost : cost, date: date};
     console.log("esto es "+userTransaction)
     console.log("esto es "+restTransaction)
     
