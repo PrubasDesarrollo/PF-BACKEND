@@ -41,9 +41,9 @@ router.post("/payment", (req, res) => {
         unit_price: prod.cost,
       })),
       back_urls: {
-        success: "https://pf-front-test-production.up.railway.app/",
-        failure: "https://pf-front-test-production.up.railway.app/failure",
-        pending: "https://pf-front-test-production.up.railway.app/failure",
+        success: "https://pf-front-3-production.up.railway.app/aprobe",
+        failure: "https://pf-front-3-production.up.railway.app/failure",
+        pending: "https://pf-front-3-production.up.railway.app/failure",
       },
       auto_return: "approved",
       binary_mode: true,
