@@ -59,9 +59,9 @@ const usersScheme = new mongoose.Schema(
     reservation: {
       type: Schema.Types.Mixed,
     },
-    transactions:[{
+    transactions:{
       type: Schema.Types.Mixed,
-  }],
+  },
     isActive: {
       type: Boolean,
       default: true,

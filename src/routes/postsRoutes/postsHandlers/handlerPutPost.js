@@ -4,7 +4,10 @@ const handlerPutPost = async(req, res) =>{
     try {
         let {id} = req.params;
         let info = req.body;
-        let {firebaseUrl} = req.file ? req.file : "";
+        let firebaseUrls;
+        if(req.files){
+        firebaseUrls = req.files.map((file) => file.firebaseUrl);
+        }
         let validator;
         for(bandera in info){
             validator = bandera;
@@ -20,7 +23,7 @@ const handlerPutPost = async(req, res) =>{
                 post = await controllerPutTags(id, tags)
             }
             else{
-                post = await controllerPutPosts(id, info, firebaseUrl);
+                post = await controllerPutPosts(id, info, firebaseUrls);
             }
         }
         // const post = await controllerPutPosts(id, info, firebaseUrl);

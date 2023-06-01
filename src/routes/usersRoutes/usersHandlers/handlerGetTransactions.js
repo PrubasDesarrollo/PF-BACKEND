@@ -1,6 +1,6 @@
 const getTransactionsController = require("../usersControllers/getTransactionsController");
 
-const handlerGetTransactions = async () =>{
+const handlerGetTransactions = async (req, res) =>{
     try {
         const { id } = req.params;
         const transactionsData = await getTransactionsController(id);

@@ -14,6 +14,7 @@ const modelateData = (data) => {
     comments: mapearComentarios(data.valoraciones),
     valorations: data.valoraciones,
     city: data.city,
+    reservations : data.reservations,
     address: data.address,
     country: data.country,
     images: data.images,
@@ -22,6 +23,8 @@ const modelateData = (data) => {
     menu: data.menu,
     email: data.email,
     isActive: data.isActive,
+    reservations: data.reservations,
+    valoraciones: data.valoraciones
   };
   return restaurant;
 };

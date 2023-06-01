@@ -11,12 +11,12 @@ const controllerPutTags = (id, tags) =>{
     return posts.findOneAndUpdate(idParsed, {$push: {tags: tags}})
 }
 
-const controllerPutPosts = (id, info,firebaseUrl) =>{
+const controllerPutPosts = (id, info,firebaseUrls) =>{
     let idParsed = parseId(id)
     return posts.findOneAndUpdate(idParsed,{
             name: info.name,
             description: info.description,
-            image: firebaseUrl,
+            $push: { images: firebaseUrls },
             ingredients: info.ingredients,
             original: info.original,
             cost: info.cost,

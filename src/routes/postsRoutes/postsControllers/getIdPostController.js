@@ -21,7 +21,7 @@ const mapDataRating = async (data) => {
             _id: post._id,
             name: post.name,
             description: post.description,
-            image: post.image,
+            images: post.images,
             ingredients: post.ingredients,
             original: post.original,
             cost: post.cost,
