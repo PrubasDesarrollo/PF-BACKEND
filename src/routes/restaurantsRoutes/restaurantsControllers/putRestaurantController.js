@@ -1,6 +1,7 @@
 const restaurants = require("../../../db/models/Restaurants");
 const parsId = require("../../../utils/parseId");
 const calculateCapacity = require("../../../utils/calculateCapacity");
+const createTransaction = require("../../../utils/createTransaction"); 
 
 const putRestaurantsReservations = async (id, reservation) => {
   const idParsed = parsId(id);
@@ -44,13 +45,14 @@ const putRestaurantTransactions = async (id, transaction) => {
   const idParsed = parsId(id);
   const { userId, ordered, cost, createdAt } = transaction;
   const transactionData = {
-    user: parsId(userId),
+    userID: parsId(userId),
     order: ordered.map((order) => parsId(order)),
     cost: cost,
     date: createdAt,
   };
+  const guardar = await createTransaction(idParsed, transactionData);
   return await restaurants.findByIdAndUpdate(idParsed, {
-    $push: { transactions: transactionData },
+    $push: { transactions: guardar },
   });
 };
 
