@@ -10,7 +10,7 @@ const deliveryRoutes = require("./deliveryRoutes/index");
 const tokenRoute = require("./tokenRoute/index");
 const bannedRoute = require("./bannedRoute/index");
 const ordersRoute = require("./ordersRoute/index");
-const adminRoutes = require("./adminRoutes/index")
+const adminRoutes = require("./adminRoutes/index");
 
 const router = Router();
 
@@ -22,7 +22,7 @@ router.use("/delivery", deliveryRoutes);
 router.use("/tokenAdmin", tokenRoute);
 router.use("/banned", bannedRoute);
 router.use("/orders", ordersRoute);
-router.use("/admin", adminRoutes)
+router.use("/admin", adminRoutes);
 
 mercadopago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 router.post("/payment", (req, res) => {
@@ -41,9 +41,9 @@ router.post("/payment", (req, res) => {
         unit_price: prod.cost,
       })),
       back_urls: {
-        success: "http://localhost:3000",
-        failure: "",
-        pending: "",
+        success: "https://pf-front-test-production.up.railway.app/",
+        failure: "https://pf-front-test-production.up.railway.app/",
+        pending: "https://pf-front-test-production.up.railway.app/",
       },
       auto_return: "approved",
       binary_mode: true,
